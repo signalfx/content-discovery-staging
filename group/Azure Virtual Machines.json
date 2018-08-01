@@ -2673,7 +2673,7 @@
       "customProperties" : null,
       "description" : "Microsoft Azure Virtual Machine dashboard for an individual instance",
       "discoveryOptions" : {
-        "query" : "_exists_:azure_resource_name AND resource_type:\"Microsoft.Compute/virtualMachines\"",
+        "query" : "_exists_:azure_resource_name AND (resource_type:\"Microsoft.Compute/virtualMachines\" OR resource_type:\"Microsoft.Compute/virtualMachineScaleSets/virtualMachines\")",
         "selectors" : [ "_exists_:azure_resource_name" ]
       },
       "eventOverlays" : null,
@@ -2684,12 +2684,12 @@
           "alias" : "resource_type",
           "applyIfExists" : false,
           "description" : "",
-          "preferredSuggestions" : [ "Microsoft.Compute/virtualMachines" ],
+          "preferredSuggestions" : [ "Microsoft.Compute/virtualMachines", "Microsoft.Compute/virtualMachineScaleSets/virtualMachines" ],
           "property" : "resource_type",
           "replaceOnly" : false,
           "required" : true,
           "restricted" : true,
-          "value" : "Microsoft.Compute/virtualMachines"
+          "value" : [ "Microsoft.Compute/virtualMachines", "Microsoft.Compute/virtualMachineScaleSets/virtualMachines" ]
         }, {
           "alias" : "azure_resource_name",
           "applyIfExists" : false,
@@ -2897,7 +2897,7 @@
       "customProperties" : null,
       "description" : "An overview of multiple Microsoft Azure Virtual Machines",
       "discoveryOptions" : {
-        "query" : "_exists_:resource_type AND resource_type:\"Microsoft.Compute/virtualMachines\"",
+        "query" : "_exists_:resource_type AND (resource_type:\"Microsoft.Compute/virtualMachines\" OR resource_type:\"Microsoft.Compute/virtualMachineScaleSets/virtualMachines\" OR resource_type:\"Microsoft.ClassicCompute/virtualMachines\")",
         "selectors" : [ "resource_type:Microsoft.Compute/virtualMachines" ]
       },
       "eventOverlays" : null,
@@ -2908,12 +2908,12 @@
           "alias" : "resource_type",
           "applyIfExists" : false,
           "description" : "",
-          "preferredSuggestions" : [ "Microsoft.Compute/virtualMachines", "Microsoft.ClassicCompute/virtualMachines" ],
+          "preferredSuggestions" : [ "Microsoft.Compute/virtualMachines", "Microsoft.ClassicCompute/virtualMachines", "Microsoft.Compute/virtualMachineScaleSets/virtualMachines" ],
           "property" : "resource_type",
           "replaceOnly" : false,
           "required" : false,
           "restricted" : true,
-          "value" : [ "Microsoft.Compute/virtualMachines", "Microsoft.ClassicCompute/virtualMachines" ]
+          "value" : [ "Microsoft.Compute/virtualMachines", "Microsoft.ClassicCompute/virtualMachines", "Microsoft.Compute/virtualMachineScaleSets/virtualMachines" ]
         } ]
       },
       "groupId" : "DiVWc-rAcAA",
@@ -2939,7 +2939,7 @@
         "filters" : [ {
           "not" : false,
           "property" : "resource_type",
-          "values" : [ "Microsoft.Compute/virtualMachines" ]
+          "values" : [ "Microsoft.Compute/virtualMachines", "Microsoft.Compute/virtualMachineScaleSets/virtualMachines", "Microsoft.ClassicCompute/virtualMachines" ]
         }, {
           "not" : false,
           "property" : "primary_aggregation_type",
