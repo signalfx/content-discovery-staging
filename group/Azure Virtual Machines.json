@@ -3387,6 +3387,25 @@
             }
           ],
           "metric": "Percentage CPU"
+        },
+        {
+          "filters": [
+            {
+              "not": false,
+              "property": "resource_type",
+              "values": [
+                "Microsoft.Compute/virtualMachineScaleSets/virtualMachines"
+              ]
+            },
+            {
+              "not": false,
+              "property": "primary_aggregation_type",
+              "values": [
+                "true"
+              ]
+            }
+          ],
+          "metric": "Percentage CPU"
         }
       ],
       "lastUpdated": 0,
@@ -3395,7 +3414,7 @@
       "teams": null
     }
   },
-  "hashCode": 747480945,
+  "hashCode": 494177898,
   "id": "DiVWc-rAcAA",
   "modelVersion": 1,
   "packageType": "GROUP"
