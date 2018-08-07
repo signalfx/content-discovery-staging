@@ -6,172 +6,6 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWjjKAYJk",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Container Restarts by Pod",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "kubernetes_cluster"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_pod_name"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "container restarts by pod",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kubernetes.container_restart_count', rollup='sum').sum(by=['kubernetes_pod_name']).publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWj_aAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Container Restarts",
-        "options": {
-          "colorBy": "Scale",
-          "colorScale": null,
-          "colorScale2": [
-            {
-              "gt": 1,
-              "gte": null,
-              "lt": null,
-              "lte": null,
-              "paletteIndex": 16
-            },
-            {
-              "gt": null,
-              "gte": null,
-              "lt": null,
-              "lte": 1,
-              "paletteIndex": 14
-            }
-          ],
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "kubernetes.container_restart_count - Sum by kubernetes_cluster",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kubernetes.container_restart_count', rollup='sum').sum(by=['kubernetes_cluster']).publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWh4CAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Memory Used per Container (Bytes)",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": 3,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
-          "unitPrefix": "Binary"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_memory_usage_bytes', filter=filter('metric_source', 'kubernetes')).mean(by=['container_name']).publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
         "id": "DkBkzRrAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
@@ -265,6 +99,2162 @@
         "creator": null,
         "customProperties": {},
         "description": "",
+        "id": "DkBnHS4AgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Highest Memory Use per Pod (bytes)",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": 4,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_memory_usage_bytes', filter=filter('metric_source', 'kubernetes'), extrapolation='last_value').sum(by=['kubernetes_pod_name']).mean(over='1m').top(count=10).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Network receive and transmit errors from pods on this node",
+        "id": "DkBnHTDAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Pod Network Errors by Interface",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Rx",
+              "label": "A",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Tx",
+              "label": "B",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('pod_network_receive_errors_total', filter=filter('metric_source', 'kubernetes')).sum(by=['interface']).publish(label='A')\nB = data('pod_network_transmit_errors_total', filter=filter('metric_source', 'kubernetes')).sum(by=['interface']).publish(label='B')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnBZnAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Pods by Phase",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "pods",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_metric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 30000
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Pending",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Running",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Succeeded",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Failed",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Unknown",
+              "label": "E",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kubernetes.pod_phase', rollup='latest').below(1, inclusive=True).count().publish(label='A')\nB = data('kubernetes.pod_phase', rollup='latest').between(1.1, 2, low_inclusive=True, high_inclusive=True).count().publish(label='B')\nC = data('kubernetes.pod_phase', rollup='latest').between(2.1, 3, low_inclusive=True, high_inclusive=True).count().publish(label='C')\nD = data('kubernetes.pod_phase', rollup='latest').between(3.1, 4, low_inclusive=True, high_inclusive=True).count().publish(label='D')\nE = data('kubernetes.pod_phase', rollup='latest').above(4).count().publish(label='E')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnB8XAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Net Pods Desired by Replication Controller",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "kubernetes_cluster"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_name"
+              },
+              {
+                "enabled": false,
+                "property": "kubernetes_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "metric_source"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "uid"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "available pods",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "desired pods",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "pods desired but not available",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kubernetes.replication_controller.available').publish(label='A', enable=False)\nB = data('kubernetes.replication_controller.desired').publish(label='B', enable=False)\nC = (B-A).publish(label='C')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBkzLZAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Memory (bytes)",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 4,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "machine_memory_bytes - Sum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "A/1024/1024",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('machine_memory_bytes', filter=filter('metric_source', 'kubernetes')).sum().publish(label='A')\nB = (A/1024/1024).publish(label='B', enable=False)",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBm16iAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Memory Used per Container (Bytes)",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_memory_usage_bytes', filter=filter('metric_source', 'kubernetes')).mean(by=['container_name']).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "bytes in + bytes out",
+        "id": "DkBkzjnAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top Nodes by Network Usage",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Rx (bytes/sec)",
+              "label": "A",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Tx (bytes/sec)",
+              "label": "B",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 1
+            },
+            {
+              "displayName": "A+B",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('pod_network_receive_bytes_total', filter=filter('metric_source', 'kubernetes'), extrapolation='zero').sum(by=['host']).publish(label='A', enable=False)\nB = data('pod_network_transmit_bytes_total', filter=filter('metric_source', 'kubernetes'), extrapolation='zero').sum(by=['host']).publish(label='B', enable=False)\nC = (A+B).publish(label='C')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Based on Pod spec's resources.limits.cpu value if present, otherwise chart will be blank.",
+        "id": "DkBm1ulAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "% CPU Limit Used per Container",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": 80,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Centicores used",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "CFS quota",
+              "label": "B",
+              "paletteIndex": 6,
+              "plotType": "LineChart",
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "CFS period",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "% of Limit",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 3600000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).sum(by=['container_name']).publish(label='A', enable=False)\nB = data('container_spec_cpu_quota', filter=filter('metric_source', 'kubernetes')).sum(by=['container_name']).publish(label='B', enable=False)\nC = data('container_spec_cpu_period', filter=filter('metric_source', 'kubernetes')).sum(by=['container_name']).publish(label='C', enable=False)\nD = (A/(B/C)).sum(by=['container_name']).publish(label='D')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnJQ3AYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total # Pods",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "container_cpu_utilization - Sum by kubernetes_pod_name - Mean(1m) - Count",
+              "label": "A",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes'), extrapolation='last_value').sum(by=['kubernetes_pod_name']).mean(over='1m').count().publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnaELAcAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "# Clusters",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "D = data('container_cpu_utilization').sum(by=['kubernetes_cluster']).mean(over='1m').count().publish(label='D')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "per cluster",
+        "id": "DkBncDiAgAI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "CPU Capacity Used",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale2": [
+            {
+              "gt": 80,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 16
+            },
+            {
+              "gt": 60,
+              "gte": null,
+              "lt": null,
+              "lte": 80,
+              "paletteIndex": 17
+            },
+            {
+              "gt": 40,
+              "gte": null,
+              "lt": null,
+              "lte": 60,
+              "paletteIndex": 18
+            },
+            {
+              "gt": 20,
+              "gte": null,
+              "lt": null,
+              "lte": 40,
+              "paletteIndex": 19
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 20,
+              "paletteIndex": 20
+            }
+          ],
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "kubernetes_cluster"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "centi-cores per cluster",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "# cores per cluster",
+              "label": "E",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "CPU Capacity Usage %",
+              "label": "F",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "D = data('container_cpu_utilization').sum(by=['kubernetes_cluster']).publish(label='D', enable=False)\nE = data('machine_cpu_cores').sum(by=['kubernetes_cluster']).publish(label='E', enable=False)\nF = (D/E).publish(label='F')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBkzFUAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top Nodes by # Pods",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_pod_name"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_node"
+              },
+              {
+                "enabled": true,
+                "property": "machine_id"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "container_cpu_utilization - Sum by kubernetes_pod_name - Mean(1m) - Count by host",
+              "label": "A",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_cpu_utilization', extrapolation='last_value').sum(by=['kubernetes_pod_name']).mean(over='1m').count(by=['host']).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnJmPAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Highest CPU Use per Pod (%)",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).publish(label='A', enable=False)\nB = (A).sum(by=['kubernetes_pod_name']).mean(over='1m').top(count=10).publish(label='B')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "per cluster",
+        "id": "DkBnb24AYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Memory Capacity Used",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale2": [
+            {
+              "gt": 80,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 16
+            },
+            {
+              "gt": 60,
+              "gte": null,
+              "lt": null,
+              "lte": 80,
+              "paletteIndex": 17
+            },
+            {
+              "gt": 40,
+              "gte": null,
+              "lt": null,
+              "lte": 60,
+              "paletteIndex": 18
+            },
+            {
+              "gt": 20,
+              "gte": null,
+              "lt": null,
+              "lte": 40,
+              "paletteIndex": 19
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 20,
+              "paletteIndex": 20
+            }
+          ],
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "kubernetes_cluster"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "memory usage per cluster",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "memory capacity per cluster",
+              "label": "E",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "% used per cluster",
+              "label": "F",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "D = data('container_memory_usage_bytes').sum(by=['kubernetes_cluster']).publish(label='D', enable=False)\nE = data('machine_memory_bytes').sum(by=['kubernetes_cluster']).publish(label='E', enable=False)\nF = (D/E).scale(100).publish(label='F')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnHSwAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Memory Use per Pod (bytes)",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "bytes",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "memory use (bytes)",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 3600000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_memory_usage_bytes', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_pod_name']).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnJksAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Memory (bytes)",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 4,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "machine_memory_bytes - Sum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "A/1024/1024",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('machine_memory_bytes', filter=filter('metric_source', 'kubernetes')).sum().publish(label='A')\nB = (A/1024/1024).publish(label='B', enable=False)",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBncFkAYAI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "# Containers per Cluster",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_cpu_utilization').mean(over='1m').count(by=['kubernetes_cluster']).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnI_OAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "CPU Use per Pod (%)",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "%",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "CPU %",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 3600001,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_pod_name']).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBm2jfAcDo",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "% CPU Used per Container",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes'), extrapolation='zero').sum(by=['container_name']).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "per cluster",
+        "id": "DkBnaCuAgDg",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Memory Usage",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": 4,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_memory_usage_bytes').sum(by=['kubernetes_cluster']).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Based on Kubernetes resource limits.  If no limits, will be blank.",
+        "id": "DkBmclKAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "% Memory Used per Pod",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "% memory used",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": 110,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "container",
+              "label": "A",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "limit",
+              "label": "B",
+              "paletteIndex": 6,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 3600000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_memory_usage_bytes', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_pod_name']).publish(label='A', enable=False)\nB = data('container_spec_memory_limit_bytes', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_pod_name']).above(0, inclusive=True).publish(label='B', enable=False)\nC = (A/B*100).publish(label='C')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBmbNpAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 10 Pods by % CPU Used",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale2": [
+            {
+              "gt": 80,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 16
+            },
+            {
+              "gt": 60,
+              "gte": null,
+              "lt": null,
+              "lte": 80,
+              "paletteIndex": 17
+            },
+            {
+              "gt": 40,
+              "gte": null,
+              "lt": null,
+              "lte": 60,
+              "paletteIndex": 18
+            },
+            {
+              "gt": 20,
+              "gte": null,
+              "lt": null,
+              "lte": 40,
+              "paletteIndex": 19
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 20,
+              "paletteIndex": 20
+            }
+          ],
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "container_name"
+              },
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_pod_name"
+              }
+            ]
+          },
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "conatiner centi-core usage",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "num cores on host",
+              "label": "E",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "% cpu used by container",
+              "label": "F",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes'), extrapolation='zero').sum(by=['host', 'kubernetes_pod_name']).publish(label='A', enable=False)\nE = data('machine_cpu_cores').sum(by=['host']).publish(label='E', enable=False)\nF = (A/E).top(count=10).publish(label='F')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnHZUAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "% Memory Capacity Used",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "% memory used",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": 110,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "memory usage per node",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "memory capacity per node",
+              "label": "E",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "",
+              "label": "F",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 3600000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "D = data('container_memory_usage_bytes').sum(by=['host']).mean(over='1m').publish(label='D', enable=False)\nE = data('machine_memory_bytes').sum(by=['host']).mean(over='1m').publish(label='E', enable=False)\nF = (D/E).scale(100).publish(label='F')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnAvVAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Deployments Not at Spec",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 0,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 16
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 0,
+              "paletteIndex": 14
+            }
+          ],
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "available pods",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "desired pods",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "pods desired but not available",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kubernetes.deployment.available', extrapolation='zero').publish(label='A', enable=False)\nB = data('kubernetes.deployment.desired', extrapolation='zero').publish(label='B', enable=False)\nC = (B-A).above(0).count().publish(label='C')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "This may include \"pause\" containers used internally by K8s",
+        "id": "DkBmciwAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 10 Pods by # Containers",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "kubernetes_pod_name"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "container_cpu_utilization - Mean(1m) - Count by kubernetes_pod_name - Top 10",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).mean(over='1m').count(by=['kubernetes_pod_name']).top(count=10).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBmckkAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 10 Pods by Average Container Memory Usage",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": 4,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Binary"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_memory_usage_bytes', filter=filter('metric_source', 'kubernetes')).mean(by=['kubernetes_pod_name']).top(count=10).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBm2FzAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Major Page Faults per Container",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_memory_failures_total', filter=filter('metric_source', 'kubernetes') and filter('type', 'pgmajfault')).sum(by=['container_name']).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnCV1AcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Pods by Phase",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Pending",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Running",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Succeeded",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Failed",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Unknown",
+              "label": "E",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kubernetes.pod_phase', rollup='latest').below(1, inclusive=True).count().publish(label='A')\nB = data('kubernetes.pod_phase', rollup='latest').between(1.1, 2, low_inclusive=True, high_inclusive=True).count().publish(label='B')\nC = data('kubernetes.pod_phase', rollup='latest').between(2.1, 3, low_inclusive=True, high_inclusive=True).count().publish(label='C')\nD = data('kubernetes.pod_phase', rollup='latest').between(3.1, 4, low_inclusive=True, high_inclusive=True).count().publish(label='D')\nE = data('kubernetes.pod_phase', rollup='latest').above(4).count().publish(label='E')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnCMpAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Container Restarts by Pod",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "kubernetes_cluster"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_pod_name"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "container restarts by pod",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kubernetes.container_restart_count', rollup='sum').sum(by=['kubernetes_pod_name']).publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBmcY0AgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Network Errors / sec",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Rx",
+              "label": "A",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Tx",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "+sf_metric",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('pod_network_receive_errors_total', filter=filter('metric_source', 'kubernetes')).sum().publish(label='A')\nB = data('pod_network_transmit_errors_total', filter=filter('metric_source', 'kubernetes')).sum().publish(label='B')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnHTuAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total # CPU Cores",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "cpu cores",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('machine_cpu_cores', filter=filter('metric_source', 'kubernetes')).sum().mean(over='1m').publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
         "id": "DkBkyDZAgAI",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
@@ -309,52 +2299,7 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWkJUAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "# Containers per Cluster",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).mean(over='1m').count(by=['kubernetes_cluster']).publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWheLAYF8",
+        "id": "DkBm18SAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "name": "Network Throughput (bytes/sec)",
@@ -446,124 +2391,24 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "DiVWkV_AgAA",
+        "description": "Based on Pod spec's resources.limits.cpu value if present, otherwise chart will be blank.",
+        "id": "DkBmcgVAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "# Nodes per Cluster",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_cluster', 'host']).mean(over='1m').count(by=['kubernetes_cluster']).publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWgRZAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Highest CPU Use per Pod (%)",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).publish(label='A', enable=False)\nB = (A).sum(by=['kubernetes_pod_name']).mean(over='1m').top(count=10).publish(label='B')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Based on Kubernetes resource limits.  If no limits, will be blank.",
-        "id": "DiVWjinAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "% Memory Used per Container",
+        "name": "% CPU Limit Used per Pod",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
           },
           "axes": [
             {
-              "highWatermark": null,
+              "highWatermark": 80,
               "highWatermarkLabel": null,
-              "label": "",
+              "label": "CPU %",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
-              "min": null
+              "min": 0
             },
             {
               "highWatermark": null,
@@ -577,7 +2422,7 @@
           ],
           "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
+          "defaultPlotType": "AreaChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
@@ -600,9 +2445,9 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "container",
+              "displayName": "Centicores used",
               "label": "A",
-              "paletteIndex": 1,
+              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
@@ -610,18 +2455,28 @@
               "yAxis": 0
             },
             {
-              "displayName": "limit",
+              "displayName": "CFS quota",
               "label": "B",
               "paletteIndex": 6,
+              "plotType": "LineChart",
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "CFS period",
+              "label": "C",
+              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
               "valueUnit": null,
-              "yAxis": 1
+              "yAxis": 0
             },
             {
-              "displayName": null,
-              "label": "C",
+              "displayName": "% of Limit",
+              "label": "D",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -633,112 +2488,14 @@
           "showEventLines": false,
           "stacked": false,
           "time": {
-            "range": 3600001,
+            "range": 3600000,
             "type": "relative"
           },
           "type": "TimeSeriesChart",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('container_memory_usage_bytes', filter=filter('metric_source', 'kubernetes')).sum(by=['container_name']).publish(label='A', enable=False)\nB = data('container_spec_memory_limit_bytes', filter=filter('metric_source', 'kubernetes')).sum(by=['container_name']).above(0, inclusive=True).publish(label='B', enable=False)\nC = (A/B*100).publish(label='C')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DkBkzLZAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total Memory (bytes)",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 4,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "machine_memory_bytes - Sum",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "A/1024/1024",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Binary"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('machine_memory_bytes', filter=filter('metric_source', 'kubernetes')).sum().publish(label='A')\nB = (A/1024/1024).publish(label='B', enable=False)",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "This may include \"pause\" containers used internally by K8s",
-        "id": "DiVWjItAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "# Active Containers",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "container_cpu_utilization - Mean(1m) - Count",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).mean(over='1m').count().publish(label='A')",
+        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_pod_name']).publish(label='A', enable=False)\nB = data('container_spec_cpu_quota', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_pod_name']).publish(label='B', enable=False)\nC = data('container_spec_cpu_period', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_pod_name']).publish(label='C', enable=False)\nD = (A/(B/C)).sum(by=['kubernetes_pod_name']).publish(label='D')",
         "tags": null
       }
     },
@@ -794,277 +2551,6 @@
         },
         "packageSpecifications": "",
         "programText": "A = data('pod_network_receive_errors_total', filter=filter('metric_source', 'kubernetes')).sum(by=['interface']).publish(label='A')\nB = data('pod_network_transmit_errors_total', filter=filter('metric_source', 'kubernetes')).sum(by=['interface']).publish(label='B')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWg6FAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total # Pods",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "container_cpu_utilization - Sum by kubernetes_pod_name - Mean(1m) - Count",
-              "label": "A",
-              "paletteIndex": 1,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes'), extrapolation='last_value').sum(by=['kubernetes_pod_name']).mean(over='1m').count().publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWj-gAgAE",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Container Restarts by Node",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "kubernetes_cluster"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_pod_name"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_node"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_role"
-              },
-              {
-                "enabled": true,
-                "property": "container_image"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_namespace"
-              },
-              {
-                "enabled": true,
-                "property": "metric_source"
-              },
-              {
-                "enabled": true,
-                "property": "container_spec_name"
-              },
-              {
-                "enabled": true,
-                "property": "host"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_pod_uid"
-              },
-              {
-                "enabled": true,
-                "property": "container_id"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "kubernetes.container_restart_count - Sum by host",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kubernetes.container_restart_count', rollup='sum', extrapolation='zero').sum(by=['host']).publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWgjeAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "CPU Use per Pod (%)",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "%",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "CPU %",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": true,
-          "time": {
-            "range": 3600001,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_pod_name']).publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWhGhAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Network Errors / sec",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Rx",
-              "label": "A",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Tx",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "+sf_metric",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('pod_network_receive_errors_total', filter=filter('metric_source', 'kubernetes')).sum().publish(label='A')\nB = data('pod_network_transmit_errors_total', filter=filter('metric_source', 'kubernetes')).sum().publish(label='B')",
         "tags": null
       }
     },
@@ -1175,10 +2661,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWjt5AcAA",
+        "id": "DkBnCXLAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Available Pods by Deployment",
+        "name": "Desired Pods by Deployment",
         "options": {
           "colorBy": "Dimension",
           "colorScale2": null,
@@ -1249,7 +2735,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('kubernetes.deployment.available').publish(label='A')\nB = data('kubernetes.deployment.desired').publish(label='B', enable=False)",
+        "programText": "A = data('kubernetes.deployment.available').publish(label='A', enable=False)\nB = data('kubernetes.deployment.desired').publish(label='B')",
         "tags": null
       }
     },
@@ -1258,23 +2744,87 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "bytes in + bytes out",
-        "id": "DkBkzjnAgAA",
+        "description": "This may include \"pause\" containers used internally by K8s",
+        "id": "DkBm2ftAYCM",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Top Nodes by Network Usage",
+        "name": "# Active Containers",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "container_cpu_utilization - Mean(1m) - Count",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).mean(over='1m').count().publish(label='A')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnBhCAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Daemon Sets by Stage",
         "options": {
           "colorBy": "Dimension",
           "colorScale2": null,
           "legendOptions": {
             "fields": [
               {
-                "enabled": true,
-                "property": "host"
+                "enabled": false,
+                "property": "kubernetes_cluster"
               },
               {
                 "enabled": false,
+                "property": "kubernetes_name"
+              },
+              {
+                "enabled": false,
+                "property": "kubernetes_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "metric_source"
+              },
+              {
+                "enabled": true,
                 "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "uid"
               }
             ]
           },
@@ -1286,9 +2836,9 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Rx (bytes/sec)",
+              "displayName": "current",
               "label": "A",
-              "paletteIndex": 4,
+              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
@@ -1296,34 +2846,44 @@
               "yAxis": 0
             },
             {
-              "displayName": "Tx (bytes/sec)",
+              "displayName": "desired",
               "label": "B",
-              "paletteIndex": 1,
+              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
               "valueUnit": null,
-              "yAxis": 1
+              "yAxis": 0
             },
             {
-              "displayName": "A+B",
+              "displayName": "misscheduled",
               "label": "C",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": "Byte",
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "ready",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
               "yAxis": 0
             }
           ],
           "refreshInterval": null,
           "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
+          "sortBy": "+kubernetes_cluster",
           "type": "List",
-          "unitPrefix": "Binary"
+          "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('pod_network_receive_bytes_total', filter=filter('metric_source', 'kubernetes'), extrapolation='zero').sum(by=['host']).publish(label='A', enable=False)\nB = data('pod_network_transmit_bytes_total', filter=filter('metric_source', 'kubernetes'), extrapolation='zero').sum(by=['host']).publish(label='B', enable=False)\nC = (A+B).publish(label='C')",
+        "programText": "A = data('kubernetes.daemon_set.current_scheduled').sum(by=['kubernetes_cluster']).publish(label='A')\nB = data('kubernetes.daemon_set.desired_scheduled').sum(by=['kubernetes_cluster']).publish(label='B')\nC = data('kubernetes.daemon_set.misscheduled').sum(by=['kubernetes_cluster']).publish(label='C')\nD = data('kubernetes.daemon_set.ready').sum(by=['kubernetes_cluster']).publish(label='D')",
         "tags": null
       }
     },
@@ -1333,17 +2893,108 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWhGgAYAA",
+        "id": "DkBnJHhAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "% CPU Used per Container",
+        "name": "% CPU Capacity Used",
         "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "cpu usage %",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": 110,
+              "min": 0
+            }
+          ],
+          "axisPrecision": null,
           "colorBy": "Dimension",
-          "colorScale2": null,
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
           "legendOptions": {
-            "fields": null
+            "fields": [
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "gcp_id"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_cluster"
+              },
+              {
+                "enabled": true,
+                "property": "container_image"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_pod_name"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_namespace"
+              },
+              {
+                "enabled": true,
+                "property": "metric_source"
+              },
+              {
+                "enabled": true,
+                "property": "container_name"
+              },
+              {
+                "enabled": true,
+                "property": "container_spec_name"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_pod_uid"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_node"
+              },
+              {
+                "enabled": true,
+                "property": "container_id"
+              },
+              {
+                "enabled": true,
+                "property": "machine_id"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              }
+            ]
           },
-          "maximumPrecision": 3,
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
@@ -1351,7 +3002,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "",
+              "displayName": "centi-core usage per node",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -1359,95 +3010,39 @@
               "valueSuffix": null,
               "valueUnit": null,
               "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes'), extrapolation='zero').sum(by=['container_name']).publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWjjKAYJo",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Deployments Not at Spec",
-        "options": {
-          "colorBy": "Scale",
-          "colorScale": null,
-          "colorScale2": [
-            {
-              "gt": 0,
-              "gte": null,
-              "lt": null,
-              "lte": null,
-              "paletteIndex": 16
             },
             {
-              "gt": null,
-              "gte": null,
-              "lt": null,
-              "lte": 0,
-              "paletteIndex": 14
+              "displayName": "# cores per node",
+              "label": "G",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "CPU Capacity % Used Per Node",
+              "label": "L",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
             }
           ],
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 3600000,
+            "type": "relative"
           },
-          "publishLabelOptions": [
-            {
-              "displayName": "available pods",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "desired pods",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "pods desired but not available",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "timestampHidden": false,
-          "type": "SingleValue",
+          "type": "TimeSeriesChart",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('kubernetes.deployment.available', extrapolation='zero').publish(label='A', enable=False)\nB = data('kubernetes.deployment.desired', extrapolation='zero').publish(label='B', enable=False)\nC = (B-A).above(0).count().publish(label='C')",
+        "programText": "A = data('container_cpu_utilization').sum(by=['host']).mean(over='1m').publish(label='A', enable=False)\nG = data('machine_cpu_cores').sum(by=['host']).mean(over='1m').publish(label='G', enable=False)\nL = (A/G).publish(label='L')",
         "tags": null
       }
     },
@@ -1623,214 +3218,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWkEuAYAA",
+        "id": "DkBmbEbAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Mean and Max CPU Use %",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "max",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "mean",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization').sum(by=['host', 'kubernetes_cluster']).max(by=['kubernetes_cluster']).publish(label='A')\nB = data('container_cpu_utilization').sum(by=['host', 'kubernetes_cluster']).mean(by=['kubernetes_cluster']).publish(label='B')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Network receive and transmit errors from pods on this node",
-        "id": "DiVWg4yAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Pod Network Errors by Interface",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Rx",
-              "label": "A",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Tx",
-              "label": "B",
-              "paletteIndex": 1,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('pod_network_receive_errors_total', filter=filter('metric_source', 'kubernetes')).sum(by=['interface']).publish(label='A')\nB = data('pod_network_transmit_errors_total', filter=filter('metric_source', 'kubernetes')).sum(by=['interface']).publish(label='B')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWjjKAYJg",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Net Pods Desired by Replica Set",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "kubernetes_cluster"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_name"
-              },
-              {
-                "enabled": false,
-                "property": "kubernetes_namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "metric_source"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "uid"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "available pods",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "desired pods",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "pods desired but not available",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kubernetes.replica_set.available').publish(label='A', enable=False)\nB = data('kubernetes.replica_set.desired').publish(label='B', enable=False)\nC = (B-A).publish(label='C')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWg5NAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Memory Use per Pod (bytes)",
+        "name": "Network Throughput (bytes/sec)",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -1839,16 +3230,25 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "bytes",
+              "label": "Rx Bytes /sec (RED)",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
-              "min": null
+              "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Tx Bytes /sec (BLUE)",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
             }
           ],
           "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
+          "defaultPlotType": "ColumnChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
@@ -1871,18 +3271,28 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "memory use (bytes)",
+              "displayName": "Rx (bytes/sec)",
               "label": "A",
-              "paletteIndex": null,
+              "paletteIndex": 4,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
               "valueUnit": null,
               "yAxis": 0
+            },
+            {
+              "displayName": "Tx (bytes/sec)",
+              "label": "B",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 1
             }
           ],
           "showEventLines": false,
-          "stacked": true,
+          "stacked": false,
           "time": {
             "range": 3600000,
             "type": "relative"
@@ -1891,7 +3301,7 @@
           "unitPrefix": "Binary"
         },
         "packageSpecifications": "",
-        "programText": "A = data('container_memory_usage_bytes', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_pod_name']).publish(label='A')",
+        "programText": "A = data('pod_network_receive_bytes_total', filter=filter('metric_source', 'kubernetes'), extrapolation='zero').sum().publish(label='A')\nB = data('pod_network_transmit_bytes_total', filter=filter('metric_source', 'kubernetes'), extrapolation='zero').sum().publish(label='B')",
         "tags": null
       }
     },
@@ -1901,80 +3311,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DkBkzFUAcAA",
+        "id": "DkBnaDJAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Top Nodes by # Pods",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_pod_name"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_node"
-              },
-              {
-                "enabled": true,
-                "property": "machine_id"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "container_cpu_utilization - Sum by kubernetes_pod_name - Mean(1m) - Count by host",
-              "label": "A",
-              "paletteIndex": 1,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization', extrapolation='last_value').sum(by=['kubernetes_pod_name']).mean(over='1m').count(by=['host']).publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWkEpAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Memory Use (Bytes)",
+        "name": "# Nodes per Cluster",
         "options": {
           "colorBy": "Dimension",
           "colorScale2": null,
@@ -2000,13 +3340,13 @@
             }
           ],
           "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
+          "secondaryVisualization": "None",
           "sortBy": "-value",
           "type": "List",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('container_memory_usage_bytes').sum(by=['kubernetes_cluster']).publish(label='A')",
+        "programText": "A = data('container_cpu_utilization').sum(by=['host', 'kubernetes_cluster']).mean(over='1m').count(by=['kubernetes_cluster']).publish(label='A')",
         "tags": null
       }
     },
@@ -2015,46 +3355,15 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "DiVWkEnAYAE",
+        "description": "This may include \"pause\" containers used internally by K8s",
+        "id": "DkBmcAEAcAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Desired Pods by Deployment",
+        "name": "# Active Pods",
         "options": {
           "colorBy": "Dimension",
+          "colorScale": null,
           "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "kubernetes_cluster"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_name"
-              },
-              {
-                "enabled": false,
-                "property": "kubernetes_namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "metric_source"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "uid"
-              }
-            ]
-          },
           "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
@@ -2063,73 +3372,8 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "available pods",
+              "displayName": "container_cpu_utilization - Mean(1m) - Sum by kubernetes_pod_name - Count",
               "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "desired pods",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "+kubernetes_name",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kubernetes.deployment.available').publish(label='A', enable=False)\nB = data('kubernetes.deployment.desired').publish(label='B')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWkQ0AcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Network Errors per cluster",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Rx (Bytes)",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Tx (Bytes)",
-              "label": "B",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -2139,13 +3383,14 @@
             }
           ],
           "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "+cluster",
-          "type": "List",
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "timestampHidden": false,
+          "type": "SingleValue",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('pod_network_receive_errors_total', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_cluster']).publish(label='A')\nB = data('pod_network_transmit_errors_total', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_cluster']).publish(label='B')",
+        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).mean(over='1m').sum(by=['kubernetes_pod_name']).count().publish(label='A')",
         "tags": null
       }
     },
@@ -2155,17 +3400,17 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWgPlAcAA",
+        "id": "DkBmbAEAcAE",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Highest Memory Use per Pod (bytes)",
+        "name": "Top 10 Pods by Major Page Faults",
         "options": {
           "colorBy": "Dimension",
           "colorScale2": null,
           "legendOptions": {
             "fields": null
           },
-          "maximumPrecision": 4,
+          "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
@@ -2184,13 +3429,13 @@
             }
           ],
           "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
+          "secondaryVisualization": "None",
           "sortBy": "-value",
           "type": "List",
-          "unitPrefix": "Binary"
+          "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('container_memory_usage_bytes', filter=filter('metric_source', 'kubernetes'), extrapolation='last_value').sum(by=['kubernetes_pod_name']).mean(over='1m').top(count=10).publish(label='A')",
+        "programText": "A = data('container_memory_failures_total', filter=filter('metric_source', 'kubernetes') and filter('type', 'pgmajfault')).sum(by=['kubernetes_pod_name']).top(count=10).publish(label='A')",
         "tags": null
       }
     },
@@ -2200,45 +3445,29 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWjjKAYJc",
+        "id": "DkBnCYRAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Net Pods Desired by Replication Controller",
+        "name": "Container Restarts",
         "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "kubernetes_cluster"
-              },
-              {
-                "enabled": true,
-                "property": "kubernetes_name"
-              },
-              {
-                "enabled": false,
-                "property": "kubernetes_namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "metric_source"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "uid"
-              }
-            ]
-          },
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 1,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 16
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 1,
+              "paletteIndex": 14
+            }
+          ],
           "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
@@ -2247,28 +3476,8 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "available pods",
+              "displayName": "kubernetes.container_restart_count - Sum by kubernetes_cluster",
               "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "desired pods",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "pods desired but not available",
-              "label": "C",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -2278,98 +3487,14 @@
             }
           ],
           "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "type": "List",
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "timestampHidden": false,
+          "type": "SingleValue",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('kubernetes.replication_controller.available').publish(label='A', enable=False)\nB = data('kubernetes.replication_controller.desired').publish(label='B', enable=False)\nC = (B-A).publish(label='C')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWjjLAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Pods by Phase",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Pending",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Running",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Succeeded",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Failed",
-              "label": "D",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Unknown",
-              "label": "E",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "",
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kubernetes.pod_phase', rollup='latest').below(1, inclusive=True).count().publish(label='A')\nB = data('kubernetes.pod_phase', rollup='latest').between(1.1, 2, low_inclusive=True, high_inclusive=True).count().publish(label='B')\nC = data('kubernetes.pod_phase', rollup='latest').between(2.1, 3, low_inclusive=True, high_inclusive=True).count().publish(label='C')\nD = data('kubernetes.pod_phase', rollup='latest').between(3.1, 4, low_inclusive=True, high_inclusive=True).count().publish(label='D')\nE = data('kubernetes.pod_phase', rollup='latest').above(4).count().publish(label='E')",
+        "programText": "A = data('kubernetes.container_restart_count', rollup='sum').sum(by=['kubernetes_cluster']).publish(label='A')",
         "tags": null
       }
     },
@@ -2465,10 +3590,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWhGuAcBg",
+        "id": "DkBm2CNAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Major Page Faults per Container",
+        "name": "Network Errors / sec",
         "options": {
           "colorBy": "Dimension",
           "colorScale2": null,
@@ -2483,8 +3608,18 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "",
+              "displayName": "Rx",
               "label": "A",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Tx",
+              "label": "B",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -2495,12 +3630,12 @@
           ],
           "refreshInterval": null,
           "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
+          "sortBy": "+sf_metric",
           "type": "List",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('container_memory_failures_total', filter=filter('metric_source', 'kubernetes') and filter('type', 'pgmajfault')).sum(by=['container_name']).publish(label='A')",
+        "programText": "A = data('pod_network_receive_errors_total', filter=filter('metric_source', 'kubernetes')).sum().publish(label='A')\nB = data('pod_network_transmit_errors_total', filter=filter('metric_source', 'kubernetes')).sum().publish(label='B')",
         "tags": null
       }
     },
@@ -2509,24 +3644,108 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Based on Pod spec's resources.limits.cpu value if present, otherwise chart will be blank.",
-        "id": "DiVWh7lAcAA",
+        "description": "",
+        "id": "DkBnAW2AgAI",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "% CPU Limit Used per Container",
+        "name": "Available Pods by Deployment",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "kubernetes_cluster"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_name"
+              },
+              {
+                "enabled": false,
+                "property": "kubernetes_namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "metric_source"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "uid"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "available pods",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "desired pods",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "+kubernetes_name",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kubernetes.deployment.available').publish(label='A')\nB = data('kubernetes.deployment.desired').publish(label='B', enable=False)",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Based on Kubernetes resource limits.  If no limits, will be blank.",
+        "id": "DkBm2N8AgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "% Memory Used per Container",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
           },
           "axes": [
             {
-              "highWatermark": 80,
+              "highWatermark": null,
               "highWatermarkLabel": null,
               "label": "",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
-              "min": 0
+              "min": null
             },
             {
               "highWatermark": null,
@@ -2540,7 +3759,7 @@
           ],
           "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
+          "defaultPlotType": "LineChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
@@ -2563,9 +3782,9 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Centicores used",
+              "displayName": "container",
               "label": "A",
-              "paletteIndex": null,
+              "paletteIndex": 1,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
@@ -2573,28 +3792,18 @@
               "yAxis": 0
             },
             {
-              "displayName": "CFS quota",
+              "displayName": "limit",
               "label": "B",
               "paletteIndex": 6,
-              "plotType": "LineChart",
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "CFS period",
-              "label": "C",
-              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
               "valueUnit": null,
-              "yAxis": 0
+              "yAxis": 1
             },
             {
-              "displayName": "% of Limit",
-              "label": "D",
+              "displayName": "",
+              "label": "C",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -2606,14 +3815,14 @@
           "showEventLines": false,
           "stacked": false,
           "time": {
-            "range": 3600000,
+            "range": 3600001,
             "type": "relative"
           },
           "type": "TimeSeriesChart",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).sum(by=['container_name']).publish(label='A', enable=False)\nB = data('container_spec_cpu_quota', filter=filter('metric_source', 'kubernetes')).sum(by=['container_name']).publish(label='B', enable=False)\nC = data('container_spec_cpu_period', filter=filter('metric_source', 'kubernetes')).sum(by=['container_name']).publish(label='C', enable=False)\nD = (A/(B/C)).sum(by=['container_name']).publish(label='D')",
+        "programText": "A = data('container_memory_usage_bytes', filter=filter('metric_source', 'kubernetes')).sum(by=['container_name']).publish(label='A', enable=False)\nB = data('container_spec_memory_limit_bytes', filter=filter('metric_source', 'kubernetes')).sum(by=['container_name']).above(0, inclusive=True).publish(label='B', enable=False)\nC = (A/B*100).publish(label='C')",
         "tags": null
       }
     },
@@ -2622,113 +3831,17 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "DiVWgEFAYAA",
+        "description": "per cluster",
+        "id": "DkBnaH0AgFc",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Total Memory (bytes)",
+        "name": "Network Transmit Errors",
         "options": {
           "colorBy": "Dimension",
-          "colorScale": null,
           "colorScale2": null,
-          "maximumPrecision": 4,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
+          "legendOptions": {
+            "fields": null
           },
-          "publishLabelOptions": [
-            {
-              "displayName": "machine_memory_bytes - Sum",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "A/1024/1024",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Binary"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('machine_memory_bytes', filter=filter('metric_source', 'kubernetes')).sum().publish(label='A')\nB = (A/1024/1024).publish(label='B', enable=False)",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWkUMAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "# Clusters",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 3,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": null,
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('container_cpu_utilization', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_cluster']).mean(over='1m').count().publish(label='A')",
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWgKZAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total # CPU Cores",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
           "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
@@ -2737,7 +3850,105 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "cpu cores",
+              "displayName": "Tx (Bytes)",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "B = data('pod_network_transmit_errors_total', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_cluster']).publish(label='B')",
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DkBnCUjAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Container Restarts by Node",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "kubernetes_cluster"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_pod_name"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_node"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_role"
+              },
+              {
+                "enabled": true,
+                "property": "container_image"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_namespace"
+              },
+              {
+                "enabled": true,
+                "property": "metric_source"
+              },
+              {
+                "enabled": true,
+                "property": "container_spec_name"
+              },
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": true,
+                "property": "kubernetes_pod_uid"
+              },
+              {
+                "enabled": true,
+                "property": "container_id"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "kubernetes.container_restart_count - Sum by host",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -2748,14 +3959,13 @@
             }
           ],
           "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "timestampHidden": false,
-          "type": "SingleValue",
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "type": "List",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('machine_cpu_cores', filter=filter('metric_source', 'kubernetes')).sum().mean(over='1m').publish(label='A')",
+        "programText": "A = data('kubernetes.container_restart_count', rollup='sum', extrapolation='zero').sum(by=['host']).publish(label='A')",
         "tags": null
       }
     },
@@ -2765,10 +3975,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWjjKAYJY",
+        "id": "DkBnBFnAcAE",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Daemon Sets by Stage",
+        "name": "Net Pods Desired by Replica Set",
         "options": {
           "colorBy": "Dimension",
           "colorScale2": null,
@@ -2779,7 +3989,7 @@
                 "property": "kubernetes_cluster"
               },
               {
-                "enabled": false,
+                "enabled": true,
                 "property": "kubernetes_name"
               },
               {
@@ -2795,7 +4005,7 @@
                 "property": "metric_source"
               },
               {
-                "enabled": true,
+                "enabled": false,
                 "property": "sf_metric"
               },
               {
@@ -2812,7 +4022,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "current",
+              "displayName": "available pods",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -2822,7 +4032,7 @@
               "yAxis": 0
             },
             {
-              "displayName": "desired",
+              "displayName": "desired pods",
               "label": "B",
               "paletteIndex": null,
               "plotType": null,
@@ -2832,18 +4042,8 @@
               "yAxis": 0
             },
             {
-              "displayName": "misscheduled",
+              "displayName": "pods desired but not available",
               "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "ready",
-              "label": "D",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -2854,12 +4054,12 @@
           ],
           "refreshInterval": null,
           "secondaryVisualization": "Sparkline",
-          "sortBy": "+kubernetes_cluster",
+          "sortBy": "-value",
           "type": "List",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('kubernetes.daemon_set.current_scheduled').sum(by=['kubernetes_cluster']).publish(label='A')\nB = data('kubernetes.daemon_set.desired_scheduled').sum(by=['kubernetes_cluster']).publish(label='B')\nC = data('kubernetes.daemon_set.misscheduled').sum(by=['kubernetes_cluster']).publish(label='C')\nD = data('kubernetes.daemon_set.ready').sum(by=['kubernetes_cluster']).publish(label='D')",
+        "programText": "A = data('kubernetes.replica_set.available').publish(label='A', enable=False)\nB = data('kubernetes.replica_set.desired').publish(label='B', enable=False)\nC = (B-A).publish(label='C')",
         "tags": null
       }
     },
@@ -2868,112 +4068,43 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "DiVWjybAYAE",
+        "description": "per cluster",
+        "id": "DkBnb_OAcAE",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Pods by Phase",
+        "name": "Network Receieve Errors",
         "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "pods",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
+          "colorBy": "Dimension",
+          "colorScale2": null,
           "legendOptions": {
             "fields": null
           },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "sf_metric",
-            "showLegend": true
-          },
+          "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
-            "minimumResolution": 30000
+            "minimumResolution": 0
           },
           "publishLabelOptions": [
             {
-              "displayName": "Pending",
+              "displayName": "Rx (Bytes)",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Running",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Succeeded",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Failed",
-              "label": "D",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Unknown",
-              "label": "E",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
+              "valueUnit": "Byte",
               "yAxis": 0
             }
           ],
-          "showEventLines": false,
-          "stacked": true,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "type": "List",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('kubernetes.pod_phase', rollup='latest').below(1, inclusive=True).count().publish(label='A')\nB = data('kubernetes.pod_phase', rollup='latest').between(1.1, 2, low_inclusive=True, high_inclusive=True).count().publish(label='B')\nC = data('kubernetes.pod_phase', rollup='latest').between(2.1, 3, low_inclusive=True, high_inclusive=True).count().publish(label='C')\nD = data('kubernetes.pod_phase', rollup='latest').between(3.1, 4, low_inclusive=True, high_inclusive=True).count().publish(label='D')\nE = data('kubernetes.pod_phase', rollup='latest').above(4).count().publish(label='E')",
+        "programText": "A = data('pod_network_receive_errors_total', filter=filter('metric_source', 'kubernetes')).sum(by=['kubernetes_cluster']).publish(label='A')",
         "tags": null
       }
     }
@@ -2984,57 +4115,185 @@
         "chartDensity": "DEFAULT",
         "charts": [
           {
-            "chartId": "DiVWheLAYF8",
-            "column": 4,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWjItAYAA",
+            "chartId": "DkBnAvVAYAA",
             "column": 0,
             "height": 1,
             "row": 0,
             "width": 4
           },
           {
-            "chartId": "DiVWhGhAgAA",
+            "chartId": "DkBnAW2AgAI",
             "column": 8,
             "height": 1,
             "row": 0,
             "width": 4
           },
           {
-            "chartId": "DiVWjinAgAA",
+            "chartId": "DkBnCXLAgAA",
+            "column": 4,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnCYRAYAA",
             "column": 0,
             "height": 1,
             "row": 1,
             "width": 4
           },
           {
-            "chartId": "DiVWh4CAgAA",
-            "column": 4,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWhGuAcBg",
+            "chartId": "DkBnCMpAgAA",
             "column": 8,
             "height": 1,
             "row": 1,
             "width": 4
           },
           {
-            "chartId": "DiVWhGgAYAA",
+            "chartId": "DkBnCUjAYAA",
+            "column": 4,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnCV1AcAA",
+            "column": 0,
+            "height": 1,
+            "row": 2,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnBZnAgAA",
+            "column": 4,
+            "height": 1,
+            "row": 2,
+            "width": 8
+          },
+          {
+            "chartId": "DkBnBhCAYAA",
+            "column": 0,
+            "height": 1,
+            "row": 3,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnB8XAcAA",
+            "column": 8,
+            "height": 1,
+            "row": 3,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnBFnAcAE",
+            "column": 4,
+            "height": 1,
+            "row": 3,
+            "width": 4
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": {
+          "query": "metric_source:kubernetes",
+          "selectors": [
+            "sf_key:kubernetes_cluster"
+          ]
+        },
+        "eventOverlays": null,
+        "filters": {
+          "sources": null,
+          "time": null,
+          "variables": [
+            {
+              "alias": "Cluster",
+              "applyIfExists": false,
+              "description": "k8s cluster",
+              "preferredSuggestions": [],
+              "property": "kubernetes_cluster",
+              "replaceOnly": false,
+              "required": true,
+              "restricted": false,
+              "value": ""
+            }
+          ]
+        },
+        "groupId": "DiVWf-iAgAA",
+        "id": "DkBm_nVAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "locked": false,
+        "maxDelayOverride": null,
+        "name": "K8s Operations",
+        "selectedEventOverlays": [],
+        "tags": null
+      }
+    },
+    {
+      "dashboard": {
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "DkBmbEbAgAA",
+            "column": 4,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBmcY0AgAA",
+            "column": 8,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBmcAEAcAA",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBmciwAcAA",
+            "column": 0,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DkBmckkAgAA",
+            "column": 4,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DkBmbAEAcAE",
+            "column": 8,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DkBmclKAYAA",
+            "column": 0,
+            "height": 1,
+            "row": 2,
+            "width": 4
+          },
+          {
+            "chartId": "DkBmbNpAYAA",
             "column": 4,
             "height": 1,
             "row": 2,
             "width": 4
           },
           {
-            "chartId": "DiVWh7lAcAA",
-            "column": 0,
+            "chartId": "DkBmcgVAYAA",
+            "column": 8,
             "height": 1,
             "row": 2,
             "width": 4
@@ -3043,42 +4302,229 @@
         "created": 0,
         "creator": null,
         "customProperties": null,
-        "description": null,
+        "description": "",
         "discoveryOptions": {
-          "query": "metric_source:kubernetes AND _exists_:kubernetes_cluster",
+          "query": "_exists_:kubernetes_pod_name AND _exists_:kubernetes_cluster",
           "selectors": [
-            "_exists_:kubernetes_pod_name"
+            "sf_key:kubernetes_pod_name"
           ]
         },
         "eventOverlays": null,
         "filters": {
           "sources": null,
-          "time": {
-            "end": "Now",
-            "start": "-1h"
-          },
-          "variables": [
-            {
-              "alias": "pod",
-              "applyIfExists": false,
-              "description": "K8s pod",
-              "preferredSuggestions": [],
-              "property": "kubernetes_pod_name",
-              "replaceOnly": false,
-              "required": true,
-              "restricted": false,
-              "value": null
-            }
-          ]
+          "time": null,
+          "variables": null
         },
         "groupId": "DiVWf-iAgAA",
-        "id": "DiVWhFdAcKI",
+        "id": "DkBma1YAYDg",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "locked": false,
         "maxDelayOverride": null,
-        "name": "K8s Pod",
-        "selectedEventOverlays": null,
+        "name": "K8s Pods",
+        "selectedEventOverlays": [],
+        "tags": null
+      }
+    },
+    {
+      "dashboard": {
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "DkBnJQ3AYAA",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnHTuAcAA",
+            "column": 4,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnJksAcAA",
+            "column": 8,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnHSwAcAA",
+            "column": 0,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "DkBnI_OAcAA",
+            "column": 6,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "DkBnHTDAYAA",
+            "column": 8,
+            "height": 1,
+            "row": 2,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnJmPAgAA",
+            "column": 0,
+            "height": 1,
+            "row": 2,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnHS4AgAA",
+            "column": 4,
+            "height": 1,
+            "row": 2,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnJHhAgAA",
+            "column": 0,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "DkBnHZUAgAA",
+            "column": 6,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": null,
+        "discoveryOptions": {
+          "query": "_exists_:kubernetes_cluster and _exists_:host",
+          "selectors": [
+            "_exists_:host"
+          ]
+        },
+        "eventOverlays": null,
+        "filters": {
+          "sources": null,
+          "time": null,
+          "variables": [
+            {
+              "alias": "host",
+              "applyIfExists": false,
+              "description": "K8s node",
+              "preferredSuggestions": [],
+              "property": "host",
+              "replaceOnly": false,
+              "required": true,
+              "restricted": false,
+              "value": ""
+            }
+          ]
+        },
+        "groupId": "DiVWf-iAgAA",
+        "id": "DkBnHSpAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "locked": false,
+        "maxDelayOverride": null,
+        "name": "K8s Node",
+        "selectedEventOverlays": [],
+        "tags": null
+      }
+    },
+    {
+      "dashboard": {
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "DkBnaELAcAE",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBncFkAYAI",
+            "column": 8,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnaDJAYAA",
+            "column": 4,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBncDiAgAI",
+            "column": 0,
+            "height": 2,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnb24AYAA",
+            "column": 8,
+            "height": 2,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnaCuAgDg",
+            "column": 4,
+            "height": 2,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DkBnaH0AgFc",
+            "column": 6,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "DkBnb_OAcAE",
+            "column": 0,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": null,
+        "discoveryOptions": {
+          "query": "sf_metric:cpu.utilization AND _exists_:kubernetes_cluster",
+          "selectors": [
+            "_exists_:kubernetes_cluster"
+          ]
+        },
+        "eventOverlays": null,
+        "filters": {
+          "sources": null,
+          "time": null,
+          "variables": null
+        },
+        "groupId": "DiVWf-iAgAA",
+        "id": "DkBnZ_qAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "locked": false,
+        "maxDelayOverride": null,
+        "name": "K8s Clusters",
+        "selectedEventOverlays": [],
         "tags": null
       }
     },
@@ -3163,10 +4609,7 @@
         "eventOverlays": null,
         "filters": {
           "sources": null,
-          "time": {
-            "end": "Now",
-            "start": "-1h"
-          },
+          "time": null,
           "variables": null
         },
         "groupId": "DiVWf-iAgAA",
@@ -3185,91 +4628,70 @@
         "chartDensity": "DEFAULT",
         "charts": [
           {
-            "chartId": "DiVWjjKAYJo",
-            "column": 0,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWkEnAYAE",
+            "chartId": "DkBm18SAgAA",
             "column": 4,
             "height": 1,
             "row": 0,
             "width": 4
           },
           {
-            "chartId": "DiVWjt5AcAA",
+            "chartId": "DkBm2ftAYCM",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DkBm2CNAYAA",
             "column": 8,
             "height": 1,
             "row": 0,
             "width": 4
           },
           {
-            "chartId": "DiVWj_aAcAA",
+            "chartId": "DkBm2N8AgAA",
             "column": 0,
             "height": 1,
             "row": 1,
             "width": 4
           },
           {
-            "chartId": "DiVWjjKAYJk",
-            "column": 8,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWj-gAgAE",
+            "chartId": "DkBm16iAcAA",
             "column": 4,
             "height": 1,
             "row": 1,
             "width": 4
           },
           {
-            "chartId": "DiVWjjLAgAA",
-            "column": 0,
+            "chartId": "DkBm2FzAcAA",
+            "column": 8,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DkBm2jfAcDo",
+            "column": 4,
             "height": 1,
             "row": 2,
             "width": 4
           },
           {
-            "chartId": "DiVWjybAYAE",
-            "column": 4,
-            "height": 1,
-            "row": 2,
-            "width": 8
-          },
-          {
-            "chartId": "DiVWjjKAYJY",
+            "chartId": "DkBm1ulAYAA",
             "column": 0,
             "height": 1,
-            "row": 3,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWjjKAYJc",
-            "column": 8,
-            "height": 1,
-            "row": 3,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWjjKAYJg",
-            "column": 4,
-            "height": 1,
-            "row": 3,
+            "row": 2,
             "width": 4
           }
         ],
         "created": 0,
         "creator": null,
         "customProperties": null,
-        "description": "",
+        "description": null,
         "discoveryOptions": {
-          "query": "metric_source:kubernetes",
+          "query": "_exists_:kubernetes_pod_name AND _exists_:kubernetes_cluster",
           "selectors": [
-            "sf_key:kubernetes_cluster"
+            "_exists_:kubernetes_pod_name"
           ]
         },
         "eventOverlays": null,
@@ -3278,206 +4700,26 @@
           "time": null,
           "variables": [
             {
-              "alias": "Cluster",
+              "alias": "pod",
               "applyIfExists": false,
-              "description": "k8s cluster",
+              "description": "K8s pod",
               "preferredSuggestions": [],
-              "property": "kubernetes_cluster",
+              "property": "kubernetes_pod_name",
               "replaceOnly": false,
               "required": true,
               "restricted": false,
-              "value": ""
+              "value": null
             }
           ]
         },
         "groupId": "DiVWf-iAgAA",
-        "id": "DiVWjjFAcAA",
+        "id": "DkBm1lEAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "locked": false,
         "maxDelayOverride": null,
-        "name": "K8s Operations",
+        "name": "K8s Pod",
         "selectedEventOverlays": [],
-        "tags": null
-      }
-    },
-    {
-      "dashboard": {
-        "chartDensity": "DEFAULT",
-        "charts": [
-          {
-            "chartId": "DiVWg6FAgAA",
-            "column": 0,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWgKZAgAA",
-            "column": 4,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWgEFAYAA",
-            "column": 8,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWg4yAcAA",
-            "column": 6,
-            "height": 1,
-            "row": 1,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWgRZAYAA",
-            "column": 0,
-            "height": 1,
-            "row": 2,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWgjeAgAA",
-            "column": 6,
-            "height": 1,
-            "row": 2,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWgPlAcAA",
-            "column": 0,
-            "height": 1,
-            "row": 3,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWg5NAYAA",
-            "column": 6,
-            "height": 1,
-            "row": 3,
-            "width": 6
-          }
-        ],
-        "created": 0,
-        "creator": null,
-        "customProperties": null,
-        "description": null,
-        "discoveryOptions": {
-          "query": "metric_source:kubernetes AND sf_metric:machine_cpu_cores AND _exists_:kubernetes_cluster",
-          "selectors": [
-            "_exists_:host"
-          ]
-        },
-        "eventOverlays": null,
-        "filters": {
-          "sources": null,
-          "time": {
-            "end": "Now",
-            "start": "-1h"
-          },
-          "variables": [
-            {
-              "alias": "host",
-              "applyIfExists": false,
-              "description": "K8s node",
-              "preferredSuggestions": [],
-              "property": "host",
-              "replaceOnly": false,
-              "required": true,
-              "restricted": false,
-              "value": ""
-            }
-          ]
-        },
-        "groupId": "DiVWf-iAgAA",
-        "id": "DiVWgAXAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "locked": false,
-        "maxDelayOverride": null,
-        "name": "K8s Node",
-        "selectedEventOverlays": null,
-        "tags": null
-      }
-    },
-    {
-      "dashboard": {
-        "chartDensity": "DEFAULT",
-        "charts": [
-          {
-            "chartId": "DiVWkUMAYAA",
-            "column": 0,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWkJUAgAA",
-            "column": 8,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWkV_AgAA",
-            "column": 4,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWkQ0AcAA",
-            "column": 8,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWkEpAcAA",
-            "column": 4,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "DiVWkEuAYAA",
-            "column": 0,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          }
-        ],
-        "created": 0,
-        "creator": null,
-        "customProperties": null,
-        "description": null,
-        "discoveryOptions": {
-          "query": "metric_source:kubernetes AND sf_metric:machine_cpu_cores AND _exists_:kubernetes_cluster",
-          "selectors": [
-            "_exists_:kubernetes_cluster"
-          ]
-        },
-        "eventOverlays": null,
-        "filters": {
-          "sources": null,
-          "time": {
-            "end": "Now",
-            "start": "-1h"
-          },
-          "variables": null
-        },
-        "groupId": "DiVWf-iAgAA",
-        "id": "DiVWkEoAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "locked": false,
-        "maxDelayOverride": null,
-        "name": "K8s Clusters",
-        "selectedEventOverlays": null,
         "tags": null
       }
     }
@@ -3487,11 +4729,12 @@
       "created": 0,
       "creator": null,
       "dashboards": [
-        "DiVWhFdAcKI",
-        "DiVWkEoAgAA",
-        "DiVWjjFAcAA",
+        "DkBm1lEAgAA",
+        "DkBm_nVAcAA",
+        "DkBnHSpAYAA",
+        "DkBnZ_qAcAA",
         "DkBkyBFAcEs",
-        "DiVWgAXAcAA"
+        "DkBma1YAYDg"
       ],
       "description": "Dashboards about Kubernetes clusters, nodes and pods.",
       "email": null,
@@ -3516,7 +4759,7 @@
       "teams": null
     }
   },
-  "hashCode": -1497026585,
+  "hashCode": 724692577,
   "id": "DiVWf-iAgAA",
   "modelVersion": 1,
   "packageType": "GROUP"
