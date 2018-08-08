@@ -1946,10 +1946,10 @@
       "importQualifiers" : [ {
         "filters" : [{
         "not" : false,
-        "property" : "sf_key",
-        "values" : [ "host" ]
+        "property" : "plugin",
+        "values" : [ "signalfx-metadata" ]
       }],
-        "metric" : "processor.pct_processor_time"
+        "metric" : "cpu.utilization"
       } ],
       "lastUpdated" : 0,
       "lastUpdatedBy" : null,
@@ -1957,7 +1957,7 @@
       "teams" : null
     }
   },
-  "hashCode" : -1597741505,
+  "hashCode" : -1597741506,
   "id" : "DiVWXRAAcAA",
   "modelVersion" : 1,
   "packageType" : "GROUP"
