@@ -1944,8 +1944,12 @@
       "email" : null,
       "id" : "DiVWXRAAcAA",
       "importQualifiers" : [ {
-        "filters" : [ ],
-        "metric" : "signalfx.usedmemory"
+        "filters" : [{
+        "not" : false,
+        "property" : "sf_key",
+        "values" : [ "host" ]
+      }],
+        "metric" : "processor.pct_processor_time"
       } ],
       "lastUpdated" : 0,
       "lastUpdatedBy" : null,
