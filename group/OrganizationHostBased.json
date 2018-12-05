@@ -1,1314 +1,1189 @@
-{
-  "chartExports": [
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DkmfJMdAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Charts - Info",
-        "options": {
-          "markdown": "Metric:\n<code>sf.org.num.chart</code>\n\nTotal number of charts; includes any charts created using the SignalFx API but not associated with a dashboard.",
-          "type": "Text"
-        },
-        "packageSpecifications": "",
-        "programText": "",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of dashboards groups",
-        "id": "DkmfGnGAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Dashboard Groups - Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "orgId"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Dashboard Groups",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "dashboard groups",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 21600000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('sf.org.num.page', extrapolation='last_value').mean(over='1h').ceil().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DkmfFb0AYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": " ",
-        "options": {
-          "markdown": "<table width=\"100%\" height=\"50%\" rules=\"none\"><tr><td valign=\"middle\" align=\"center\" bgcolor=\"#4682B4\">\n<font size=\"5\" color=\"white\">Engagement Overview</font>\n</td></tr></table>\n<p align=\"center\" ><br /><font>Metrics about your users and the charts, detectors, dashboards, dashboard groups, and teams that they have created in SignalFx.</font></p>",
-          "type": "Text"
-        },
-        "packageSpecifications": "",
-        "programText": "",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DkmfLBBAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Muting Rules - Info",
-        "options": {
-          "markdown": "Metric:\n<code>sf.org.num.alertmuting</code>\n\nTotal number of alert muting rules; includes rules currently in effect and rules not currently in effect (e.g. scheduled muting rules).",
-          "type": "Text"
-        },
-        "packageSpecifications": "",
-        "programText": "",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of detectors",
-        "id": "DkmfJdrAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Detectors",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 3600000
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Detectors",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "detectors",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": true,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('sf.org.num.detector', extrapolation='last_value').mean(over='1h').ceil().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DkmfFXoAcAE",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Dashboards - Info",
-        "options": {
-          "markdown": "Metric:\n<code>sf.org.num.dashboard</code>\n\nTotal number of dashboards; includes all user, custom, and built-in dashboards.",
-          "type": "Text"
-        },
-        "packageSpecifications": "",
-        "programText": "",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DkmfLC3AYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Dashboard Groups - Info",
-        "options": {
-          "markdown": "Metric:\n<code>sf.org.num.page</code>\n\nTotal number of dashboard groups; includes user, custom, and built-in dashboard groups.",
-          "type": "Text"
-        },
-        "packageSpecifications": "",
-        "programText": "",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of muting rules",
-        "id": "DkmfGTxAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Muting Rules",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 3600000
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Muting Rules",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "muting rules",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": true,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('sf.org.num.alertmuting').mean(over='1h').ceil().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of charts",
-        "id": "DkmfICjAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Charts - Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "orgId"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Charts",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "charts",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 21600000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "C = data('sf.org.num.chart', extrapolation='last_value').mean(over='1h').ceil().publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of users",
-        "id": "DkmfI9MAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Users - Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "orgId"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Users",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 21600000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('sf.org.num.orguser', rollup='max', extrapolation='last_value').max(over='2h').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DkmfFV1AYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Detectors - Info",
-        "options": {
-          "markdown": "Metric:\n<code>sf.org.num.detector</code>\n\nTotal number of detectors; includes detectors that are muted.",
-          "type": "Text"
-        },
-        "packageSpecifications": "",
-        "programText": "",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of muting rules",
-        "id": "DkmfGmkAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Muting Rules - Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "orgId"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Muting Rules",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "muting rules",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 21600000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('sf.org.num.alertmuting').mean(over='1h').ceil().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of detectors",
-        "id": "DkmfFZZAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Detectors - Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "orgId"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Detectors",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "detectors",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 21600000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('sf.org.num.detector', extrapolation='last_value').mean(over='1h').ceil().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of dashboards",
-        "id": "DkmfIeKAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Dashboards",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 4,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 3600000
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Dashboards",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "dashboards",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": true,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('sf.org.num.dashboard', extrapolation='last_value').mean(over='1h').ceil().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of users",
-        "id": "DkmfLbTAcDY",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Users",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Users",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "users",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('sf.org.num.orguser', rollup='max', extrapolation='last_value').max(over='2h').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of dashboards groups",
-        "id": "DkmfIf2AgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Dashboard Groups",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 4,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 3600000
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Dashboard Groups",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "dashboard groups",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": true,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('sf.org.num.page', extrapolation='last_value').mean(over='1h').ceil().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of dashboards",
-        "id": "DkmfLw2AYA4",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Dashboards - Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "orgId"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Dashboards",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "dashboards",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 21600000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('sf.org.num.dashboard', extrapolation='last_value').mean(over='1h').ceil().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of charts",
-        "id": "DkmfHmvAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Charts",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 4,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 3600000
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Charts",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "charts",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": true,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "C = data('sf.org.num.chart', extrapolation='last_value').mean(over='1h').ceil().publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of teams",
-        "id": "DkmfLlwAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Teams - Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "orgId"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Teams",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 21600000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('sf.org.num.team').mean(over='1h').ceil().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of teams",
-        "id": "DkmfHL-AcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Teams",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Teams",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "teams",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('sf.org.num.team').mean(over='1h').ceil().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DkmfK0xAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Users - Info",
-        "options": {
-          "markdown": "Metric:\n<code>sf.org.num.orguser</code>\n\nTotal number of members and admins associated with an organization; includes invited users who have not yet logged in.",
-          "type": "Text"
-        },
-        "packageSpecifications": "",
-        "programText": "",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DkmfLCaAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Teams - Info",
-        "options": {
-          "markdown": "Metric:\n<code>sf.org.num.team</code>\n\nNumber of teams in the organization.",
-          "type": "Text"
-        },
-        "packageSpecifications": "",
-        "programText": "",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    }
-  ],
-  "dashboardExports": [
-    {
-      "dashboard": {
-        "chartDensity": "DEFAULT",
-        "charts": [
-          {
-            "chartId": "DkmfFb0AYAA",
-            "column": 0,
-            "height": 1,
-            "row": 0,
-            "width": 12
-          },
-          {
-            "chartId": "DkmfLbTAcDY",
-            "column": 0,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfK0xAYAA",
-            "column": 4,
-            "height": 1,
-            "row": 1,
-            "width": 2
-          },
-          {
-            "chartId": "DkmfLCaAgAA",
-            "column": 10,
-            "height": 1,
-            "row": 1,
-            "width": 2
-          },
-          {
-            "chartId": "DkmfHL-AcAA",
-            "column": 6,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfI9MAYAA",
-            "column": 0,
-            "height": 1,
-            "row": 2,
-            "width": 6
-          },
-          {
-            "chartId": "DkmfLlwAgAA",
-            "column": 6,
-            "height": 1,
-            "row": 2,
-            "width": 6
-          },
-          {
-            "chartId": "DkmfHmvAgAA",
-            "column": 0,
-            "height": 1,
-            "row": 3,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfIf2AgAA",
-            "column": 8,
-            "height": 1,
-            "row": 3,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfIeKAcAA",
-            "column": 4,
-            "height": 1,
-            "row": 3,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfICjAYAA",
-            "column": 0,
-            "height": 1,
-            "row": 4,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfGnGAYAA",
-            "column": 8,
-            "height": 1,
-            "row": 4,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfLw2AYA4",
-            "column": 4,
-            "height": 1,
-            "row": 4,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfJMdAcAA",
-            "column": 0,
-            "height": 1,
-            "row": 5,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfLC3AYAA",
-            "column": 8,
-            "height": 1,
-            "row": 5,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfFXoAcAE",
-            "column": 4,
-            "height": 1,
-            "row": 5,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfLBBAcAA",
-            "column": 10,
-            "height": 1,
-            "row": 6,
-            "width": 2
-          },
-          {
-            "chartId": "DkmfFV1AYAA",
-            "column": 4,
-            "height": 1,
-            "row": 6,
-            "width": 2
-          },
-          {
-            "chartId": "DkmfGTxAcAA",
-            "column": 6,
-            "height": 1,
-            "row": 6,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfJdrAgAA",
-            "column": 0,
-            "height": 1,
-            "row": 6,
-            "width": 4
-          },
-          {
-            "chartId": "DkmfFZZAgAA",
-            "column": 0,
-            "height": 1,
-            "row": 7,
-            "width": 6
-          },
-          {
-            "chartId": "DkmfGmkAgAA",
-            "column": 6,
-            "height": 1,
-            "row": 7,
-            "width": 6
-          }
-        ],
-        "created": 0,
-        "creator": null,
-        "customProperties": null,
-        "description": "",
-        "discoveryOptions": null,
-        "eventOverlays": null,
-        "filters": {
-          "sources": null,
-          "time": {
-            "end": "Now",
-            "start": "-31d"
-          },
-          "variables": null
-        },
-        "groupId": "DkmfEnuAYDk",
-        "id": "DkmfEnxAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "locked": false,
-        "maxDelayOverride": null,
-        "name": "Engagement",
-        "selectedEventOverlays": [],
-        "tags": null
-      }
-    }
-  ],
-  "groupExport": {
-    "group": {
-      "created": 0,
-      "creator": null,
-      "dashboards": [
-        "DkmfEnxAgAA"
-      ],
-      "description": "Engagement and data ingest metrics",
-      "email": null,
-      "id": "DkmfEnuAYDk",
-      "importQualifiers": [
-        {
-          "filters": [],
-          "metric": "sf.org.numCustomMetrics"
-        }
-      ],
-      "lastUpdated": 0,
-      "lastUpdatedBy": null,
-      "name": "Organization Metrics",
-      "teams": null
-    }
+[ {
+  "marshallScope" : 1
+}, {
+  "marshallId" : 1,
+  "sf_dashboardConfigs" : [ {
+    "chartDensityOverride" : null,
+    "configId" : "DoN5lhAAgAY",
+    "dashboardId" : "DkmfEnxAgAA",
+    "descriptionOverride" : null,
+    "eventOverlaysOverride" : null,
+    "filtersOverride" : null,
+    "maxDelayOverride" : null,
+    "nameOverride" : null,
+    "selectedEventOverlaysOverride" : null
+  } ],
+  "sf_dashboards" : [ "DkmfEnxAgAA" ],
+  "sf_description" : "Engagement and data ingest metrics",
+  "sf_page" : "Organization Metrics",
+  "sf_type" : "Page"
+}, {
+  "marshallId" : 2,
+  "marshallMemberOf" : [ 1 ],
+  "sf_dashboard" : "Engagement",
+  "sf_description" : "",
+  "sf_filterAlias" : {
+    "variables" : [ ]
   },
-  "hashCode": -929009507,
-  "id": "DkmfEnuAYDk",
-  "modelVersion": 1,
-  "packageType": "GROUP"
-}
+  "sf_isLocked" : false,
+  "sf_maxDelayOverride" : -1,
+  "sf_savedFilters" : {
+    "density" : 0.0,
+    "sources" : null,
+    "time" : {
+      "end" : "Now",
+      "relative" : true,
+      "start" : "-31d"
+    },
+    "variables" : null
+  },
+  "sf_selectedEventOverlays" : [ ],
+  "sf_type" : "Dashboard",
+  "sf_uiModel" : {
+    "version" : 1,
+    "widgets" : [ {
+      "col" : 0,
+      "options" : {
+        "chartIndex" : 1533601099583,
+        "id" : 0
+      },
+      "row" : 0,
+      "sizeX" : 12,
+      "sizeY" : 1
+    }, {
+      "col" : 0,
+      "options" : {
+        "chartIndex" : 1533601232512,
+        "id" : 0
+      },
+      "row" : 1,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 4,
+      "options" : {
+        "chartIndex" : 1533601826823,
+        "id" : 0
+      },
+      "row" : 1,
+      "sizeX" : 2,
+      "sizeY" : 1
+    }, {
+      "col" : 10,
+      "options" : {
+        "chartIndex" : 1533602400869,
+        "id" : 0
+      },
+      "row" : 1,
+      "sizeX" : 2,
+      "sizeY" : 1
+    }, {
+      "col" : 6,
+      "options" : {
+        "chartIndex" : 1533601099584,
+        "id" : 0
+      },
+      "row" : 1,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 0,
+      "options" : {
+        "chartIndex" : 1533601826824,
+        "id" : 0
+      },
+      "row" : 2,
+      "sizeX" : 6,
+      "sizeY" : 1
+    }, {
+      "col" : 6,
+      "options" : {
+        "chartIndex" : 1533602327457,
+        "id" : 0
+      },
+      "row" : 2,
+      "sizeX" : 6,
+      "sizeY" : 1
+    }, {
+      "col" : 0,
+      "options" : {
+        "chartIndex" : 1533602524916,
+        "id" : 0
+      },
+      "row" : 3,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 8,
+      "options" : {
+        "chartIndex" : 1533603728334,
+        "id" : 0
+      },
+      "row" : 3,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 4,
+      "options" : {
+        "chartIndex" : 1533601099585,
+        "id" : 0
+      },
+      "row" : 3,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 0,
+      "options" : {
+        "chartIndex" : 1533603982909,
+        "id" : 0
+      },
+      "row" : 4,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 8,
+      "options" : {
+        "chartIndex" : 1533604860495,
+        "id" : 0
+      },
+      "row" : 4,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 4,
+      "options" : {
+        "chartIndex" : 1533603982910,
+        "id" : 0
+      },
+      "row" : 4,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 0,
+      "options" : {
+        "chartIndex" : 1533604388221,
+        "id" : 0
+      },
+      "row" : 5,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 8,
+      "options" : {
+        "chartIndex" : 1533605428337,
+        "id" : 0
+      },
+      "row" : 5,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 4,
+      "options" : {
+        "chartIndex" : 1533604388220,
+        "id" : 0
+      },
+      "row" : 5,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 10,
+      "options" : {
+        "chartIndex" : 1533603450733,
+        "id" : 0
+      },
+      "row" : 6,
+      "sizeX" : 2,
+      "sizeY" : 1
+    }, {
+      "col" : 4,
+      "options" : {
+        "chartIndex" : 1533602888998,
+        "id" : 0
+      },
+      "row" : 6,
+      "sizeX" : 2,
+      "sizeY" : 1
+    }, {
+      "col" : 6,
+      "options" : {
+        "chartIndex" : 1533601099586,
+        "id" : 0
+      },
+      "row" : 6,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 0,
+      "options" : {
+        "chartIndex" : 1533602591690,
+        "id" : 0
+      },
+      "row" : 6,
+      "sizeX" : 4,
+      "sizeY" : 1
+    }, {
+      "col" : 0,
+      "options" : {
+        "chartIndex" : 1533602854763,
+        "id" : 0
+      },
+      "row" : 7,
+      "sizeX" : 6,
+      "sizeY" : 1
+    }, {
+      "col" : 6,
+      "options" : {
+        "chartIndex" : 1533603320833,
+        "id" : 0
+      },
+      "row" : 7,
+      "sizeX" : 6,
+      "sizeY" : 1
+    } ]
+  }
+}, {
+  "marshallId" : 3,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Dashboard Groups - Info",
+  "sf_chartIndex" : 1533605428337,
+  "sf_description" : "",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.page</code>\\n\\nTotal number of dashboard groups; includes user, custom, and built-in dashboard groups.\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 19,\n  \"uiHelperValue\" : \"DkmfLC3AYAA_19\"\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.page</code>\\n\\nTotal number of dashboard groups; includes user, custom, and built-in dashboard groups.\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 19,\n  \"uiHelperValue\" : \"DkmfLC3AYAA_19\"\n}",
+  "sf_visualizationOptions" : {
+    "markdown" : "Metric:\n<code>sf.org.num.page</code>\n\nTotal number of dashboard groups; includes user, custom, and built-in dashboard groups.",
+    "type" : "Text"
+  }
+}, {
+  "marshallId" : 4,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Users - Info",
+  "sf_chartIndex" : 1533601826823,
+  "sf_description" : "",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.orguser</code>\\n\\nTotal number of members and admins associated with an organization; includes invited users who have not yet logged in.\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 15,\n  \"uiHelperValue\" : \"DkmfK0xAYAA_15\"\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.orguser</code>\\n\\nTotal number of members and admins associated with an organization; includes invited users who have not yet logged in.\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 15,\n  \"uiHelperValue\" : \"DkmfK0xAYAA_15\"\n}",
+  "sf_visualizationOptions" : {
+    "markdown" : "Metric:\n<code>sf.org.num.orguser</code>\n\nTotal number of members and admins associated with an organization; includes invited users who have not yet logged in.",
+    "type" : "Text"
+  }
+}, {
+  "marshallId" : 5,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Detectors",
+  "sf_chartIndex" : 1533602591690,
+  "sf_description" : "Total number of detectors",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "A = data('sf.org.num.detector', extrapolation='last_value').sum().mean(over='1h').ceil().publish(label='A')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"detectors\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Detectors\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.detector\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"forcedResolution\" : \"3600000\",\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 26\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"detectors\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Detectors\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.detector\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"forcedResolution\" : \"3600000\",\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 26\n}",
+  "sf_visualizationOptions" : {
+    "colorBy" : "Metric",
+    "colorScale" : null,
+    "colorScale2" : null,
+    "maximumPrecision" : null,
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 3600000
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Detectors",
+      "label" : "A",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : null,
+      "valueSuffix" : "detectors",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "refreshInterval" : null,
+    "secondaryVisualization" : "None",
+    "showSparkLine" : false,
+    "time" : {
+      "range" : 900000,
+      "type" : "relative"
+    },
+    "timestampHidden" : true,
+    "type" : "SingleValue",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 6,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Muting Rules - Info",
+  "sf_chartIndex" : 1533603450733,
+  "sf_description" : "",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.alertmuting</code>\\n\\nTotal number of alert muting rules; includes rules currently in effect and rules not currently in effect (e.g. scheduled muting rules).\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 17,\n  \"uiHelperValue\" : \"DkmfLBBAcAA_17\"\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.alertmuting</code>\\n\\nTotal number of alert muting rules; includes rules currently in effect and rules not currently in effect (e.g. scheduled muting rules).\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 17,\n  \"uiHelperValue\" : \"DkmfLBBAcAA_17\"\n}",
+  "sf_visualizationOptions" : {
+    "markdown" : "Metric:\n<code>sf.org.num.alertmuting</code>\n\nTotal number of alert muting rules; includes rules currently in effect and rules not currently in effect (e.g. scheduled muting rules).",
+    "type" : "Text"
+  }
+}, {
+  "marshallId" : 7,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Teams - Trend",
+  "sf_chartIndex" : 1533602327457,
+  "sf_description" : "Total number of teams",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "B = data('sf.org.num.team').mean(over='1h').ceil().publish(label='B')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Teams\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.team\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"includeZero\" : false,\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-value\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 23\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Teams\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.team\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"includeZero\" : false,\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-value\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 23\n}",
+  "sf_visualizationOptions" : {
+    "areaChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "axes" : [ {
+      "highWatermark" : null,
+      "highWatermarkLabel" : null,
+      "label" : "",
+      "lowWatermark" : null,
+      "lowWatermarkLabel" : null,
+      "max" : null,
+      "min" : null
+    } ],
+    "axisPrecision" : null,
+    "colorBy" : "Dimension",
+    "defaultPlotType" : "LineChart",
+    "eventPublishLabelOptions" : [ ],
+    "histogramChartOptions" : {
+      "colorThemeIndex" : 16
+    },
+    "includeZero" : false,
+    "legendOptions" : {
+      "fields" : [ {
+        "enabled" : false,
+        "property" : "sf_originatingMetric"
+      }, {
+        "enabled" : false,
+        "property" : "orgId"
+      }, {
+        "enabled" : true,
+        "property" : "sf_metric"
+      } ]
+    },
+    "lineChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "onChartLegendOptions" : {
+      "dimensionInLegend" : null,
+      "showLegend" : false
+    },
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 0
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Teams",
+      "label" : "B",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : null,
+      "valueSuffix" : null,
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "showEventLines" : false,
+    "stacked" : false,
+    "time" : {
+      "range" : 21600000,
+      "type" : "relative"
+    },
+    "type" : "TimeSeriesChart",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 8,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Users - Trend",
+  "sf_chartIndex" : 1533601826824,
+  "sf_description" : "Total number of users",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "A = data('sf.org.num.orguser', rollup='max', extrapolation='last_value').max(over='2h').publish(label='A')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"prefix\" : \"\",\n      \"rollupPolicy\" : \"MAX_ROLLUP\",\n      \"suffix\" : \"\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 2,\n          \"transformTimeRange\" : \"2h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MAX\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Users\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.orguser\"\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"includeZero\" : false,\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-value\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 29\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"prefix\" : \"\",\n      \"rollupPolicy\" : \"MAX_ROLLUP\",\n      \"suffix\" : \"\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 2,\n          \"transformTimeRange\" : \"2h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MAX\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Users\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.orguser\"\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"includeZero\" : false,\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-value\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 29\n}",
+  "sf_visualizationOptions" : {
+    "areaChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "axes" : [ {
+      "highWatermark" : null,
+      "highWatermarkLabel" : null,
+      "label" : "",
+      "lowWatermark" : null,
+      "lowWatermarkLabel" : null,
+      "max" : null,
+      "min" : null
+    } ],
+    "axisPrecision" : null,
+    "colorBy" : "Dimension",
+    "defaultPlotType" : "LineChart",
+    "eventPublishLabelOptions" : [ ],
+    "histogramChartOptions" : {
+      "colorThemeIndex" : 16
+    },
+    "includeZero" : false,
+    "legendOptions" : {
+      "fields" : [ {
+        "enabled" : false,
+        "property" : "sf_originatingMetric"
+      }, {
+        "enabled" : false,
+        "property" : "orgId"
+      }, {
+        "enabled" : true,
+        "property" : "sf_metric"
+      } ]
+    },
+    "lineChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "onChartLegendOptions" : {
+      "dimensionInLegend" : null,
+      "showLegend" : false
+    },
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 0
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Users",
+      "label" : "A",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : "",
+      "valueSuffix" : "",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "showEventLines" : false,
+    "stacked" : false,
+    "time" : {
+      "range" : 21600000,
+      "type" : "relative"
+    },
+    "type" : "TimeSeriesChart",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 9,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Charts - Info",
+  "sf_chartIndex" : 1533604388221,
+  "sf_description" : "",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.chart</code>\\n\\nTotal number of charts; includes any charts created using the SignalFx API but not associated with a dashboard..\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 19,\n  \"uiHelperValue\" : \"DkmfJMdAcAA_19\"\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.chart</code>\\n\\nTotal number of charts; includes any charts created using the SignalFx API but not associated with a dashboard..\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 19,\n  \"uiHelperValue\" : \"DkmfJMdAcAA_19\"\n}",
+  "sf_visualizationOptions" : {
+    "markdown" : "Metric:\n<code>sf.org.num.chart</code>\n\nTotal number of charts; includes any charts created using the SignalFx API but not associated with a dashboard.",
+    "type" : "Text"
+  }
+}, {
+  "marshallId" : 10,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Teams - Info",
+  "sf_chartIndex" : 1533602400869,
+  "sf_description" : "",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.team</code>\\n\\nNumber of teams in the organization.\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 16,\n  \"uiHelperValue\" : \"DkmfLCaAgAA_16\"\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.team</code>\\n\\nNumber of teams in the organization.\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 16,\n  \"uiHelperValue\" : \"DkmfLCaAgAA_16\"\n}",
+  "sf_visualizationOptions" : {
+    "markdown" : "Metric:\n<code>sf.org.num.team</code>\n\nNumber of teams in the organization.",
+    "type" : "Text"
+  }
+}, {
+  "marshallId" : 11,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Dashboard Groups - Trend",
+  "sf_chartIndex" : 1533604860495,
+  "sf_description" : "Total number of dashboards groups",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "A = data('sf.org.num.page', extrapolation='last_value').mean(over='1h').ceil().publish(label='A')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"prefix\" : \"\",\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"dashboard groups\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Dashboard Groups\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.page\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 28,\n  \"uiHelperValue\" : \"DkmfGnGAYAA_28\"\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"prefix\" : \"\",\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"dashboard groups\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Dashboard Groups\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.page\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 28,\n  \"uiHelperValue\" : \"DkmfGnGAYAA_28\"\n}",
+  "sf_visualizationOptions" : {
+    "areaChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "axes" : [ {
+      "highWatermark" : null,
+      "highWatermarkLabel" : null,
+      "label" : "",
+      "lowWatermark" : null,
+      "lowWatermarkLabel" : null,
+      "max" : null,
+      "min" : null
+    } ],
+    "axisPrecision" : null,
+    "colorBy" : "Dimension",
+    "defaultPlotType" : "LineChart",
+    "eventPublishLabelOptions" : [ ],
+    "histogramChartOptions" : {
+      "colorThemeIndex" : 16
+    },
+    "includeZero" : false,
+    "legendOptions" : {
+      "fields" : [ {
+        "enabled" : false,
+        "property" : "sf_originatingMetric"
+      }, {
+        "enabled" : false,
+        "property" : "orgId"
+      }, {
+        "enabled" : true,
+        "property" : "sf_metric"
+      } ]
+    },
+    "lineChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "onChartLegendOptions" : {
+      "dimensionInLegend" : null,
+      "showLegend" : false
+    },
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 0
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Dashboard Groups",
+      "label" : "A",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : "",
+      "valueSuffix" : "dashboard groups",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "showEventLines" : false,
+    "stacked" : false,
+    "time" : {
+      "range" : 21600000,
+      "type" : "relative"
+    },
+    "type" : "TimeSeriesChart",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 12,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Dashboards",
+  "sf_chartIndex" : 1533601099585,
+  "sf_description" : "Total number of dashboards",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "B = data('sf.org.num.dashboard', extrapolation='last_value').mean(over='1h').ceil().publish(label='B')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"dashboards\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Dashboards\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.dashboard\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"forcedResolution\" : \"3600000\",\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 25\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"dashboards\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Dashboards\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.dashboard\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"forcedResolution\" : \"3600000\",\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 25\n}",
+  "sf_visualizationOptions" : {
+    "colorBy" : "Metric",
+    "colorScale" : null,
+    "colorScale2" : null,
+    "maximumPrecision" : 4,
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 3600000
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Dashboards",
+      "label" : "B",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : null,
+      "valueSuffix" : "dashboards",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "refreshInterval" : null,
+    "secondaryVisualization" : "None",
+    "showSparkLine" : false,
+    "timestampHidden" : true,
+    "type" : "SingleValue",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 13,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Charts - Trend",
+  "sf_chartIndex" : 1533603982909,
+  "sf_description" : "Total number of charts",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "C = data('sf.org.num.chart', extrapolation='last_value').mean(over='1h').ceil().publish(label='C')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"charts\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Charts\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.chart\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"includeZero\" : false,\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 29\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"charts\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Charts\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.chart\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"includeZero\" : false,\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 29\n}",
+  "sf_visualizationOptions" : {
+    "areaChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "axes" : [ {
+      "highWatermark" : null,
+      "highWatermarkLabel" : null,
+      "label" : "",
+      "lowWatermark" : null,
+      "lowWatermarkLabel" : null,
+      "max" : null,
+      "min" : null
+    } ],
+    "axisPrecision" : null,
+    "colorBy" : "Dimension",
+    "defaultPlotType" : "LineChart",
+    "eventPublishLabelOptions" : [ ],
+    "histogramChartOptions" : {
+      "colorThemeIndex" : 16
+    },
+    "includeZero" : false,
+    "legendOptions" : {
+      "fields" : [ {
+        "enabled" : false,
+        "property" : "sf_originatingMetric"
+      }, {
+        "enabled" : false,
+        "property" : "orgId"
+      }, {
+        "enabled" : true,
+        "property" : "sf_metric"
+      } ]
+    },
+    "lineChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "onChartLegendOptions" : {
+      "dimensionInLegend" : null,
+      "showLegend" : false
+    },
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 0
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Charts",
+      "label" : "C",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : null,
+      "valueSuffix" : "charts",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "showEventLines" : false,
+    "stacked" : false,
+    "time" : {
+      "range" : 21600000,
+      "type" : "relative"
+    },
+    "type" : "TimeSeriesChart",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 14,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Users",
+  "sf_chartIndex" : 1533601232512,
+  "sf_description" : "Total number of users",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "A = data('sf.org.num.orguser', rollup='max', extrapolation='last_value').max(over='2h').publish(label='A')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"prefix\" : \"\",\n      \"rollupPolicy\" : \"MAX_ROLLUP\",\n      \"suffix\" : \"users\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 2,\n          \"transformTimeRange\" : \"2h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MAX\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Users\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.orguser\"\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-value\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 25\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"prefix\" : \"\",\n      \"rollupPolicy\" : \"MAX_ROLLUP\",\n      \"suffix\" : \"users\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 2,\n          \"transformTimeRange\" : \"2h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MAX\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Users\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.orguser\"\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-value\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 25\n}",
+  "sf_visualizationOptions" : {
+    "colorBy" : "Metric",
+    "colorScale" : null,
+    "colorScale2" : null,
+    "maximumPrecision" : null,
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 0
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Users",
+      "label" : "A",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : "",
+      "valueSuffix" : "users",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "refreshInterval" : null,
+    "secondaryVisualization" : "None",
+    "showSparkLine" : false,
+    "timestampHidden" : false,
+    "type" : "SingleValue",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 15,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Dashboards - Trend",
+  "sf_chartIndex" : 1533603982910,
+  "sf_description" : "Total number of dashboards",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "B = data('sf.org.num.dashboard', extrapolation='last_value').mean(over='1h').ceil().publish(label='B')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"dashboards\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Dashboards\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.dashboard\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 26\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"dashboards\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Dashboards\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.dashboard\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 26\n}",
+  "sf_visualizationOptions" : {
+    "areaChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "axes" : [ {
+      "highWatermark" : null,
+      "highWatermarkLabel" : null,
+      "label" : "",
+      "lowWatermark" : null,
+      "lowWatermarkLabel" : null,
+      "max" : null,
+      "min" : null
+    } ],
+    "axisPrecision" : null,
+    "colorBy" : "Dimension",
+    "defaultPlotType" : "LineChart",
+    "eventPublishLabelOptions" : [ ],
+    "histogramChartOptions" : {
+      "colorThemeIndex" : 16
+    },
+    "includeZero" : false,
+    "legendOptions" : {
+      "fields" : [ {
+        "enabled" : false,
+        "property" : "sf_originatingMetric"
+      }, {
+        "enabled" : false,
+        "property" : "orgId"
+      }, {
+        "enabled" : true,
+        "property" : "sf_metric"
+      } ]
+    },
+    "lineChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "onChartLegendOptions" : {
+      "dimensionInLegend" : null,
+      "showLegend" : false
+    },
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 0
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Dashboards",
+      "label" : "B",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : null,
+      "valueSuffix" : "dashboards",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "showEventLines" : false,
+    "stacked" : false,
+    "time" : {
+      "range" : 21600000,
+      "type" : "relative"
+    },
+    "type" : "TimeSeriesChart",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 16,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Detectors - Trend",
+  "sf_chartIndex" : 1533602854763,
+  "sf_description" : "Total number of detectors",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "A = data('sf.org.num.detector', extrapolation='last_value').sum().mean(over='1h').ceil().publish(label='A')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"detectors\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Detectors\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.detector\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"includeZero\" : false,\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 28\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"detectors\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Detectors\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.detector\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"includeZero\" : false,\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 28\n}",
+  "sf_visualizationOptions" : {
+    "areaChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "axes" : [ {
+      "highWatermark" : null,
+      "highWatermarkLabel" : null,
+      "label" : "",
+      "lowWatermark" : null,
+      "lowWatermarkLabel" : null,
+      "max" : null,
+      "min" : null
+    }, {
+      "highWatermark" : null,
+      "highWatermarkLabel" : null,
+      "label" : "",
+      "lowWatermark" : null,
+      "lowWatermarkLabel" : null,
+      "max" : null,
+      "min" : null
+    } ],
+    "axisPrecision" : null,
+    "colorBy" : "Dimension",
+    "defaultPlotType" : "LineChart",
+    "eventPublishLabelOptions" : [ ],
+    "histogramChartOptions" : {
+      "colorThemeIndex" : 16
+    },
+    "includeZero" : false,
+    "legendOptions" : {
+      "fields" : [ {
+        "enabled" : false,
+        "property" : "sf_originatingMetric"
+      }, {
+        "enabled" : false,
+        "property" : "orgId"
+      }, {
+        "enabled" : true,
+        "property" : "sf_metric"
+      } ]
+    },
+    "lineChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "onChartLegendOptions" : {
+      "dimensionInLegend" : null,
+      "showLegend" : false
+    },
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 0
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Detectors",
+      "label" : "A",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : null,
+      "valueSuffix" : "detectors",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "showEventLines" : false,
+    "stacked" : false,
+    "time" : {
+      "range" : 21600000,
+      "type" : "relative"
+    },
+    "type" : "TimeSeriesChart",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 17,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Teams",
+  "sf_chartIndex" : 1533601099584,
+  "sf_description" : "Total number of teams",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "B = data('sf.org.num.team').mean(over='1h').ceil().publish(label='B')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"teams\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Teams\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.team\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-value\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 21\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"teams\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Teams\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.team\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-value\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 21\n}",
+  "sf_visualizationOptions" : {
+    "colorBy" : "Metric",
+    "colorScale" : null,
+    "colorScale2" : null,
+    "maximumPrecision" : null,
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 0
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Teams",
+      "label" : "B",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : null,
+      "valueSuffix" : "teams",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "refreshInterval" : null,
+    "secondaryVisualization" : "None",
+    "showSparkLine" : false,
+    "timestampHidden" : false,
+    "type" : "SingleValue",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 18,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Charts",
+  "sf_chartIndex" : 1533602524916,
+  "sf_description" : "Total number of charts",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "C = data('sf.org.num.chart', extrapolation='last_value').mean(over='1h').ceil().publish(label='C')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"charts\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Charts\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.chart\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"forcedResolution\" : \"3600000\",\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 26\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"charts\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Charts\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.chart\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"forcedResolution\" : \"3600000\",\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 26\n}",
+  "sf_visualizationOptions" : {
+    "colorBy" : "Metric",
+    "colorScale" : null,
+    "colorScale2" : null,
+    "maximumPrecision" : 4,
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 3600000
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Charts",
+      "label" : "C",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : null,
+      "valueSuffix" : "charts",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "refreshInterval" : null,
+    "secondaryVisualization" : "None",
+    "showSparkLine" : false,
+    "timestampHidden" : true,
+    "type" : "SingleValue",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 19,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Detectors - Info",
+  "sf_chartIndex" : 1533602888998,
+  "sf_description" : "",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.detector</code>\\n\\nTotal number of detectors; includes detectors that are muted.\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 17,\n  \"uiHelperValue\" : \"DkmfFV1AYAA_17\"\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.detector</code>\\n\\nTotal number of detectors; includes detectors that are muted.\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 17,\n  \"uiHelperValue\" : \"DkmfFV1AYAA_17\"\n}",
+  "sf_visualizationOptions" : {
+    "markdown" : "Metric:\n<code>sf.org.num.detector</code>\n\nTotal number of detectors; includes detectors that are muted.",
+    "type" : "Text"
+  }
+}, {
+  "marshallId" : 20,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : " ",
+  "sf_chartIndex" : 1533601099583,
+  "sf_description" : "",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"<table width=\\\"100%\\\" height=\\\"50%\\\" rules=\\\"none\\\"><tr><td valign=\\\"middle\\\" align=\\\"center\\\" bgcolor=\\\"#4682B4\\\">\\n<font size=\\\"5\\\" color=\\\"white\\\">Engagement Summary</font>\\n</td></tr></table>\\n<p align=\\\"center\\\" ><br /><font>Metrics about your users and the charts, detectors, dashboards, dashboard groups, and teams that they have created in SignalFx.</font></p>\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 43,\n  \"uiHelperValue\" : \"DkmfFb0AYAA_43\"\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"<table width=\\\"100%\\\" height=\\\"50%\\\" rules=\\\"none\\\"><tr><td valign=\\\"middle\\\" align=\\\"center\\\" bgcolor=\\\"#4682B4\\\">\\n<font size=\\\"5\\\" color=\\\"white\\\">Engagement Summary</font>\\n</td></tr></table>\\n<p align=\\\"center\\\" ><br /><font>Metrics about your users and the charts, detectors, dashboards, dashboard groups, and teams that they have created in SignalFx.</font></p>\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 43,\n  \"uiHelperValue\" : \"DkmfFb0AYAA_43\"\n}",
+  "sf_visualizationOptions" : {
+    "markdown" : "<table width=\"100%\" height=\"50%\" rules=\"none\"><tr><td valign=\"middle\" align=\"center\" bgcolor=\"#4682B4\">\n<font size=\"5\" color=\"white\">Engagement Overview</font>\n</td></tr></table>\n<p align=\"center\" ><br /><font>Metrics about your users and the charts, detectors, dashboards, dashboard groups, and teams that they have created in SignalFx.</font></p>",
+    "type" : "Text"
+  }
+}, {
+  "marshallId" : 21,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Dashboard Groups",
+  "sf_chartIndex" : 1533603728334,
+  "sf_description" : "Total number of dashboards groups",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "A = data('sf.org.num.page', extrapolation='last_value').mean(over='1h').ceil().publish(label='A')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"prefix\" : \"\",\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"dashboard groups\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Dashboard Groups\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.page\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"forcedResolution\" : \"3600000\",\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 27,\n  \"uiHelperValue\" : \"DkmfIf2AgAA_27\"\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"colorOverride\" : null,\n      \"extrapolationPolicy\" : \"LAST_VALUE_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"prefix\" : \"\",\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"dashboard groups\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Dashboard Groups\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.page\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 4,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"forcedResolution\" : \"3600000\",\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : 4,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"-sf_originatingMetric\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 5,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 27,\n  \"uiHelperValue\" : \"DkmfIf2AgAA_27\"\n}",
+  "sf_visualizationOptions" : {
+    "colorBy" : "Metric",
+    "colorScale" : null,
+    "colorScale2" : null,
+    "maximumPrecision" : 4,
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 3600000
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Dashboard Groups",
+      "label" : "A",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : "",
+      "valueSuffix" : "dashboard groups",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "refreshInterval" : null,
+    "secondaryVisualization" : "None",
+    "showSparkLine" : false,
+    "timestampHidden" : true,
+    "type" : "SingleValue",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 22,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Muting Rules",
+  "sf_chartIndex" : 1533601099586,
+  "sf_description" : "Total number of muting rules",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "B = data('sf.org.num.alertmuting').mean(over='1h').ceil().publish(label='B')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"muting rules\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Muting Rules\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.alertmuting\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"forcedResolution\" : \"3600000\",\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 25\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"muting rules\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Muting Rules\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.alertmuting\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"single\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : true,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"forcedResolution\" : \"3600000\",\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -604800000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 25\n}",
+  "sf_visualizationOptions" : {
+    "colorBy" : "Metric",
+    "colorScale" : null,
+    "colorScale2" : null,
+    "maximumPrecision" : null,
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 3600000
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Muting Rules",
+      "label" : "B",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : null,
+      "valueSuffix" : "muting rules",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "refreshInterval" : null,
+    "secondaryVisualization" : "None",
+    "showSparkLine" : false,
+    "timestampHidden" : true,
+    "type" : "SingleValue",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 23,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Muting Rules - Trend",
+  "sf_chartIndex" : 1533603320833,
+  "sf_description" : "Total number of muting rules",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "B = data('sf.org.num.alertmuting').mean(over='1h').ceil().publish(label='B')",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"muting rules\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Muting Rules\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.alertmuting\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"includeZero\" : false,\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 28\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlotConstructs\" : [ ],\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1,\n      \"rollupPolicy\" : null,\n      \"suffix\" : \"muting rules\",\n      \"unitType\" : null\n    },\n    \"dataManipulations\" : [ {\n      \"direction\" : {\n        \"options\" : {\n          \"amount\" : 1,\n          \"transformTimeRange\" : \"1h\",\n          \"unit\" : \"h\"\n        },\n        \"type\" : \"transformation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"MEAN\"\n      },\n      \"showMe\" : false\n    }, {\n      \"direction\" : {\n        \"options\" : {\n          \"aggregateGroupBy\" : [ ],\n          \"collapseGroups\" : false,\n          \"transformTimeRange\" : null\n        },\n        \"type\" : \"aggregation\"\n      },\n      \"fn\" : {\n        \"options\" : { },\n        \"type\" : \"CEIL\"\n      },\n      \"showMe\" : false\n    } ],\n    \"focusNext\" : false,\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"Muting Rules\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : {\n      \"metric\" : \"sf.org.num.alertmuting\",\n      \"regExStyle\" : null\n    },\n    \"transient\" : false,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 2,\n    \"valid\" : false,\n    \"yAxisIndex\" : 0\n  }, {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 3,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"graph\",\n  \"chartType\" : \"line\",\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"axisPrecision\" : null,\n    \"colorByMetric\" : false,\n    \"colorByValue\" : false,\n    \"colorByValueScale\" : [ ],\n    \"hideTimestamp\" : true,\n    \"histogramColor\" : \"#ea1849\",\n    \"includeZero\" : false,\n    \"legendColumnConfiguration\" : [ {\n      \"enabled\" : false,\n      \"property\" : \"sf_originatingMetric\"\n    }, {\n      \"enabled\" : false,\n      \"property\" : \"orgId\"\n    }, {\n      \"enabled\" : true,\n      \"property\" : \"sf_metric\"\n    } ],\n    \"maxDecimalPlaces\" : null,\n    \"range\" : -21600000,\n    \"rangeEnd\" : 0,\n    \"secondaryVisualization\" : \"NONE\",\n    \"sortPreference\" : \"\",\n    \"updateInterval\" : null,\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 4,\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 28\n}",
+  "sf_visualizationOptions" : {
+    "areaChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "axes" : [ {
+      "highWatermark" : null,
+      "highWatermarkLabel" : null,
+      "label" : "",
+      "lowWatermark" : null,
+      "lowWatermarkLabel" : null,
+      "max" : null,
+      "min" : null
+    } ],
+    "axisPrecision" : null,
+    "colorBy" : "Dimension",
+    "defaultPlotType" : "LineChart",
+    "eventPublishLabelOptions" : [ ],
+    "histogramChartOptions" : {
+      "colorThemeIndex" : 16
+    },
+    "includeZero" : false,
+    "legendOptions" : {
+      "fields" : [ {
+        "enabled" : false,
+        "property" : "sf_originatingMetric"
+      }, {
+        "enabled" : false,
+        "property" : "orgId"
+      }, {
+        "enabled" : true,
+        "property" : "sf_metric"
+      } ]
+    },
+    "lineChartOptions" : {
+      "showDataMarkers" : false
+    },
+    "onChartLegendOptions" : {
+      "dimensionInLegend" : null,
+      "showLegend" : false
+    },
+    "programOptions" : {
+      "disableSampling" : false,
+      "maxDelay" : null,
+      "minimumResolution" : 0
+    },
+    "publishLabelOptions" : [ {
+      "displayName" : "Muting Rules",
+      "label" : "B",
+      "paletteIndex" : null,
+      "plotType" : null,
+      "valuePrefix" : null,
+      "valueSuffix" : "muting rules",
+      "valueUnit" : null,
+      "yAxis" : 0
+    } ],
+    "showEventLines" : false,
+    "stacked" : false,
+    "time" : {
+      "range" : 21600000,
+      "type" : "relative"
+    },
+    "type" : "TimeSeriesChart",
+    "unitPrefix" : "Metric"
+  }
+}, {
+  "marshallId" : 24,
+  "marshallMemberOf" : [ 2 ],
+  "sf_chart" : "Dashboards - Info",
+  "sf_chartIndex" : 1533604388220,
+  "sf_description" : "",
+  "sf_modelVersion" : 2,
+  "sf_packageSpecifications" : "",
+  "sf_programText" : "",
+  "sf_type" : "Chart",
+  "sf_uiModel" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.dashboard</code>\\n\\nTotal number of dashboards; includes all user, custom, and built-in dashboards.\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 19,\n  \"uiHelperValue\" : \"DkmfFXoAcAE_19\"\n}",
+  "sf_uiModelBackup" : "{\n  \"allPlots\" : [ {\n    \"configuration\" : {\n      \"aliases\" : { },\n      \"extrapolationPolicy\" : \"NULL_EXTRAPOLATION\",\n      \"maxExtrapolations\" : -1\n    },\n    \"dataManipulations\" : [ ],\n    \"invisible\" : false,\n    \"metricDefinition\" : { },\n    \"name\" : \"New Plot\",\n    \"queryItems\" : [ ],\n    \"seriesData\" : { },\n    \"transient\" : true,\n    \"type\" : \"plot\",\n    \"uniqueKey\" : 1,\n    \"yAxisIndex\" : 0\n  } ],\n  \"chartMode\" : \"text\",\n  \"chartType\" : null,\n  \"chartconfig\" : {\n    \"absoluteEnd\" : null,\n    \"absoluteStart\" : null,\n    \"colorByMetric\" : false,\n    \"histogramColor\" : \"#ea1849\",\n    \"range\" : -900000,\n    \"rangeEnd\" : null,\n    \"secondaryVisualization\" : \"NONE\",\n    \"yAxisConfigurations\" : [ {\n      \"id\" : \"yAxis0\",\n      \"max\" : null,\n      \"min\" : null,\n      \"name\" : \"yAxis0\",\n      \"plotlines\" : {\n        \"high\" : null,\n        \"low\" : null\n      }\n    } ]\n  },\n  \"currentUniqueKey\" : 2,\n  \"markdownText\" : \"Metric:\\n<code>sf.org.num.dashboard</code>\\n\\nTotal number of dashboards; includes all user, custom, and built-in dashboards.\",\n  \"relatedDetectors\" : [ ],\n  \"revisionNumber\" : 19,\n  \"uiHelperValue\" : \"DkmfFXoAcAE_19\"\n}",
+  "sf_visualizationOptions" : {
+    "markdown" : "Metric:\n<code>sf.org.num.dashboard</code>\n\nTotal number of dashboards; includes all user, custom, and built-in dashboards.",
+    "type" : "Text"
+  }
+} ]
