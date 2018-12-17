@@ -1139,8 +1139,8 @@
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": "requests/sec",
-              "valueUnit": null,
+              "valueSuffix": null,
+              "valueUnit": "Nanosecond",
               "yAxis": 0
             }
           ],
