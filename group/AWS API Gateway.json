@@ -5,6 +5,263 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
+        "description": "Number of API calls in 5 minutes intervals",
+        "id": "Dxi-ww6AIHg",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "API Calls",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 300000,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Number of API calls in 5 minutes intervals (GET)",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Count', filter=filter('stat', 'sum'), rollup='latest').sum().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "The time between when API Gateway relays a request to the back end and when it receives a response from the back end",
+        "id": "DxgGWSeAEAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Average Integration Latency across all API Resources",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "IntegrationLatency - Mean",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('IntegrationLatency', filter=filter('stat', 'mean'), rollup='latest').mean().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Number of 5XX errors in 5 minute intervals by HTTP method",
+        "id": "DxIuIIbAIAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "5XX Errors",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "ApiName"
+              },
+              {
+                "enabled": false,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": true,
+                "property": "Method"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "Resource"
+              },
+              {
+                "enabled": false,
+                "property": "Stage"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "Method",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "5XXError (GET)",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('5XXError', filter=filter('stat', 'sum'), rollup='latest').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
         "description": "The time between when API Gateway receives a request from a client and when it returns a response to the client",
         "id": "DxgDmwNAAAA",
         "lastUpdated": 0,
@@ -81,6 +338,249 @@
         },
         "packageSpecifications": "",
         "programText": "A = data('Latency', filter=filter('stat', 'mean'), rollup='latest').mean().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Total number of API calls to all API resources in 5 minutes intervals",
+        "id": "DxgDmvSAEAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Number of API calls",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Count - Sum by stat",
+              "label": "A",
+              "paletteIndex": 6,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Count', filter=filter('stat', 'sum'), rollup='latest').sum(by=['stat']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Top 10 API resources by highest number of 4xx responses in 5 minutes intervals",
+        "id": "Dxh_1xmAIAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Highest Number of 4xx Responses",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Method"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "stat"
+              },
+              {
+                "enabled": true,
+                "property": "ApiName"
+              },
+              {
+                "enabled": true,
+                "property": "Resource"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": true,
+                "property": "namespace"
+              },
+              {
+                "enabled": true,
+                "property": "Stage"
+              }
+            ]
+          },
+          "maximumPrecision": 1,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "4XXError - Sum by Resource - Top 5 by Resource",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('4XXError', rollup='latest').sum(by=['Resource']).top(by=['Resource'], count=5).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Percent cache hits for GET method in 5 minute intervals",
+        "id": "DxIt4YVAIAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Percent Cache Hits",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 2,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 300000,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Cache Hit Count",
+              "label": "A",
+              "paletteIndex": 13,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Cache Miss Count",
+              "label": "B",
+              "paletteIndex": 5,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Percent Cache Hit",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 5000,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('CacheHitCount', filter=filter('stat', 'sum'), rollup='latest').publish(label='A', enable=False)\nB = data('CacheMissCount', filter=filter('stat', 'sum'), rollup='latest').publish(label='B', enable=False)\nC = (100*A/(A+B)).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -212,11 +712,11 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Total number of API calls to all API resources in 5 minutes intervals",
-        "id": "DxgDmvSAEAA",
+        "description": "Total number 5XX status responses from all API resources in 5 minutes intervals by HTTP method",
+        "id": "DxgSUcFAEAE",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Total Number of API calls",
+        "name": "5XX Responses by HTTP Method",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -243,21 +743,34 @@
           ],
           "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
+          "defaultPlotType": "ColumnChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
           },
-          "includeZero": true,
+          "includeZero": false,
           "legendOptions": {
-            "fields": null
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Method"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
           },
           "lineChartOptions": {
             "showDataMarkers": false
           },
           "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
+            "dimensionInLegend": "Method",
+            "showLegend": true
           },
           "programOptions": {
             "disableSampling": false,
@@ -267,18 +780,18 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Count - Sum by stat",
+              "displayName": "5XXError - Sum by Method",
               "label": "A",
-              "paletteIndex": 6,
+              "paletteIndex": null,
               "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
+              "valuePrefix": "",
+              "valueSuffix": "",
               "valueUnit": null,
               "yAxis": 0
             }
           ],
           "showEventLines": false,
-          "stacked": false,
+          "stacked": true,
           "time": {
             "range": 900000,
             "type": "relative"
@@ -287,7 +800,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('Count', filter=filter('stat', 'sum'), rollup='latest').sum(by=['stat']).publish(label='A')",
+        "programText": "A = data('5XXError', filter=filter('Method', '*'), rollup='latest').sum(by=['Method']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -297,15 +810,54 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Number of API calls in 5 minutes intervals",
-        "id": "Dxi-ww6AIHg",
+        "description": "The time between when API Gateway relays a request to the back end and when it receives a response from the back end",
+        "id": "DxN_phmAEAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "API Calls",
+        "name": "Integration Latency",
         "options": {
           "colorBy": "Dimension",
-          "colorScale": null,
           "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "ApiName"
+              },
+              {
+                "enabled": false,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": true,
+                "property": "Method"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "Resource"
+              },
+              {
+                "enabled": false,
+                "property": "Stage"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
           "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
@@ -315,29 +867,28 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Number of API calls in 5 minutes intervals (GET)",
+              "displayName": "Integration Latency (GET)",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": null,
+              "valueUnit": "Millisecond",
               "yAxis": 0
             }
           ],
           "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "+Method",
           "time": {
             "range": 900000,
             "type": "relative"
           },
-          "timestampHidden": false,
-          "type": "SingleValue",
+          "type": "List",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('Count', filter=filter('stat', 'sum'), rollup='latest').sum().publish(label='A')",
+        "programText": "A = data('IntegrationLatency', filter=filter('stat', 'mean') and filter('Method', '*'), rollup='latest').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -347,66 +898,55 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "DxgEV8kAEAA",
+        "description": "The time between when API Gateway receives a request from a client and when it returns a response to the client",
+        "id": "DxIuso1AIAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "API Resources",
+        "name": "Latency",
         "options": {
           "colorBy": "Dimension",
-          "colorScale": null,
           "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "ApiName"
+              },
+              {
+                "enabled": false,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": true,
+                "property": "Method"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "Resource"
+              },
+              {
+                "enabled": false,
+                "property": "Stage"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
           "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Count - Count by Resource - Count",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Count', rollup='latest').count(by=['Resource']).count().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Percent cache hits for GET method in 5 minute intervals",
-        "id": "DxIt4YVAIAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Percent Cache Hits",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 2,
           "programOptions": {
             "disableSampling": false,
             "maxDelay": 0,
@@ -415,49 +955,28 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Cache Hit Count",
+              "displayName": "Latency (GET)",
               "label": "A",
-              "paletteIndex": 13,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Cache Miss Count",
-              "label": "B",
-              "paletteIndex": 5,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Percent Cache Hit",
-              "label": "C",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": "%",
-              "valueUnit": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
               "yAxis": 0
             }
           ],
-          "refreshInterval": 5000,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "+Method",
           "time": {
             "range": 900000,
             "type": "relative"
           },
-          "timestampHidden": false,
-          "type": "SingleValue",
+          "type": "List",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('CacheHitCount', filter=filter('stat', 'sum'), rollup='latest').publish(label='A', enable=False)\nB = data('CacheMissCount', filter=filter('stat', 'sum'), rollup='latest').publish(label='B', enable=False)\nC = (100*A/(A+B)).publish(label='C')",
+        "programText": "A = data('Latency', filter=filter('stat', 'mean') and filter('Method', '*'), rollup='latest').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -677,55 +1196,16 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Top 10 API resources by highest number of 4xx responses in 5 minutes intervals",
-        "id": "Dxh_1xmAIAA",
+        "description": "",
+        "id": "DxgEV8kAEAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Highest Number of 4xx Responses",
+        "name": "API Resources",
         "options": {
           "colorBy": "Dimension",
+          "colorScale": null,
           "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Method"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "stat"
-              },
-              {
-                "enabled": true,
-                "property": "ApiName"
-              },
-              {
-                "enabled": true,
-                "property": "Resource"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": true,
-                "property": "namespace"
-              },
-              {
-                "enabled": true,
-                "property": "Stage"
-              }
-            ]
-          },
-          "maximumPrecision": 1,
+          "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
             "maxDelay": 0,
@@ -734,106 +1214,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "4XXError - Sum by Resource - Top 5 by Resource",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('4XXError', rollup='latest').sum(by=['Resource']).top(by=['Resource'], count=5).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number API calls to all API resources in 5 minute intervals by HTTP method",
-        "id": "DxgGWedAIAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "API Calls by HTTP Method",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Method"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "Method",
-            "showLegend": true
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Count - Sum by Method",
+              "displayName": "Count - Count by Resource - Count",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -843,17 +1224,19 @@
               "yAxis": 0
             }
           ],
-          "showEventLines": false,
-          "stacked": true,
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
           "time": {
             "range": 900000,
             "type": "relative"
           },
-          "type": "TimeSeriesChart",
+          "timestampHidden": false,
+          "type": "SingleValue",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('Count', filter=filter('Method', '*'), rollup='latest').sum(by=['Method']).publish(label='A')",
+        "programText": "A = data('Count', rollup='latest').count(by=['Resource']).count().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -961,11 +1344,11 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Number of 5XX errors in 5 minute intervals by HTTP method",
-        "id": "DxIuIIbAIAA",
+        "description": "Total number API calls to all API resources in 5 minute intervals by HTTP method",
+        "id": "DxgGWedAIAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "5XX Errors",
+        "name": "API Calls by HTTP Method",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -997,17 +1380,9 @@
           "histogramChartOptions": {
             "colorThemeIndex": 16
           },
-          "includeZero": true,
+          "includeZero": false,
           "legendOptions": {
             "fields": [
-              {
-                "enabled": true,
-                "property": "ApiName"
-              },
-              {
-                "enabled": false,
-                "property": "AWSUniqueId"
-              },
               {
                 "enabled": true,
                 "property": "Method"
@@ -1018,23 +1393,7 @@
               },
               {
                 "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
                 "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "Resource"
-              },
-              {
-                "enabled": false,
-                "property": "Stage"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
               }
             ]
           },
@@ -1053,7 +1412,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "5XXError (GET)",
+              "displayName": "Count - Sum by Method",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -1073,7 +1432,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('5XXError', filter=filter('stat', 'sum'), rollup='latest').publish(label='A')",
+        "programText": "A = data('Count', filter=filter('Method', '*'), rollup='latest').sum(by=['Method']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1172,365 +1531,6 @@
         "relatedDetectorIds": [],
         "tags": null
       }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "The time between when API Gateway relays a request to the back end and when it receives a response from the back end",
-        "id": "DxN_phmAEAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Integration Latency",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "ApiName"
-              },
-              {
-                "enabled": false,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": true,
-                "property": "Method"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "Resource"
-              },
-              {
-                "enabled": false,
-                "property": "Stage"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 300000,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Integration Latency (GET)",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "+Method",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('IntegrationLatency', filter=filter('stat', 'mean') and filter('Method', '*'), rollup='latest').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "The time between when API Gateway relays a request to the back end and when it receives a response from the back end",
-        "id": "DxgGWSeAEAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Average Integration Latency across all API Resources",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": true,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "sf_originatingMetric",
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "IntegrationLatency - Mean",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('IntegrationLatency', filter=filter('stat', 'mean'), rollup='latest').mean().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "The time between when API Gateway receives a request from a client and when it returns a response to the client",
-        "id": "DxIuso1AIAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Latency",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "ApiName"
-              },
-              {
-                "enabled": false,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": true,
-                "property": "Method"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "Resource"
-              },
-              {
-                "enabled": false,
-                "property": "Stage"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 300000,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Latency (GET)",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "+Method",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Latency', filter=filter('stat', 'mean') and filter('Method', '*'), rollup='latest').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number 5XX status responses from all API resources in 5 minutes intervals by HTTP method",
-        "id": "DxgSUcFAEAE",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "5XX Responses by HTTP Method",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Method"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "Method",
-            "showLegend": true
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "5XXError - Sum by Method",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": true,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('5XXError', filter=filter('Method', '*'), rollup='latest').sum(by=['Method']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
     }
   ],
   "crossLinkExports": [],
@@ -1611,10 +1611,7 @@
         "eventOverlays": null,
         "filters": {
           "sources": null,
-          "time": {
-            "end": "Now",
-            "start": "-5h"
-          },
+          "time": null,
           "variables": null
         },
         "groupId": "DxItaJlAIAA",
@@ -1825,7 +1822,7 @@
       "teams": null
     }
   },
-  "hashCode": -146663637,
+  "hashCode": 1838706955,
   "id": "DxItaJlAIAA",
   "modelVersion": 1,
   "packageType": "GROUP"
