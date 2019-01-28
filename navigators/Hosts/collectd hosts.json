@@ -1,5 +1,5 @@
 {
-  "hashCode" : -2048141686,
+  "hashCode" : -2048141687,
   "id" : "DiVVQHAAcAA",
   "importQualifiers" : [ {
     "filters" : [ {
@@ -34,7 +34,7 @@
       } ],
       "lastUpdated" : 0,
       "lastUpdatedBy" : null,
-      "name" : "Hosts (Smart Agent/collectd)",
+      "name" : "Hosts (collectd)",
       "navigatorCategory" : "Hosts",
       "navigatorType" : "elemental",
       "uiModel" : {
@@ -42,7 +42,7 @@
         "category" : "Hosts",
         "categoryPriority" : 0,
         "discoveryQuery" : [ "sf_key:host" ],
-        "displayName" : "Hosts (Smart Agent/collectd)",
+        "displayName" : "Hosts (collectd)",
         "filterProperties" : null,
         "id" : "collectd hosts",
         "idName" : "Host",
@@ -292,7 +292,7 @@
         "requiredProperties" : [ "host" ],
         "singleHostSystemDashboardName" : null,
         "systemDashboardName" : null,
-        "systemDashboardPrefix" : "Infrastructure",
+        "systemDashboardPrefix" : "collectd",
         "tooltipKeyList" : [ {
           "displayName" : "Name",
           "format" : null,
