@@ -1,5 +1,5 @@
 {
-  "hashCode" : -2048141687,
+  "hashCode" : -2048141688,
   "id" : "DiVVQHAAcAA",
   "importQualifiers" : [ {
     "filters" : [ {
@@ -100,7 +100,7 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "_missing_",
+              "property" : "!_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -130,7 +130,7 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "_missing_",
+              "property" : "!_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -160,7 +160,7 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "_missing_",
+              "property" : "!_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -190,7 +190,7 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "_missing_",
+              "property" : "!_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -220,7 +220,7 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "_missing_",
+              "property" : "!_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -252,7 +252,7 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "_missing_",
+              "property" : "!_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -265,7 +265,7 @@
           "valueFormat" : "AlertSeverity",
           "valueLabel" : "Most severe alert"
         } ],
-        "mtsQuery" : "sf_metric:cpu.utilization AND _exists_:host AND _missing_:agent",
+        "mtsQuery" : "sf_metric:cpu.utilization AND _exists_:host AND !_exists_:agent",
         "propertyColumns" : [ [ {
           "header" : "Memory",
           "properties" : [ "host_mem_total" ]
