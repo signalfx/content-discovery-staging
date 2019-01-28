@@ -1,5 +1,5 @@
 {
-  "hashCode" : -2048141688,
+  "hashCode" : -2048141689,
   "id" : "DiVVQHAAcAA",
   "importQualifiers" : [ {
     "filters" : [ {
@@ -42,7 +42,7 @@
         "category" : "Hosts",
         "categoryPriority" : 0,
         "discoveryQuery" : [ "sf_key:host" ],
-        "displayName" : "Hosts (collectd)",
+        "displayName" : "Hosts Please",
         "filterProperties" : null,
         "id" : "collectd hosts",
         "idName" : "Host",
