@@ -3498,108 +3498,6 @@
         "chartDensity": "DEFAULT",
         "charts": [
           {
-            "chartId": "DyBlXr6AcAA",
-            "column": 0,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DyBlXzaAgAA",
-            "column": 4,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DyBlX1VAYAA",
-            "column": 8,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "DyBlXlsAYDg",
-            "column": 4,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "DyBlXnCAgAA",
-            "column": 8,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "DyBlX0YAcB8",
-            "column": 0,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "DyBlXx4AYAA",
-            "column": 0,
-            "height": 1,
-            "row": 2,
-            "width": 6
-          },
-          {
-            "chartId": "DyBlX1cAgAA",
-            "column": 6,
-            "height": 1,
-            "row": 2,
-            "width": 6
-          },
-          {
-            "chartId": "DyBlX5fAcFw",
-            "column": 0,
-            "height": 1,
-            "row": 3,
-            "width": 6
-          },
-          {
-            "chartId": "DyBlXjZAcAA",
-            "column": 6,
-            "height": 1,
-            "row": 3,
-            "width": 6
-          }
-        ],
-        "created": 0,
-        "creator": null,
-        "customProperties": null,
-        "description": "",
-        "discoveryOptions": {
-          "query": "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND NOT _exists_:agent",
-          "selectors": [
-            "sf_key:host"
-          ]
-        },
-        "eventOverlays": null,
-        "filters": {
-          "sources": null,
-          "time": null,
-          "variables": null
-        },
-        "groupId": "DiVWWylAYD4",
-        "id": "DyBlXc3AgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "locked": false,
-        "maxDelayOverride": null,
-        "name": "Infrastructure Overview",
-        "selectedEventOverlays": [],
-        "tags": null
-      }
-    },
-    {
-      "dashboard": {
-        "chartDensity": "DEFAULT",
-        "charts": [
-          {
             "chartId": "DyBlwOdAgAA",
             "column": 3,
             "height": 1,
@@ -3722,6 +3620,108 @@
         "selectedEventOverlays": [],
         "tags": null
       }
+    },
+    {
+      "dashboard": {
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "DyBlXr6AcAA",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DyBlXzaAgAA",
+            "column": 4,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DyBlX1VAYAA",
+            "column": 8,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "DyBlXlsAYDg",
+            "column": 4,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DyBlXnCAgAA",
+            "column": 8,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DyBlX0YAcB8",
+            "column": 0,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "DyBlXx4AYAA",
+            "column": 0,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "DyBlX1cAgAA",
+            "column": 6,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "DyBlX5fAcFw",
+            "column": 0,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "DyBlXjZAcAA",
+            "column": 6,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": {
+          "query": "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND NOT _exists_:agent",
+          "selectors": [
+            "sf_key:host"
+          ]
+        },
+        "eventOverlays": null,
+        "filters": {
+          "sources": null,
+          "time": null,
+          "variables": null
+        },
+        "groupId": "DiVWWylAYD4",
+        "id": "DyBlXc3AgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "locked": false,
+        "maxDelayOverride": null,
+        "name": "Infrastructure (a)",
+        "selectedEventOverlays": [],
+        "tags": null
+      }
     }
   ],
   "groupExport": {
@@ -3730,8 +3730,8 @@
       "creator": null,
       "dashboards": [
         "DyBlv7IAYAI",
-        "DyBlXc3AgAA",
-        "DyBlPIMAcB8"
+        "DyBlPIMAcB8",
+        "DyBlXc3AgAA"
       ],
       "description": "Dashboards about infrastructure as measured by collectd and the SignalFx collectd plugin. ",
       "email": null,
@@ -3756,7 +3756,7 @@
       "teams": null
     }
   },
-  "hashCode": -1186262495,
+  "hashCode": 1751850759,
   "id": "DiVWWylAYD4",
   "modelVersion": 1,
   "packageType": "GROUP"
