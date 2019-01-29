@@ -3461,7 +3461,6 @@
         "discoveryOptions": {
           "query": "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND NOT _exists_:agent AND host_kernel_name:windows",
           "selectors": [
-            "_missing_:agent",
             "_exists_:host"
           ]
         },
@@ -3692,7 +3691,6 @@
         "discoveryOptions": {
           "query": "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND NOT _exists_:agent AND NOT host_kernel_name:windows",
           "selectors": [
-            "_missing_:agent",
             "_exists_:host"
           ]
         },
@@ -3758,7 +3756,7 @@
       "teams": null
     }
   },
-  "hashCode": -1186262494,
+  "hashCode": -1186262495,
   "id": "DiVWWylAYD4",
   "modelVersion": 1,
   "packageType": "GROUP"
