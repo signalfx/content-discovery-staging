@@ -100,7 +100,8 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "NOT _exists_",
+              "not": true,
+              "property" : "_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -130,7 +131,8 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "NOT _exists_",
+              "not": true,
+              "property" : "_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -160,7 +162,8 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "NOT _exists_",
+              "not": true,
+              "property" : "_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -190,7 +193,8 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "NOT _exists_",
+              "not": true,
+              "property" : "_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -220,7 +224,8 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "NOT _exists_",
+              "not": true,
+              "property" : "_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
@@ -252,7 +257,8 @@
               "propertyValue" : "host",
               "type" : "property"
             }, {
-              "property" : "NOT _exists_",
+              "not": true,
+              "property" : "_exists_",
               "propertyValue" : "agent",
               "type" : "property"
             } ],
