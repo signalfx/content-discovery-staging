@@ -1,5 +1,5 @@
 {
-  "hashCode" : -2048141692,
+  "hashCode" : -2048141693,
   "id" : "DiVVQHAAcAA",
   "importQualifiers" : [ {
     "filters" : [ {
@@ -267,7 +267,7 @@
         "proxyProperties" : null,
         "requiredProperties" : [ "host" ],
         "singleHostSystemDashboardName" : null,
-        "systemDashboardName" : null,
+        "systemDashboardName" : "Infrastructure Overview",
         "systemDashboardPrefix" : "Infrastructure",
         "tooltipKeyList" : [ {
           "displayName" : "Name",

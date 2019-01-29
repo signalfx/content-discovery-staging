@@ -3703,7 +3703,7 @@
         "discoveryOptions": {
           "query": "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND NOT _exists_:agent",
           "selectors": [
-            "sf_key:host"
+            "_exists_:host"
           ]
         },
         "eventOverlays": null,
@@ -3756,7 +3756,7 @@
       "teams": null
     }
   },
-  "hashCode": 1751850759,
+  "hashCode": 1751850760,
   "id": "DiVWWylAYD4",
   "modelVersion": 1,
   "packageType": "GROUP"
