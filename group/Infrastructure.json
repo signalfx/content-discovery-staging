@@ -1874,8 +1874,8 @@
       "customProperties" : null,
       "description" : "",
       "discoveryOptions" : {
-        "query" : "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND _missing_:agent",
-        "selectors" : [ "_missing_:agent", "_exists_:host" ]
+        "query" : "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND NOT _exists_:agent",
+        "selectors" : [ "_exists_:host" ]
       },
       "eventOverlays" : null,
       "filters" : {
@@ -1978,8 +1978,8 @@
       "customProperties" : null,
       "description" : "",
       "discoveryOptions" : {
-        "query" : "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND _missing_:agent",
-        "selectors" : [ "_missing_:agent", "sf_key:host" ]
+        "query" : "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND NOT _exists_:agent",
+        "selectors" : [ "sf_key:host" ]
       },
       "eventOverlays" : null,
       "filters" : {
@@ -2020,7 +2020,7 @@
       "teams" : null
     }
   },
-  "hashCode" : 1918045628,
+  "hashCode" : 1918045629,
   "id" : "DiVWWylAYD4",
   "modelVersion" : 1,
   "packageType" : "GROUP"
