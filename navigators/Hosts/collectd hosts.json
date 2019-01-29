@@ -267,7 +267,7 @@
         "proxyProperties" : null,
         "requiredProperties" : [ "host" ],
         "singleHostSystemDashboardName" : null,
-        "systemDashboardName" : "Infrastructure Overview",
+        "systemDashboardName" : "Infrastructure (a)",
         "systemDashboardPrefix" : "Infrastructure",
         "tooltipKeyList" : [ {
           "displayName" : "Name",
