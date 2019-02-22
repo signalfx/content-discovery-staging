@@ -5,56 +5,6 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Number of pods NOT in Ready state across the cluster. Apply the namespace filter to see number of pods in a namespace.",
-        "id": "DzwpzRwAAAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "# of Pods NOT in Ready state",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 300000,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 3600000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kube_pod_status_ready', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true'), rollup='latest', extrapolation='zero').below(0, inclusive=True).count().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
         "description": "Total amount of available memory in a managed cluster",
         "id": "DztsRbxAAAA",
         "lastUpdated": 0,
@@ -196,6 +146,391 @@
         },
         "packageSpecifications": "",
         "programText": "A = data('kube_pod_status_ready', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true'), rollup='average', extrapolation='zero').mean(by=['pod']).count().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Number of pods NOT in Ready state across the cluster. Apply the namespace filter to see number of pods in a namespace.",
+        "id": "DzwpzRwAAAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "# of Pods NOT in Ready state",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 300000,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 3600000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kube_pod_status_ready', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true'), rollup='latest', extrapolation='zero').below(0, inclusive=True).count().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Number of pods in running phase across the cluster. Apply the namespace filter to see number of pods in a namespace.",
+        "id": "Dz0QGmwAIAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "# of Pods in Unknown Phase",
+        "options": {
+          "colorBy": "Scale",
+          "colorRange": null,
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 1,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 20
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 1,
+              "paletteIndex": 20
+            }
+          ],
+          "groupBy": [],
+          "programOptions": {
+            "disableSampling": true,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "kube_pod_status_phase - Mean by pod,namespace - Exclude x <= 0",
+              "label": "A",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            }
+          ],
+          "refreshInterval": null,
+          "sortDirection": "Ascending",
+          "sortProperty": null,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "Heatmap",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kube_pod_status_phase', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true') and filter('phase', 'Unknown', 'unknown'), rollup='latest').mean(by=['pod', 'namespace']).above(0).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Pods by state within the cluster. GREEN indicates a pod is READY. Apply the namespace filter to see number of pods in a namespace.",
+        "id": "Dz0QGjqAAAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Pods by State",
+        "options": {
+          "colorBy": "Scale",
+          "colorRange": null,
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 0,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 19
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 0,
+              "paletteIndex": 16
+            }
+          ],
+          "groupBy": [],
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            }
+          ],
+          "refreshInterval": 300000,
+          "sortDirection": "Ascending",
+          "sortProperty": null,
+          "time": {
+            "range": 3600000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "Heatmap",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kube_pod_status_ready', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true'), rollup='latest', extrapolation='zero').mean(by=['pod']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Total number of available cpu cores in a managed cluster",
+        "id": "DztsRbWAIAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Allocatable CPU Cores",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "kube_node_status_allocatable_cpu_cores",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kube_node_status_allocatable_cpu_cores', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true'), rollup='latest').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Number of pods NOT in Ready state by namespace",
+        "id": "DztsRbPAEAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "# of Pods NOT in Ready state per namespace",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "primary_aggregation_type"
+              },
+              {
+                "enabled": true,
+                "property": "azure_resource_id"
+              },
+              {
+                "enabled": true,
+                "property": "pod"
+              },
+              {
+                "enabled": true,
+                "property": "resource_group_id"
+              },
+              {
+                "enabled": true,
+                "property": "resource_type"
+              },
+              {
+                "enabled": true,
+                "property": "aggregation_type"
+              },
+              {
+                "enabled": true,
+                "property": "subscription_id"
+              },
+              {
+                "enabled": true,
+                "property": "unit"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 300000,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "",
+          "time": {
+            "range": 3600000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kube_pod_status_ready', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true'), rollup='average', extrapolation='zero').below(0, inclusive=True).count(by=['namespace']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Number of pods in failed phase across the cluster. Apply the namespace filter to see number of pods in a namespace.",
+        "id": "Dz0QFZeAAAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "# of Pods in Failed Phase",
+        "options": {
+          "colorBy": "Scale",
+          "colorRange": null,
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 1,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 20
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 1,
+              "paletteIndex": 20
+            }
+          ],
+          "groupBy": [],
+          "programOptions": {
+            "disableSampling": true,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "kube_pod_status_phase - Mean by pod - Exclude x <= 0",
+              "label": "A",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            }
+          ],
+          "refreshInterval": null,
+          "sortDirection": "Ascending",
+          "sortProperty": null,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "Heatmap",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('kube_pod_status_phase', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true') and filter('phase', 'Failed'), rollup='latest').mean(by=['pod']).above(0).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -359,341 +694,6 @@
         },
         "packageSpecifications": "",
         "programText": "A = data('kube_pod_status_phase', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true')).count(by=['phase']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of pods in failed phase across the cluster. Apply the namespace filter to see number of pods in a namespace.",
-        "id": "Dz0QFZeAAAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "# of Pods in Failed Phase",
-        "options": {
-          "colorBy": "Scale",
-          "colorRange": null,
-          "colorScale": null,
-          "colorScale2": [
-            {
-              "gt": 1,
-              "gte": null,
-              "lt": null,
-              "lte": null,
-              "paletteIndex": 20
-            },
-            {
-              "gt": null,
-              "gte": null,
-              "lt": null,
-              "lte": 1,
-              "paletteIndex": 20
-            }
-          ],
-          "groupBy": [],
-          "programOptions": {
-            "disableSampling": true,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "kube_pod_status_phase - Mean by pod - Exclude x <= 0",
-              "label": "A",
-              "valuePrefix": "",
-              "valueSuffix": "",
-              "valueUnit": null
-            }
-          ],
-          "refreshInterval": null,
-          "sortDirection": "Ascending",
-          "sortProperty": null,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "Heatmap",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kube_pod_status_phase', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true') and filter('phase', 'Failed'), rollup='latest').mean(by=['pod']).above(0).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Pods by state within the cluster. GREEN indicates a pod is READY. Apply the namespace filter to see number of pods in a namespace.",
-        "id": "Dz0QGjqAAAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Pods by State",
-        "options": {
-          "colorBy": "Scale",
-          "colorRange": null,
-          "colorScale": null,
-          "colorScale2": [
-            {
-              "gt": 0,
-              "gte": null,
-              "lt": null,
-              "lte": null,
-              "paletteIndex": 19
-            },
-            {
-              "gt": null,
-              "gte": null,
-              "lt": null,
-              "lte": 0,
-              "paletteIndex": 16
-            }
-          ],
-          "groupBy": [],
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "",
-              "label": "A",
-              "valuePrefix": "",
-              "valueSuffix": "",
-              "valueUnit": null
-            }
-          ],
-          "refreshInterval": 300000,
-          "sortDirection": "Ascending",
-          "sortProperty": null,
-          "time": {
-            "range": 3600000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "Heatmap",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kube_pod_status_ready', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true'), rollup='latest', extrapolation='zero').mean(by=['pod']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of pods NOT in Ready state by namespace",
-        "id": "DztsRbPAEAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "# of Pods NOT in Ready state per namespace",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": true,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "primary_aggregation_type"
-              },
-              {
-                "enabled": true,
-                "property": "azure_resource_id"
-              },
-              {
-                "enabled": true,
-                "property": "pod"
-              },
-              {
-                "enabled": true,
-                "property": "resource_group_id"
-              },
-              {
-                "enabled": true,
-                "property": "resource_type"
-              },
-              {
-                "enabled": true,
-                "property": "aggregation_type"
-              },
-              {
-                "enabled": true,
-                "property": "subscription_id"
-              },
-              {
-                "enabled": true,
-                "property": "unit"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 300000,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "",
-          "time": {
-            "range": 3600000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kube_pod_status_ready', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true'), rollup='average', extrapolation='zero').below(0, inclusive=True).count(by=['namespace']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of pods in running phase across the cluster. Apply the namespace filter to see number of pods in a namespace.",
-        "id": "Dz0QGmwAIAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "# of Pods in Unknown Phase",
-        "options": {
-          "colorBy": "Scale",
-          "colorRange": null,
-          "colorScale": null,
-          "colorScale2": [
-            {
-              "gt": 1,
-              "gte": null,
-              "lt": null,
-              "lte": null,
-              "paletteIndex": 20
-            },
-            {
-              "gt": null,
-              "gte": null,
-              "lt": null,
-              "lte": 1,
-              "paletteIndex": 20
-            }
-          ],
-          "groupBy": [],
-          "programOptions": {
-            "disableSampling": true,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "kube_pod_status_phase - Mean by pod,namespace - Exclude x <= 0",
-              "label": "A",
-              "valuePrefix": "",
-              "valueSuffix": "",
-              "valueUnit": null
-            }
-          ],
-          "refreshInterval": null,
-          "sortDirection": "Ascending",
-          "sortProperty": null,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "Heatmap",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kube_pod_status_phase', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true') and filter('phase', 'Unknown', 'unknown'), rollup='latest').mean(by=['pod', 'namespace']).above(0).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of available cpu cores in a managed cluster",
-        "id": "DztsRbWAIAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Allocatable CPU Cores",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "kube_node_status_allocatable_cpu_cores",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('kube_node_status_allocatable_cpu_cores', filter=filter('resource_type', 'Microsoft.ContainerService/managedClusters') and filter('primary_aggregation_type', 'true'), rollup='latest').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -893,7 +893,7 @@
       "teams": null
     }
   },
-  "hashCode": -709146731,
+  "hashCode": 1578208990,
   "id": "DzttL-PAEAA",
   "modelVersion": 1,
   "packageType": "GROUP"
