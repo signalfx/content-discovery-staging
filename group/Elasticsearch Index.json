@@ -6,10 +6,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWcP3AgLc",
+        "id": "DiVWZJYAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Index Latency (ms)",
+        "name": "Indexing Requests/sec",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -18,7 +18,7 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "Time (ms)",
+              "label": "requests / sec",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
@@ -28,272 +28,6 @@
               "highWatermark": null,
               "highWatermarkLabel": null,
               "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "counter.indices.total.indexing.index-total - Maximum by index",
-              "label": "A",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "counter.indices.total.indexing.index-time - Maximum by index",
-              "label": "B",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "latency",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 7200000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.indexing.index-total', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch'), rollup='delta', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='A', enable=False)\nB = data('counter.indices.total.indexing.index-time', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch'), rollup='delta', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='B', enable=False)\nC = (B/A).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "last day",
-        "id": "DiVWYVvAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Top Indexes by Index Size Growth %",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": 3,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "gauge.indices.total.store.size - Mean by index",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "gauge.indices.total.store.size - Mean by index - Timeshift 1d",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": null,
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.indices.total.store.size', filter=filter('plugin', 'elasticsearch')).mean(by=['index']).publish(label='A', enable=False)\nB = data('gauge.indices.total.store.size', filter=filter('plugin', 'elasticsearch')).mean(by=['index']).timeshift('1d').publish(label='B', enable=False)\nC = ((A-B)*100/B).top(count=5).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWZDKAcK0",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Merge Latency (ms)",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "Time (ms)",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "counter.indices.total.merges.total - Maximum by index",
-              "label": "A",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "counter.indices.total.merges.total-time - Maximum by index",
-              "label": "B",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "latency",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 7200000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.merges.total', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch'), rollup='delta', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='A', enable=False)\nB = data('counter.indices.total.merges.total-time', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch'), rollup='delta', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='B', enable=False)\nC = (B/A).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "last hour",
-        "id": "DiVWaKnAYH0",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Document Growth %",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "growth %",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
@@ -321,7 +55,323 @@
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
-            "minimumResolution": 0
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "counter.indices.total.indexing.index-total - Maximum by index - Rate of Change",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 7200000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('*.indices*.indexing.index-total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *')) and filter('I aggregation', ' * OR aggregation: total', match_missing=True), rollup='max', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).rateofchange().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWaxEAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Cache Size (bytes)",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "size (bytes)",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Filter Cache",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": "AreaChart",
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Field Cache",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "C",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "D",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "E",
+              "label": "E",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 7200000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('*.indices*.filter-cache.memory-size', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True))).mean(by=['index']).publish(label='A', enable=False)\nB = data('*.indices*.fielddata.memory-size', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True))).mean(by=['index']).publish(label='B', enable=False)\nC = data('*.indices*.query-cache.memory-size', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True))).publish(label='C', enable=False)\nD = data('*.indices*.request-cache.memory-size', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True))).publish(label='D')\nE = data('*.indices*.id-cache.memory-size', filter=filter('plugin', 'elasticsearch') and (not filter('node', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True))).publish(label='E')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWbs7AgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Deleted Documents %",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "deleted %",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "gauge.indices.total.docs.deleted - Mean by index",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "gauge.indices.total.docs.count - Mean by index",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "% of Deleted Documents",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 7200000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('*.indices*.docs.deleted', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), extrapolation='last_value', maxExtrapolations=100).mean(by=['index']).publish(label='A', enable=False)\nB = data('*.indices*.docs.count', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), extrapolation='last_value', maxExtrapolations=100).mean(by=['index']).publish(label='B', enable=False)\nC = (A*100/B).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "last hour",
+        "id": "DiVWYkXAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Document Growth %",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "growth %",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
           },
           "publishLabelOptions": [
             {
@@ -365,7 +415,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.indices.total.docs.count', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch'), extrapolation='last_value', maxExtrapolations=100).mean(by=['index']).publish(label='A', enable=False)\nB = (A).timeshift('1h').publish(label='B', enable=False)\nC = ((A-B)*100/B).publish(label='C')",
+        "programText": "A = data('*.indices*.docs.count', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', '*', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True))).mean(by=['index']).publish(label='A', enable=False)\nB = (A).timeshift('1h').publish(label='B', enable=False)\nC = ((A-B)*100/B).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -376,57 +426,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWYYHAcAA",
+        "id": "DiVWXq1AgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Top Indexes by Search Requests",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": 3,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": null,
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.search.query-total', filter=filter('plugin', 'elasticsearch'), rollup='max').max(by=['index']).rateofchange().top(count=5).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWa9aAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Search Requests/sec",
+        "name": "Merges/sec",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -435,11 +438,20 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "requests / sec",
+              "label": "merges / sec",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
               "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
             }
           ],
           "axisPrecision": null,
@@ -463,11 +475,148 @@
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
-            "minimumResolution": 0
+            "minimumResolution": 0,
+            "timezone": null
           },
           "publishLabelOptions": [
             {
-              "displayName": "counter.indices.total.search.query-total - Maximum by index - Rate of Change",
+              "displayName": "counter.indices.total.merges.total - Maximum by index - Rate of Change",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": "AreaChart",
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 7200000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('*.indices*.merges.total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', '*', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='max').max(by=['index']).rateofchange().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWYYwAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top Indexes by Indexing Requests",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": 2,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('*.indices*.indexing.index-total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', '  *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='max').max(by=['index']).rateofchange().top(count=5).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWYI4AYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Indexing Requests/sec",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "requests / sec",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "counter.indices.total.indexing.index-total - Maximum by index - Rate of Change",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -487,7 +636,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.search.query-total', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch') and (not filter('AWSUniqueId', 'i-0480a3a8_us-east-1_134183635603')), rollup='max', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).rateofchange().publish(label='A')",
+        "programText": "A = data('*.indices*.indexing.index-total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='max').max(by=['index']).rateofchange().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -547,7 +696,8 @@
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
-            "minimumResolution": 0
+            "minimumResolution": 0,
+            "timezone": null
           },
           "publishLabelOptions": [
             {
@@ -591,319 +741,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.search.query-total', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch'), rollup='delta', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='A', enable=False)\nB = data('counter.indices.total.search.query-time', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch'), rollup='delta', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='B', enable=False)\nC = (B/A).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "last hour",
-        "id": "DiVWYkXAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Document Growth %",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "growth %",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "gauge.indices.total.docs.count - Mean by index",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "A - Timeshift 1h",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Growth %",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": true,
-          "time": {
-            "range": 7200000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.indices.total.docs.count', filter=filter('plugin', 'elasticsearch')).mean(by=['index']).publish(label='A', enable=False)\nB = (A).timeshift('1h').publish(label='B', enable=False)\nC = ((A-B)*100/B).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWYOAAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Search Requests/sec",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "requests / sec",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "counter.indices.total.search.query-total - Maximum by index - Rate of Change",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": true,
-          "time": {
-            "range": 7200000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.search.query-total', filter=filter('plugin', 'elasticsearch'), rollup='max').max(by=['index']).rateofchange().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWYYwAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Top Indexes by Indexing Requests",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": null
-          },
-          "maximumPrecision": 2,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": null,
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.indexing.index-total', filter=filter('plugin', 'elasticsearch'), rollup='max').max(by=['index']).rateofchange().top(count=5).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWcWKAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Elasticsearch Tips",
-        "options": {
-          "markdown": "<br>\n**Optimization Tip**\n\nIf your fielddata cache and heap usage are high, consider using [doc values](https://www.elastic.co/guide/en/elasticsearch/reference/current/doc-values.html)!",
-          "type": "Text"
-        },
-        "packageSpecifications": "",
-        "programText": "",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWYI4AYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Indexing Requests/sec",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "requests / sec",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "counter.indices.total.indexing.index-total - Maximum by index - Rate of Change",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": true,
-          "time": {
-            "range": 7200000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.indexing.index-total', filter=filter('plugin', 'elasticsearch'), rollup='max').max(by=['index']).rateofchange().publish(label='A')",
+        "programText": "A = data('*.indices*.search.query-total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', '*', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='delta', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='A', enable=False)\nB = data('*.indices*.search.query-time', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='delta', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='B', enable=False)\nC = (B/A).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -928,7 +766,8 @@
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
-            "minimumResolution": 0
+            "minimumResolution": 0,
+            "timezone": null
           },
           "publishLabelOptions": [
             {
@@ -995,12 +834,15 @@
           "refreshInterval": null,
           "secondaryVisualization": "Sparkline",
           "sortBy": "-value",
-          "time": null,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
           "type": "List",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.search.query-total', filter=filter('plugin', 'elasticsearch'), rollup='max').max(by=['index']).publish(label='A', enable=False)\nB = data('counter.indices.total.search.query-time', filter=filter('plugin', 'elasticsearch'), rollup='max').max(by=['index']).publish(label='B', enable=False)\nC = (A).timeshift('1h').publish(label='C', enable=False)\nD = (B).timeshift('1h').publish(label='D', enable=False)\nE = ((B-D)/(A-C)).publish(label='E', enable=False)\nF = (E).percentile(pct=99, by=['index']).top(count=5).publish(label='F')",
+        "programText": "A = data('*.indices*.search.query-total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', '*', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='max').max(by=['index']).publish(label='A', enable=False)\nB = data('*.indices*.search.query-time', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='max').max(by=['index']).publish(label='B', enable=False)\nC = (A).timeshift('1h').publish(label='C', enable=False)\nD = (B).timeshift('1h').publish(label='D', enable=False)\nE = ((B-D)/(A-C)).publish(label='E', enable=False)\nF = (E).percentile(pct=99, by=['index']).top(count=5).publish(label='F')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1011,10 +853,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWZJYAgAA",
+        "id": "DiVWa9aAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Indexing Requests/sec",
+        "name": "Search Requests/sec",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -1027,6 +869,15 @@
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
+              "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
               "min": null
             }
           ],
@@ -1051,11 +902,12 @@
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
-            "minimumResolution": 0
+            "minimumResolution": 0,
+            "timezone": null
           },
           "publishLabelOptions": [
             {
-              "displayName": "counter.indices.total.indexing.index-total - Maximum by index - Rate of Change",
+              "displayName": "counter.indices.total.search.query-total - Maximum by index - Rate of Change",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -1075,7 +927,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.indexing.index-total', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch') and (not filter('AWSUniqueId', 'i-0480a3a8_us-east-1_134183635603')), rollup='max', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).rateofchange().publish(label='A')",
+        "programText": "A = data('*.indices*.search.query-total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='max', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).rateofchange().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1085,127 +937,27 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "DiVWXq1AgAA",
+        "description": "last day",
+        "id": "DiVWYVvAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Merges/sec",
+        "name": "Top Indexes by Index Size Growth %",
         "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "merges / sec",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            }
-          ],
-          "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
+          "colorScale2": null,
           "legendOptions": {
             "fields": null
           },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
+          "maximumPrecision": 3,
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
-            "minimumResolution": 0
+            "minimumResolution": 0,
+            "timezone": null
           },
           "publishLabelOptions": [
             {
-              "displayName": "counter.indices.total.merges.total - Maximum by index - Rate of Change",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": "AreaChart",
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": true,
-          "time": {
-            "range": 7200000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.merges.total', filter=filter('plugin', 'elasticsearch'), rollup='max').max(by=['index']).rateofchange().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWbs7AgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Deleted Documents %",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "deleted %",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "gauge.indices.total.docs.deleted - Mean by index",
+              "displayName": "gauge.indices.total.store.size - Mean by index",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -1215,7 +967,7 @@
               "yAxis": 0
             },
             {
-              "displayName": "gauge.indices.total.docs.count - Mean by index",
+              "displayName": "gauge.indices.total.store.size - Mean by index - Timeshift 1d",
               "label": "B",
               "paletteIndex": null,
               "plotType": null,
@@ -1225,7 +977,113 @@
               "yAxis": 0
             },
             {
-              "displayName": "% of Deleted Documents",
+              "displayName": "",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('*.indices*.store.size', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', '*', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True))).mean(by=['index']).publish(label='A', enable=False)\nB = data('*.indices*.store.size', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', '*', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True))).mean(by=['index']).timeshift('1d').publish(label='B', enable=False)\nC = ((A-B)*100/B).top(count=5).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "last hour",
+        "id": "DiVWaKnAYH0",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Document Growth %",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "growth %",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "gauge.indices.total.docs.count - Mean by index",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "A - Timeshift 1h",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Growth %",
               "label": "C",
               "paletteIndex": null,
               "plotType": null,
@@ -1236,7 +1094,7 @@
             }
           ],
           "showEventLines": false,
-          "stacked": false,
+          "stacked": true,
           "time": {
             "range": 7200000,
             "type": "relative"
@@ -1245,7 +1103,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.indices.total.docs.deleted', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch') and (not filter('AWSUniqueId', 'i-0480a3a8_us-east-1_134183635603')), extrapolation='last_value', maxExtrapolations=100).mean(by=['index']).publish(label='A', enable=False)\nB = data('gauge.indices.total.docs.count', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch') and (not filter('AWSUniqueId', 'i-0480a3a8_us-east-1_134183635603')), extrapolation='last_value', maxExtrapolations=100).mean(by=['index']).publish(label='B', enable=False)\nC = (A*100/B).publish(label='C')",
+        "programText": "A = data('*.indices*.docs.count', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', '*', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), extrapolation='last_value', maxExtrapolations=100).mean(by=['index']).publish(label='A', enable=False)\nB = (A).timeshift('1h').publish(label='B', enable=False)\nC = ((A-B)*100/B).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1270,7 +1128,8 @@
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
-            "minimumResolution": 0
+            "minimumResolution": 0,
+            "timezone": null
           },
           "publishLabelOptions": [
             {
@@ -1317,12 +1176,15 @@
           "refreshInterval": null,
           "secondaryVisualization": "Sparkline",
           "sortBy": "+index",
-          "time": null,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
           "type": "List",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.indices.total.store.size', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch'), extrapolation='last_value').mean(by=['index']).publish(label='A')\nB = data('gauge.indices.total.store.size', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch'), extrapolation='last_value').mean(by=['index']).timeshift('1d').publish(label='B', enable=False)\nC = ((A-B)*100/B).publish(label='C')\nD = data('gauge.indices.total.docs.count', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch'), extrapolation='last_value').mean(by=['index']).publish(label='D')",
+        "programText": "A = data('*.indices*.store.size', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregaiton', ' * OR aggregation: total', match_missing=True)), extrapolation='last_value').mean(by=['index']).publish(label='A')\nB = data('*.indices*.store.size', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregaiton', ' * OR aggregation: total', match_missing=True)), extrapolation='last_value').mean(by=['index']).timeshift('1d').publish(label='B', enable=False)\nC = ((A-B)*100/B).publish(label='C')\nD = data('*.indices*.docs.count', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregaiton', ' * OR aggregation: total', match_missing=True)), extrapolation='last_value').mean(by=['index']).publish(label='D')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1333,10 +1195,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWaxEAcAA",
+        "id": "DiVWcP3AgLc",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Cache Size (bytes)",
+        "name": "Index Latency (ms)",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -1345,11 +1207,11 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "size (bytes)",
+              "label": "Time (ms)",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
-              "min": 0
+              "min": null
             },
             {
               "highWatermark": null,
@@ -1382,22 +1244,33 @@
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
-            "minimumResolution": 0
+            "minimumResolution": 0,
+            "timezone": null
           },
           "publishLabelOptions": [
             {
-              "displayName": "Filter Cache",
+              "displayName": "counter.indices.total.indexing.index-total - Maximum by index",
               "label": "A",
-              "paletteIndex": null,
-              "plotType": "AreaChart",
+              "paletteIndex": 4,
+              "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
               "valueUnit": null,
               "yAxis": 0
             },
             {
-              "displayName": "Field Cache",
+              "displayName": "counter.indices.total.indexing.index-time - Maximum by index",
               "label": "B",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "latency",
+              "label": "C",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -1416,7 +1289,268 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.indices.total.filter-cache.memory-size', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch')).mean(by=['index']).publish(label='A')\nB = data('gauge.indices.total.fielddata.memory-size', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch')).mean(by=['index']).publish(label='B')",
+        "programText": "A = data('*.indices*.indexing.index-total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='A', enable=False)\nB = data('*.indices*.indexing.index-time', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='B', enable=False)\nC = (B/A).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWcWKAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Elasticsearch Tips",
+        "options": {
+          "markdown": "<br>\n**Optimization Tip**\n\nIf your fielddata cache and heap usage are high, consider using [doc values](https://www.elastic.co/guide/en/elasticsearch/reference/current/doc-values.html)!",
+          "type": "Text"
+        },
+        "packageSpecifications": "",
+        "programText": "",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWYOAAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Search Requests/sec",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "requests / sec",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "counter.indices.total.search.query-total - Maximum by index - Rate of Change",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 7200000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('*.indices*.search.query-total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', '*', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='max').max(by=['index']).rateofchange().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWYYHAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top Indexes by Search Requests",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('*.indices*.search.query-total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='max').max(by=['index']).rateofchange().top(count=5).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWZDKAcK0",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Merge Latency (ms)",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Time (ms)",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "counter.indices.total.merges.total - Maximum by index",
+              "label": "A",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "counter.indices.total.merges.total-time - Maximum by index",
+              "label": "B",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "latency",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 7200000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('*.indices*.merges.total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='A', enable=False)\nB = data('*.indices*.merges.total-time', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), extrapolation='last_value', maxExtrapolations=100).max(by=['index']).publish(label='B', enable=False)\nC = (B/A).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1444,6 +1578,15 @@
               "lowWatermarkLabel": null,
               "max": null,
               "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
             }
           ],
           "axisPrecision": null,
@@ -1467,7 +1610,8 @@
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
-            "minimumResolution": 0
+            "minimumResolution": 0,
+            "timezone": null
           },
           "publishLabelOptions": [
             {
@@ -1491,113 +1635,14 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('counter.indices.total.merges.total', filter=filter('plugin', 'elasticsearch') and filter('plugin_instance', 'elasticsearch') and (not filter('AWSUniqueId', 'i-0480a3a8_us-east-1_134183635603')), rollup='max', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).rateofchange().publish(label='A')",
+        "programText": "A = data('*.indices*.merges.total', filter=filter('plugin', 'elasticsearch') and (not filter('node_id', ' *', match_missing=True)) and (not filter('aggregation', ' * OR aggregation: total', match_missing=True)), rollup='max', extrapolation='last_value', maxExtrapolations=100).max(by=['index']).rateofchange().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
     }
   ],
+  "crossLinkExports": [],
   "dashboardExports": [
-    {
-      "dashboard": {
-        "chartDensity": "DEFAULT",
-        "charts": [
-          {
-            "chartId": "DiVWYI4AYAA",
-            "column": 0,
-            "height": 1,
-            "row": 0,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWXq1AgAA",
-            "column": 6,
-            "height": 1,
-            "row": 0,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWYkXAYAA",
-            "column": 0,
-            "height": 1,
-            "row": 1,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWYOAAgAA",
-            "column": 6,
-            "height": 1,
-            "row": 1,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWYYwAYAA",
-            "column": 6,
-            "height": 1,
-            "row": 2,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWYYHAcAA",
-            "column": 0,
-            "height": 1,
-            "row": 2,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWX-dAcAA",
-            "column": 6,
-            "height": 1,
-            "row": 3,
-            "width": 6
-          },
-          {
-            "chartId": "DiVWYVvAYAA",
-            "column": 0,
-            "height": 1,
-            "row": 3,
-            "width": 6
-          }
-        ],
-        "created": 0,
-        "creator": null,
-        "customProperties": null,
-        "description": "Default dashboard.",
-        "discoveryOptions": {
-          "query": "plugin:elasticsearch",
-          "selectors": [
-            "sf_key:index"
-          ]
-        },
-        "eventOverlays": null,
-        "filters": {
-          "sources": null,
-          "time": null,
-          "variables": [
-            {
-              "alias": "cluster",
-              "applyIfExists": false,
-              "description": "Elasticsearch cluster",
-              "preferredSuggestions": [],
-              "property": "plugin_instance",
-              "replaceOnly": false,
-              "required": false,
-              "restricted": false,
-              "value": ""
-            }
-          ]
-        },
-        "groupId": "DiVWXcUAcAA",
-        "id": "DiVWXpYAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "locked": false,
-        "maxDelayOverride": null,
-        "name": "Elasticsearch Indexes",
-        "selectedEventOverlays": [],
-        "tags": null
-      }
-    },
     {
       "dashboard": {
         "chartDensity": "DEFAULT",
@@ -1730,6 +1775,106 @@
         "selectedEventOverlays": [],
         "tags": null
       }
+    },
+    {
+      "dashboard": {
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "DiVWYI4AYAA",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "DiVWXq1AgAA",
+            "column": 6,
+            "height": 1,
+            "row": 0,
+            "width": 6
+          },
+          {
+            "chartId": "DiVWYkXAYAA",
+            "column": 0,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "DiVWYOAAgAA",
+            "column": 6,
+            "height": 1,
+            "row": 1,
+            "width": 6
+          },
+          {
+            "chartId": "DiVWYYwAYAA",
+            "column": 6,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "DiVWYYHAcAA",
+            "column": 0,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "DiVWX-dAcAA",
+            "column": 6,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "DiVWYVvAYAA",
+            "column": 0,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "Default dashboard.",
+        "discoveryOptions": {
+          "query": "plugin:elasticsearch",
+          "selectors": [
+            "sf_key:index"
+          ]
+        },
+        "eventOverlays": null,
+        "filters": {
+          "sources": null,
+          "time": null,
+          "variables": [
+            {
+              "alias": "cluster",
+              "applyIfExists": false,
+              "description": "Elasticsearch cluster",
+              "preferredSuggestions": [],
+              "property": "plugin_instance",
+              "replaceOnly": false,
+              "required": false,
+              "restricted": false,
+              "value": ""
+            }
+          ]
+        },
+        "groupId": "DiVWXcUAcAA",
+        "id": "DiVWXpYAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "locked": false,
+        "maxDelayOverride": null,
+        "name": "Elasticsearch Indexes",
+        "selectedEventOverlays": [],
+        "tags": null
+      }
     }
   ],
   "groupExport": {
@@ -1737,8 +1882,8 @@
       "created": 0,
       "creator": null,
       "dashboards": [
-        "DiVWXpYAYAA",
-        "DiVWYpeAgAA"
+        "DiVWYpeAgAA",
+        "DiVWXpYAYAA"
       ],
       "description": "Dashboards about Elasticsearch indexes.",
       "email": null,
@@ -1763,7 +1908,7 @@
       "teams": null
     }
   },
-  "hashCode": 1376178506,
+  "hashCode": 612843113,
   "id": "DiVWXcUAcAA",
   "modelVersion": 1,
   "packageType": "GROUP"
