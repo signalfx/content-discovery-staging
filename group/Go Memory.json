@@ -505,6 +505,57 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
+        "description": "Number of Go applications exporting metrics",
+        "id": "D2plZfbAgAE",
+        "importOf": "D2OfH3hAAVg",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Go Applications",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Number of Go programs",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('memstats.num_gc').count().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
         "description": "Total stop-the-world time pauses of the most recent GC Cycle when it ran",
         "id": "D2plakzAgAA",
         "importOf": "D2Tu8CqAIAA",
@@ -582,57 +633,6 @@
         },
         "packageSpecifications": "",
         "programText": "A = data('memstats.most_recent_gc_pause_ns', rollup='latest').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of Go applications exporting metrics",
-        "id": "D2plZfbAgAE",
-        "importOf": "D2OfH3hAAVg",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Go Applications",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Number of Go programs",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('memstats.sys').count().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1898,7 +1898,7 @@
       "teams": null
     }
   },
-  "hashCode": 910964266,
+  "hashCode": 954686820,
   "id": "D2plYqSAcDY",
   "modelVersion": 1,
   "packageType": "GROUP"
