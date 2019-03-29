@@ -5,12 +5,12 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Total stop-the-world time pauses of the most recent GC Cycle when it ran",
-        "id": "D2plakzAgAA",
-        "importOf": "D2Tu8CqAIAA",
+        "description": "",
+        "id": "D2plajaAcAA",
+        "importOf": "D2JOn8lAAAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "GC Cycle Duration",
+        "name": "Stack Memory",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -36,22 +36,75 @@
             }
           ],
           "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
+          "colorBy": "Metric",
+          "defaultPlotType": "AreaChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
           },
           "includeZero": true,
           "legendOptions": {
-            "fields": null
+            "fields": [
+              {
+                "enabled": true,
+                "property": "go_program_name"
+              },
+              {
+                "enabled": true,
+                "property": "expvar_host"
+              },
+              {
+                "enabled": true,
+                "property": "expvar_port"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "metric_source"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "plugin"
+              },
+              {
+                "enabled": true,
+                "property": "go_program_host"
+              },
+              {
+                "enabled": true,
+                "property": "go_program_expvar_port"
+              },
+              {
+                "enabled": true,
+                "property": "process_expvar_port"
+              },
+              {
+                "enabled": true,
+                "property": "process_host"
+              },
+              {
+                "enabled": true,
+                "property": "process_name"
+              }
+            ]
           },
           "lineChartOptions": {
             "showDataMarkers": false
           },
           "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
+            "dimensionInLegend": "sf_metric",
+            "showLegend": true
           },
           "programOptions": {
             "disableSampling": false,
@@ -61,99 +114,23 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "GC Pause Duration",
+              "displayName": "reserved",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": "Nanosecond",
+              "valueUnit": "Byte",
               "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('memstats.most_recent_gc_pause_ns', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Fraction of CPU time used by the GC",
-        "id": "D2plZAaAgAA",
-        "importOf": "D2OfH3hAAVc",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "GC Fraction of CPU Time",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
             },
             {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": true,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "GC Fraction of CPU Time",
-              "label": "A",
+              "displayName": "in use",
+              "label": "B",
               "paletteIndex": null,
               "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "",
-              "valueUnit": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
               "yAxis": 0
             }
           ],
@@ -167,7 +144,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('memstats.gccpu_fraction', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')",
+        "programText": "A = data('memstats.stack_sys', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')\nB = data('memstats.stack_inuse', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -333,264 +310,6 @@
         },
         "packageSpecifications": "",
         "programText": "B = data('memstats.num_gc', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='B')\nC = data('memstats.next_gc', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='C')\nD = data('memstats.num_forced_gc', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='D')\nE = data('memstats.gccpu_fraction', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='E')\nF = data('memstats.most_recent_gc_pause_ns', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='F')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Memory containing mcache structures",
-        "id": "D2plZORAcAA",
-        "importOf": "D2OfH3hAAVY",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "MCache Memory In Use",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": true,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "MCache Memory In Use",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('memstats.m_cache_inuse', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D2plZ0HAYDM",
-        "importOf": "D2NuTrSAEg0",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Heap Memory In Use",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": true,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Heap Memory In Use",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('memstats.heap_inuse', rollup='latest').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Memory containing mspan structures",
-        "id": "D2plaZKAgAA",
-        "importOf": "D2OfH3hAAVU",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "MSpan Memory In Use",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": true,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "MSpan Memory In Use",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('memstats.m_span_inuse', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -779,12 +498,12 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Number of objects in heap memory",
-        "id": "D2plaOUAYAA",
-        "importOf": "D2NtsTkAEV8",
+        "description": "Memory containing mcache structures",
+        "id": "D2plZORAcAA",
+        "importOf": "D2OfH3hAAVY",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Heap Objects",
+        "name": "MCache Memory In Use",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -810,68 +529,15 @@
             }
           ],
           "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "AreaChart",
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
           },
-          "includeZero": false,
+          "includeZero": true,
           "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "metric_source"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "expvar_port"
-              },
-              {
-                "enabled": false,
-                "property": "plugin"
-              },
-              {
-                "enabled": false,
-                "property": "expvar_host"
-              },
-              {
-                "enabled": false,
-                "property": "go_program_name"
-              },
-              {
-                "enabled": true,
-                "property": "go_program_host"
-              },
-              {
-                "enabled": true,
-                "property": "go_program_expvar_port"
-              },
-              {
-                "enabled": true,
-                "property": "process_expvar_port"
-              },
-              {
-                "enabled": true,
-                "property": "process_host"
-              },
-              {
-                "enabled": true,
-                "property": "process_name"
-              }
-            ]
+            "fields": null
           },
           "lineChartOptions": {
             "showDataMarkers": false
@@ -888,8 +554,8 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "allocated",
-              "label": "D",
+              "displayName": "MCache Memory In Use",
+              "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -908,7 +574,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "D = data('memstats.heap_objects', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='D')",
+        "programText": "A = data('memstats.m_cache_inuse', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1016,6 +682,92 @@
         },
         "packageSpecifications": "",
         "programText": "",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Memory containing mspan structures",
+        "id": "D2plaZKAgAA",
+        "importOf": "D2OfH3hAAVU",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "MSpan Memory In Use",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "MSpan Memory In Use",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('memstats.m_span_inuse', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1222,17 +974,107 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Number of Go applications exporting metrics",
-        "id": "D2plZfbAgAE",
-        "importOf": "D2OfH3hAAVg",
+        "description": "Number of objects in heap memory",
+        "id": "D2plaOUAYAA",
+        "importOf": "D2NtsTkAEV8",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Go Applications",
+        "name": "Heap Objects",
         "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "metric_source"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "expvar_port"
+              },
+              {
+                "enabled": false,
+                "property": "plugin"
+              },
+              {
+                "enabled": false,
+                "property": "expvar_host"
+              },
+              {
+                "enabled": false,
+                "property": "go_program_name"
+              },
+              {
+                "enabled": true,
+                "property": "go_program_host"
+              },
+              {
+                "enabled": true,
+                "property": "go_program_expvar_port"
+              },
+              {
+                "enabled": true,
+                "property": "process_expvar_port"
+              },
+              {
+                "enabled": true,
+                "property": "process_host"
+              },
+              {
+                "enabled": true,
+                "property": "process_name"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
           "programOptions": {
             "disableSampling": false,
             "maxDelay": 0,
@@ -1241,7 +1083,93 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Number of Go programs",
+              "displayName": "allocated",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "D = data('memstats.heap_objects', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='D')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D2plaEmAgAA",
+        "importOf": "D2NwBn8AEAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Stack Memory In Use",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Stack Memory In Use",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -1251,19 +1179,17 @@
               "yAxis": 0
             }
           ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
+          "showEventLines": false,
+          "stacked": false,
           "time": {
             "range": 900000,
             "type": "relative"
           },
-          "timestampHidden": false,
-          "type": "SingleValue",
+          "type": "TimeSeriesChart",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('memstats.sys', filter=filter('metric_source', 'expvar')).count().publish(label='A')",
+        "programText": "A = data('memstats.stack_inuse', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1404,107 +1330,17 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "D2plajaAcAA",
-        "importOf": "D2JOn8lAAAA",
+        "description": "Number of Go applications exporting metrics",
+        "id": "D2plZfbAgAE",
+        "importOf": "D2OfH3hAAVg",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Stack Memory",
+        "name": "Go Applications",
         "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": true,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "go_program_name"
-              },
-              {
-                "enabled": true,
-                "property": "expvar_host"
-              },
-              {
-                "enabled": true,
-                "property": "expvar_port"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "metric_source"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "plugin"
-              },
-              {
-                "enabled": true,
-                "property": "go_program_host"
-              },
-              {
-                "enabled": true,
-                "property": "go_program_expvar_port"
-              },
-              {
-                "enabled": true,
-                "property": "process_expvar_port"
-              },
-              {
-                "enabled": true,
-                "property": "process_host"
-              },
-              {
-                "enabled": true,
-                "property": "process_name"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "sf_metric",
-            "showLegend": true
-          },
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
             "maxDelay": 0,
@@ -1513,37 +1349,29 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "reserved",
+              "displayName": "Number of Go programs",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            },
-            {
-              "displayName": "in use",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
+              "valueUnit": null,
               "yAxis": 0
             }
           ],
-          "showEventLines": false,
-          "stacked": false,
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
           "time": {
             "range": 900000,
             "type": "relative"
           },
-          "type": "TimeSeriesChart",
+          "timestampHidden": false,
+          "type": "SingleValue",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('memstats.stack_sys', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')\nB = data('memstats.stack_inuse', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='B')",
+        "programText": "A = data('memstats.sys', filter=filter('metric_source', 'expvar')).count().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1553,12 +1381,12 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "D2plaEmAgAA",
-        "importOf": "D2NwBn8AEAA",
+        "description": "Fraction of CPU time used by the GC",
+        "id": "D2plZAaAgAA",
+        "importOf": "D2OfH3hAAVc",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Stack Memory In Use",
+        "name": "GC Fraction of CPU Time",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -1609,12 +1437,12 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Stack Memory In Use",
+              "displayName": "GC Fraction of CPU Time",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
+              "valuePrefix": "",
+              "valueSuffix": "",
               "valueUnit": null,
               "yAxis": 0
             }
@@ -1629,7 +1457,93 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('memstats.stack_inuse', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')",
+        "programText": "A = data('memstats.gccpu_fraction', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Total stop-the-world time pauses of the most recent GC Cycle when it ran",
+        "id": "D2plakzAgAA",
+        "importOf": "D2Tu8CqAIAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "GC Cycle Duration",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "GC Pause Duration",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Nanosecond",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('memstats.most_recent_gc_pause_ns', filter=filter('metric_source', 'expvar'), rollup='latest').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1654,6 +1568,92 @@
         "relatedDetectorIds": [],
         "tags": null
       }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D2plZ0HAYDM",
+        "importOf": "D2NuTrSAEg0",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Heap Memory In Use",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Heap Memory In Use",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('memstats.heap_inuse', rollup='latest').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
     }
   ],
   "crossLinkExports": [],
@@ -1663,144 +1663,53 @@
         "chartDensity": "DEFAULT",
         "charts": [
           {
-            "chartId": "D2plZFJAgAA",
-            "column": 0,
-            "height": 2,
-            "row": 0,
-            "width": 3
-          },
-          {
-            "chartId": "D2plZ0HAYDM",
-            "column": 3,
-            "height": 1,
-            "row": 0,
-            "width": 5
-          },
-          {
-            "chartId": "D2plZExAcAE",
-            "column": 8,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "D2plaEmAgAA",
-            "column": 3,
-            "height": 1,
-            "row": 1,
-            "width": 5
-          },
-          {
-            "chartId": "D2plakzAgAA",
-            "column": 8,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "D2plZAaAgAA",
-            "column": 8,
-            "height": 1,
-            "row": 2,
-            "width": 4
-          },
-          {
-            "chartId": "D2plZORAcAA",
-            "column": 3,
-            "height": 1,
-            "row": 2,
-            "width": 5
-          },
-          {
-            "chartId": "D2plZfbAgAE",
-            "column": 0,
-            "height": 1,
-            "row": 2,
-            "width": 3
-          },
-          {
-            "chartId": "D2plaZKAgAA",
-            "column": 3,
-            "height": 1,
-            "row": 3,
-            "width": 5
-          }
-        ],
-        "created": 0,
-        "creator": null,
-        "customProperties": null,
-        "description": "",
-        "discoveryOptions": null,
-        "eventOverlays": null,
-        "filters": {
-          "sources": null,
-          "time": null,
-          "variables": null
-        },
-        "groupId": "D2plYqSAcDY",
-        "id": "D2plawbAYAA",
-        "importOf": "D2NtsTkAEdg",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "locked": false,
-        "maxDelayOverride": null,
-        "name": "Applications",
-        "selectedEventOverlays": [],
-        "tags": null
-      }
-    },
-    {
-      "dashboard": {
-        "chartDensity": "DEFAULT",
-        "charts": [
-          {
             "chartId": "D2plaa9AYAA",
             "column": 0,
             "height": 2,
             "row": 0,
-            "width": 3
+            "width": 4
           },
           {
             "chartId": "D2plaPjAcAA",
-            "column": 3,
+            "column": 4,
             "height": 2,
             "row": 0,
-            "width": 9
+            "width": 8
           },
           {
             "chartId": "D2plZNhAYBc",
-            "column": 3,
+            "column": 4,
             "height": 2,
             "row": 2,
-            "width": 9
+            "width": 8
           },
           {
             "chartId": "D2plZ4tAcBo",
             "column": 0,
             "height": 2,
             "row": 2,
-            "width": 3
+            "width": 4
           },
           {
             "chartId": "D2plZB2AYLA",
             "column": 0,
             "height": 2,
             "row": 4,
-            "width": 3
+            "width": 4
           },
           {
             "chartId": "D2plajaAcAA",
-            "column": 3,
+            "column": 4,
             "height": 1,
             "row": 4,
-            "width": 9
+            "width": 8
           },
           {
             "chartId": "D2plaOUAYAA",
-            "column": 3,
+            "column": 4,
             "height": 1,
             "row": 5,
-            "width": 9
+            "width": 8
           }
         ],
         "created": 0,
@@ -1859,6 +1768,97 @@
         "selectedEventOverlays": [],
         "tags": null
       }
+    },
+    {
+      "dashboard": {
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "D2plZFJAgAA",
+            "column": 0,
+            "height": 2,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "D2plZ0HAYDM",
+            "column": 4,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "D2plZExAcAE",
+            "column": 8,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "D2plaEmAgAA",
+            "column": 4,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "D2plakzAgAA",
+            "column": 8,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "D2plZAaAgAA",
+            "column": 8,
+            "height": 1,
+            "row": 2,
+            "width": 4
+          },
+          {
+            "chartId": "D2plZORAcAA",
+            "column": 4,
+            "height": 1,
+            "row": 2,
+            "width": 4
+          },
+          {
+            "chartId": "D2plZfbAgAE",
+            "column": 0,
+            "height": 1,
+            "row": 2,
+            "width": 4
+          },
+          {
+            "chartId": "D2plaZKAgAA",
+            "column": 4,
+            "height": 1,
+            "row": 3,
+            "width": 4
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": null,
+        "eventOverlays": null,
+        "filters": {
+          "sources": null,
+          "time": null,
+          "variables": null
+        },
+        "groupId": "D2plYqSAcDY",
+        "id": "D2plawbAYAA",
+        "importOf": "D2NtsTkAEdg",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "locked": false,
+        "maxDelayOverride": null,
+        "name": "Applications",
+        "selectedEventOverlays": [],
+        "tags": null
+      }
     }
   ],
   "groupExport": {
@@ -1898,7 +1898,7 @@
       "teams": null
     }
   },
-  "hashCode": -663172155,
+  "hashCode": -2001356676,
   "id": "D2plYqSAcDY",
   "modelVersion": 1,
   "packageType": "GROUP"
