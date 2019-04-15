@@ -1744,7 +1744,6 @@
         },
         "groupId": "D4Nh6qeAYAA",
         "id": "D4Nh_5QAgB8",
-        "importOf": "D3h784mAEAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "locked": false,
@@ -1873,7 +1872,6 @@
         },
         "groupId": "D4Nh6qeAYAA",
         "id": "D4NiAoIAYCU",
-        "importOf": "D3dOdgkAAAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "locked": false,
@@ -1949,7 +1947,6 @@
         },
         "groupId": "D4Nh6qeAYAA",
         "id": "D4Nh_o_AYAU",
-        "importOf": "D3dOdUqAAAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "locked": false,
@@ -1969,7 +1966,7 @@
         "D4NiAoIAYCU",
         "D4Nh_5QAgB8"
       ],
-      "description": "Dashboards for the new `postgresql` monitor in the Smart Agent.",
+      "description": "Dashboards for the new postgresql monitor in the Smart Agent.",
       "email": null,
       "id": "D4Nh6qeAYAA",
       "importQualifiers": [
