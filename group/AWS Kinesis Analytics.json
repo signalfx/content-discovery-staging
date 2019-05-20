@@ -881,7 +881,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('InputProcessing.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean(by=['Application', 'AWSUniqueId']).bottom(count=5).publish(label='A', enable=False)",
+        "programText": "A = data('InputProcessing.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean(by=['Application', 'AWSUniqueId']).bottom(count=5).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1812,7 +1812,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('InputProcessing.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean(by=['Application', 'AWSUniqueId']).top(count=5).publish(label='A', enable=False)",
+        "programText": "A = data('InputProcessing.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean(by=['Application', 'AWSUniqueId']).top(count=5).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
