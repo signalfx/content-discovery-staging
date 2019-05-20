@@ -5,12 +5,12 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "5m / 1h / 24h",
-        "id": "D6yitE6AgAA",
-        "importOf": "D6xBnvaAgAA",
+        "description": "Application | Id | AWSUniqueId",
+        "id": "D6yirVlAYAA",
+        "importOf": "D6NjzxhAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Input Processing Failed + Dropped Records in the Past",
+        "name": "Input Processing Dropped Records",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -37,7 +37,1022 @@
           ],
           "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "Id"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "InputProcessing.DroppedRecords",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('InputProcessing.DroppedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "The time taken for each AWS Lambda function invocation performed by Kinesis Data Analytics",
+        "id": "D7BSJLGAYAA",
+        "importOf": "D6NtoW5AcBs",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "5 Shortest Processing Durations",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": true,
+                "property": "aws_region"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Input Processing Duration",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('InputProcessing.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean(by=['Application', 'AWSUniqueId']).bottom(count=5).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Application | Id | AWSUniqueId",
+        "id": "D6yisKdAcAA",
+        "importOf": "D6NkJA1AYCg",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Lambda Delivery Failed Records",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "Id"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "LambdaDelivery.DeliveryFailedRecords",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('LambdaDelivery.DeliveryFailedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "% vs 24 hrs ago",
+        "id": "D6yise3AYAA",
+        "importOf": "D6trx5NAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "% Change in Received Records",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "% change",
+              "lowWatermark": 0.000001,
+              "lowWatermarkLabel": "0%",
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_metric",
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Today",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "-1d",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "% change",
+              "label": "C",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum') and filter('Flow', 'Input'), rollup='sum').sum().publish(label='A', enable=False)\nB = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum') and filter('Flow', 'Input'), rollup='sum').sum().timeshift('1d').publish(label='B', enable=False)\nC = ((A-B)/B*100).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D6yio4fAcAE",
+        "importOf": "D6Nmfy0AgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Active Applications",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Active Applications",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).sum(by=['Application']).count().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "# of records written",
+        "id": "D6yip6fAgAA",
+        "importOf": "D6NsWIEAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Records Sent per Application",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "Id"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Records Sent",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": "",
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'sum'), rollup='sum').mean(by=['AWSUniqueId', 'Application']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Application | Id | AWSUniqueId",
+        "id": "D6yip8WAYAA",
+        "importOf": "D6dxy94AgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Input Processing Ok Records",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "Id"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "InputProcessing.OkRecords",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "B = data('InputProcessing.OkRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D6yiu-5AgAA",
+        "importOf": "D6tgyepAYDg",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Lambda Delivery Success Rate",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 95,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 20
+            },
+            {
+              "gt": 90,
+              "gte": null,
+              "lt": null,
+              "lte": 95,
+              "paletteIndex": 19
+            },
+            {
+              "gt": 85,
+              "gte": null,
+              "lt": null,
+              "lte": 90,
+              "paletteIndex": 18
+            },
+            {
+              "gt": 80,
+              "gte": null,
+              "lt": null,
+              "lte": 85,
+              "paletteIndex": 17
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 80,
+              "paletteIndex": 16
+            }
+          ],
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "LambdaDelivery.OkRecords - Sum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "LambdaDelivery.DeliveryFailedRecords - Sum",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "A/(A+B)*100",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('LambdaDelivery.OkRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').sum().publish(label='A', enable=False)\nB = data('LambdaDelivery.DeliveryFailedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').sum().publish(label='B', enable=False)\nC = (A/(A+B)*100).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "The time taken for each AWS Lambda function invocation performed by Kinesis Data Analytics",
+        "id": "D6yintrAYAA",
+        "importOf": "D6NtoW5AcBs",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "5 Longest Processing Durations",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": true,
+                "property": "aws_region"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Input Processing Duration",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('InputProcessing.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean(by=['Application', 'AWSUniqueId']).top(count=5).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D6yivcyAcAA",
+        "importOf": "D6tlZ0WAgF8",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Received Bytes/Records Trend",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": true
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "bytes",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "records",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "Id"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": true
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Bytes - Sum",
+              "label": "B",
+              "paletteIndex": 6,
+              "plotType": "ColumnChart",
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            },
+            {
+              "displayName": "Records - Sum",
+              "label": "A",
+              "paletteIndex": 1,
+              "plotType": "LineChart",
+              "valuePrefix": null,
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 1
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "B = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum'), rollup='sum').sum().publish(label='B')\nA = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum'), rollup='sum').sum().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Application | Id | AWSUniqueId",
+        "id": "D6yipImAYAY",
+        "importOf": "D6Njy4-AgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Input Processing Failed Records",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
@@ -99,54 +1114,252 @@
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": null,
+              "valueSuffix": "records",
               "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('InputProcessing.ProcessingFailedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Application | Id | AWSUniqueId",
+        "id": "D6yip8RAcAA",
+        "importOf": "D6NI51YAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Bytes Received/Sent Trend",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "Id"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Received",
+              "label": "A",
+              "paletteIndex": 6,
+              "plotType": "ColumnChart",
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
               "yAxis": 0
             },
             {
-              "displayName": "InputProcessing.DroppedRecords",
+              "displayName": "Sent",
               "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Failed + Dropped",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "5m",
-              "label": "K",
               "paletteIndex": 1,
-              "plotType": null,
+              "plotType": "ColumnChart",
               "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
               "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum'), rollup='sum').sum().publish(label='A')\nB = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'sum'), rollup='sum').sum().publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Application | Id | AWSUniqueId",
+        "id": "D6yiolGAgAE",
+        "importOf": "D6d0FywAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Lambda Delievery Ok Records",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
             },
             {
-              "displayName": "1h",
-              "label": "L",
-              "paletteIndex": 9,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            },
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "Id"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
             {
-              "displayName": "24h",
-              "label": "M",
-              "paletteIndex": 15,
+              "displayName": "LambdaDelivery.OkRecords",
+              "label": "A",
+              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": "records",
@@ -164,7 +1377,766 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('InputProcessing.ProcessingFailedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='A', enable=False)\nB = data('InputProcessing.DroppedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='B', enable=False)\nC = (A+B).publish(label='C', enable=False)\nK = (C).sum(over='5m').publish(label='K')\nL = (C).sum(over='1h').publish(label='L')\nM = (C).sum(over='24h').publish(label='M')",
+        "programText": "A = data('LambdaDelivery.OkRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "# of successful delivery performed",
+        "id": "D6yipviAcAA",
+        "importOf": "D6d8fLAAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Delivery Success Rate",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "Id"
+              },
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Success",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Success', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'count')).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D6yin0WAgAA",
+        "importOf": "D6NU5OEAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Records Sent",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Records - Sum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'count'), rollup='sum').sum().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Application | Id | AWSUniqueId",
+        "id": "D6yiqCvAgAA",
+        "importOf": "D6NTHg_AgDI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Records Received/Sent Trend",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "Id"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Received",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Sent",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum')).sum().publish(label='A')\nB = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'sum')).sum().publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "# of bytes read",
+        "id": "D6yipfCAgAI",
+        "importOf": "D6NsWBbAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Bytes Received per Application",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "Id"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Bytes Received",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum'), rollup='sum').mean(by=['AWSUniqueId', 'Application']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D6yinj5AcAA",
+        "importOf": "D6s7PQMAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Successful Deliveries",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Success - Sum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Success', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').sum().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "The time taken for each Lambda function invocation performed by Kinesis Data Analytics",
+        "id": "D7BUCz0AcAA",
+        "importOf": "D6NtlbZAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "5 Shortest Lambda Delivery Durations",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "LambdaDelivery.Duration - Mean by Application,AWSUniqueId - Bottom 5",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('LambdaDelivery.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean(by=['Application', 'AWSUniqueId']).bottom(count=5).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "lag between the time an application is reading from the source",
+        "id": "D6yita5AgAA",
+        "importOf": "D6NVVeXAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Stream Input Lag",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "MillisBehindLatest - Mean",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('MillisBehindLatest', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "# of records read",
+        "id": "D6yit4AAYAA",
+        "importOf": "D6NsIZqAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Records Received per Application",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "Application"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": false,
+                "property": "Id"
+              },
+              {
+                "enabled": false,
+                "property": "Flow"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "namespace"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "stat"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Records Received",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": "",
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum'), rollup='sum').mean(by=['AWSUniqueId', 'Application']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D6yitRYAYAA",
+        "importOf": "D6NIgYpAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Bytes Received",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Bytes - Sum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum')).sum().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -340,7 +2312,7 @@
           ],
           "refreshInterval": null,
           "secondaryVisualization": "None",
-          "sortBy": "-value",
+          "sortBy": "",
           "time": {
             "range": 900000,
             "type": "relative"
@@ -359,63 +2331,12 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "D6yitJrAcAA",
-        "importOf": "D6NS9HsAcAA",
+        "description": "5m / 1h / 24h",
+        "id": "D6yitE6AgAA",
+        "importOf": "D6xBnvaAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Records Received",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Records - Sum",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'count'), rollup='sum').sum().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Application | Id | AWSUniqueId",
-        "id": "D6yisKdAcAA",
-        "importOf": "D6NkJA1AYCg",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Lambda Delivery Failed Records",
+        "name": "Input Processing Failed + Dropped Records in the Past",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -442,7 +2363,7 @@
           ],
           "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
+          "defaultPlotType": "AreaChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
@@ -499,943 +2420,17 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "LambdaDelivery.DeliveryFailedRecords",
+              "displayName": "InputProcessing.ProcessingFailedRecords",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": "records",
+              "valueSuffix": null,
               "valueUnit": null,
               "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('LambdaDelivery.DeliveryFailedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Application | Id | AWSUniqueId",
-        "id": "D6yirVlAYAA",
-        "importOf": "D6NjzxhAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Input Processing Dropped Records",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
             },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "Id"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
             {
               "displayName": "InputProcessing.DroppedRecords",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('InputProcessing.DroppedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "# of records written",
-        "id": "D6yip6fAgAA",
-        "importOf": "D6NsWIEAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Records Sent per Application",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "Id"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Records Sent",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'sum'), rollup='sum').mean(by=['AWSUniqueId', 'Application']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D6yin0WAgAA",
-        "importOf": "D6NU5OEAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Records Sent",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Records - Sum",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'count'), rollup='sum').sum().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "The time taken for each AWS Lambda function invocation performed by Kinesis Data Analytics",
-        "id": "D7BSJLGAYAA",
-        "importOf": "D6NtoW5AcBs",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "5 Shortest Processing Durations",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": true,
-                "property": "aws_region"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Input Processing Duration",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "sortBy": "+value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('InputProcessing.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean(by=['Application', 'AWSUniqueId']).bottom(count=5).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "# of records read",
-        "id": "D6yit4AAYAA",
-        "importOf": "D6NsIZqAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Records Received per Application",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "Id"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Records Received",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum'), rollup='sum').mean(by=['AWSUniqueId', 'Application']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Application | Id | AWSUniqueId",
-        "id": "D6yip8RAcAA",
-        "importOf": "D6NI51YAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Bytes Received/Sent Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "Id"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Received",
-              "label": "A",
-              "paletteIndex": 6,
-              "plotType": "ColumnChart",
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            },
-            {
-              "displayName": "Sent",
-              "label": "B",
-              "paletteIndex": 1,
-              "plotType": "ColumnChart",
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum'), rollup='sum').sum().publish(label='A')\nB = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'sum'), rollup='sum').sum().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D6yitlQAcCY",
-        "importOf": "D6tkLIFAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Sent Bytes/Records Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": true
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "bytes",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "records",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "Id"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": true
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Bytes - Sum",
-              "label": "B",
-              "paletteIndex": 6,
-              "plotType": "ColumnChart",
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            },
-            {
-              "displayName": "Records - Sum",
-              "label": "A",
-              "paletteIndex": 1,
-              "plotType": "LineChart",
-              "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 1
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'sum'), rollup='sum').sum().publish(label='B')\nA = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'sum'), rollup='sum').sum().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D6yitRYAYAA",
-        "importOf": "D6NIgYpAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Bytes Received",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Bytes - Sum",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum')).sum().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D6yinj5AcAA",
-        "importOf": "D6s7PQMAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Successful Deliveries",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Success - Sum",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Success', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').sum().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D6yiu-5AgAA",
-        "importOf": "D6tgyepAYDg",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Lambda Delivery Success Rate",
-        "options": {
-          "colorBy": "Scale",
-          "colorScale": null,
-          "colorScale2": [
-            {
-              "gt": 95,
-              "gte": null,
-              "lt": null,
-              "lte": null,
-              "paletteIndex": 20
-            },
-            {
-              "gt": 90,
-              "gte": null,
-              "lt": null,
-              "lte": 95,
-              "paletteIndex": 19
-            },
-            {
-              "gt": 85,
-              "gte": null,
-              "lt": null,
-              "lte": 90,
-              "paletteIndex": 18
-            },
-            {
-              "gt": 80,
-              "gte": null,
-              "lt": null,
-              "lte": 85,
-              "paletteIndex": 17
-            },
-            {
-              "gt": null,
-              "gte": null,
-              "lt": null,
-              "lte": 80,
-              "paletteIndex": 16
-            }
-          ],
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "LambdaDelivery.OkRecords - Sum",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "LambdaDelivery.DeliveryFailedRecords - Sum",
               "label": "B",
               "paletteIndex": null,
               "plotType": null,
@@ -1445,80 +2440,57 @@
               "yAxis": 0
             },
             {
-              "displayName": "A/(A+B)*100",
+              "displayName": "Failed + Dropped",
               "label": "C",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": "%",
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "5m",
+              "label": "K",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "1h",
+              "label": "L",
+              "paletteIndex": 9,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "records",
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "24h",
+              "label": "M",
+              "paletteIndex": 15,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "records",
               "valueUnit": null,
               "yAxis": 0
             }
           ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
+          "showEventLines": false,
+          "stacked": false,
           "time": {
             "range": 900000,
             "type": "relative"
           },
-          "timestampHidden": false,
-          "type": "SingleValue",
+          "type": "TimeSeriesChart",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('LambdaDelivery.OkRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').sum().publish(label='A', enable=False)\nB = data('LambdaDelivery.DeliveryFailedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').sum().publish(label='B', enable=False)\nC = (A/(A+B)*100).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D6yiwOZAYAA",
-        "importOf": "D6NZBsTAcEo",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Average Input Processing",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "InputProcessing.Duration - Mean",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('InputProcessing.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean().publish(label='A')",
+        "programText": "A = data('InputProcessing.ProcessingFailedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='A', enable=False)\nB = data('InputProcessing.DroppedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='B', enable=False)\nC = (A+B).publish(label='C', enable=False)\nK = (C).sum(over='5m').publish(label='K')\nL = (C).sum(over='1h').publish(label='L')\nM = (C).sum(over='24h').publish(label='M')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1749,429 +2721,12 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "The time taken for each AWS Lambda function invocation performed by Kinesis Data Analytics",
-        "id": "D6yintrAYAA",
-        "importOf": "D6NtoW5AcBs",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "5 Longest Processing Durations",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": true,
-                "property": "aws_region"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Input Processing Duration",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('InputProcessing.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean(by=['Application', 'AWSUniqueId']).top(count=5).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Application | Id | AWSUniqueId",
-        "id": "D6yiolGAgAE",
-        "importOf": "D6d0FywAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Lambda Delievery Ok Records",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "Id"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "LambdaDelivery.OkRecords",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('LambdaDelivery.OkRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "% vs 24 hrs ago",
-        "id": "D6yise3AYAA",
-        "importOf": "D6trx5NAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "% Change in Received Records",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "% change",
-              "lowWatermark": 0.000001,
-              "lowWatermarkLabel": "0%",
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": true,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "sf_metric",
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Today",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "-1d",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "% change",
-              "label": "C",
-              "paletteIndex": 1,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "%",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum') and filter('Flow', 'Input'), rollup='sum').sum().publish(label='A', enable=False)\nB = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum') and filter('Flow', 'Input'), rollup='sum').sum().timeshift('1d').publish(label='B', enable=False)\nC = ((A-B)/B*100).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "# of bytes read",
-        "id": "D6yipfCAgAI",
-        "importOf": "D6NsWBbAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Bytes Received per Application",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "Id"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Bytes Received",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum'), rollup='sum').mean(by=['AWSUniqueId', 'Application']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
         "description": "",
-        "id": "D6yivcyAcAA",
-        "importOf": "D6tlZ0WAgF8",
+        "id": "D6yitlQAcCY",
+        "importOf": "D6tkLIFAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Received Bytes/Records Trend",
+        "name": "Sent Bytes/Records Trend",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": true
@@ -2285,126 +2840,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "B = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum'), rollup='sum').sum().publish(label='B')\nA = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum'), rollup='sum').sum().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Application | Id | AWSUniqueId",
-        "id": "D6yip8WAYAA",
-        "importOf": "D6dxy94AgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Input Processing Ok Records",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "Id"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "InputProcessing.OkRecords",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('InputProcessing.OkRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='B')",
+        "programText": "B = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'sum'), rollup='sum').sum().publish(label='B')\nA = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'sum'), rollup='sum').sum().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2415,11 +2851,11 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "D6yio4fAcAE",
-        "importOf": "D6Nmfy0AgAA",
+        "id": "D6yitJrAcAA",
+        "importOf": "D6NS9HsAcAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Active Applications",
+        "name": "Records Received",
         "options": {
           "colorBy": "Dimension",
           "colorScale": null,
@@ -2433,12 +2869,12 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Active Applications",
+              "displayName": "Records - Sum",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": null,
+              "valueSuffix": "records",
               "valueUnit": null,
               "yAxis": 0
             }
@@ -2455,7 +2891,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('Bytes', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).sum(by=['Application']).count().publish(label='A')",
+        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'count'), rollup='sum').sum().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2465,131 +2901,12 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Application | Id | AWSUniqueId",
-        "id": "D6yipImAYAY",
-        "importOf": "D6Njy4-AgAA",
+        "description": "",
+        "id": "D6yiwOZAYAA",
+        "importOf": "D6NZBsTAcEo",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Input Processing Failed Records",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "Id"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "InputProcessing.ProcessingFailedRecords",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('InputProcessing.ProcessingFailedRecords', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'sum'), rollup='sum').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "lag between the time an application is reading from the source",
-        "id": "D6yita5AgAA",
-        "importOf": "D6NVVeXAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Stream Input Lag",
+        "name": "Average Input Processing",
         "options": {
           "colorBy": "Dimension",
           "colorScale": null,
@@ -2603,7 +2920,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "MillisBehindLatest - Mean",
+              "displayName": "InputProcessing.Duration - Mean",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -2625,324 +2942,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('MillisBehindLatest', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Application | Id | AWSUniqueId",
-        "id": "D6yiqCvAgAA",
-        "importOf": "D6NTHg_AgDI",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Records Received/Sent Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "Id"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Received",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Sent",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "records",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Input') and filter('stat', 'sum')).sum().publish(label='A')\nB = data('Records', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('Flow', 'Output') and filter('stat', 'sum')).sum().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "The time taken for each Lambda function invocation performed by Kinesis Data Analytics",
-        "id": "D7BUCz0AcAA",
-        "importOf": "D6NtlbZAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "5 Shortest Lambda Delivery Durations",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "LambdaDelivery.Duration - Mean by Application,AWSUniqueId - Bottom 5",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "sortBy": "+value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('LambdaDelivery.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean(by=['Application', 'AWSUniqueId']).bottom(count=5).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "# of successful delivery performed",
-        "id": "D6yipviAcAA",
-        "importOf": "D6d8fLAAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Delivery Success Rate",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": true,
-                "property": "Application"
-              },
-              {
-                "enabled": false,
-                "property": "Flow"
-              },
-              {
-                "enabled": false,
-                "property": "Id"
-              },
-              {
-                "enabled": true,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "namespace"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "stat"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Success",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('Success', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'count')).publish(label='A')",
+        "programText": "A = data('InputProcessing.Duration', filter=filter('namespace', 'AWS/KinesisAnalytics') and filter('stat', 'mean')).mean().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2950,6 +2950,171 @@
   ],
   "crossLinkExports": [],
   "dashboardExports": [
+    {
+      "dashboard": {
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "D6yio4fAcAE",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "D6yiu-5AgAA",
+            "column": 8,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "D6yinj5AcAA",
+            "column": 4,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "D7BSJLGAYAA",
+            "column": 0,
+            "height": 1,
+            "row": 1,
+            "width": 3
+          },
+          {
+            "chartId": "D7BUCz0AcAA",
+            "column": 6,
+            "height": 1,
+            "row": 1,
+            "width": 3
+          },
+          {
+            "chartId": "D6yintrAYAA",
+            "column": 3,
+            "height": 1,
+            "row": 1,
+            "width": 3
+          },
+          {
+            "chartId": "D6yiqbAAcAA",
+            "column": 9,
+            "height": 1,
+            "row": 1,
+            "width": 3
+          },
+          {
+            "chartId": "D6yivcyAcAA",
+            "column": 0,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "D6yitlQAcCY",
+            "column": 6,
+            "height": 1,
+            "row": 2,
+            "width": 6
+          },
+          {
+            "chartId": "D6yit4AAYAA",
+            "column": 0,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "D6yipfCAgAI",
+            "column": 6,
+            "height": 1,
+            "row": 3,
+            "width": 6
+          },
+          {
+            "chartId": "D6yiwjEAgAA",
+            "column": 0,
+            "height": 1,
+            "row": 4,
+            "width": 6
+          },
+          {
+            "chartId": "D6yip6fAgAA",
+            "column": 6,
+            "height": 1,
+            "row": 4,
+            "width": 6
+          },
+          {
+            "chartId": "D6yise3AYAA",
+            "column": 0,
+            "height": 1,
+            "row": 5,
+            "width": 4
+          },
+          {
+            "chartId": "D6yitE6AgAA",
+            "column": 8,
+            "height": 1,
+            "row": 5,
+            "width": 4
+          },
+          {
+            "chartId": "D6yioc6AYAE",
+            "column": 4,
+            "height": 1,
+            "row": 5,
+            "width": 4
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": null,
+        "eventOverlays": null,
+        "filters": {
+          "sources": null,
+          "time": {
+            "end": "Now",
+            "start": "-1h"
+          },
+          "variables": [
+            {
+              "alias": "AWSUniqueId",
+              "applyIfExists": false,
+              "description": "",
+              "preferredSuggestions": [],
+              "property": "AWSUniqueId",
+              "replaceOnly": false,
+              "required": false,
+              "restricted": false,
+              "value": ""
+            },
+            {
+              "alias": "Application",
+              "applyIfExists": false,
+              "description": "",
+              "preferredSuggestions": [],
+              "property": "Application",
+              "replaceOnly": false,
+              "required": false,
+              "restricted": false,
+              "value": ""
+            }
+          ]
+        },
+        "groupId": "D6yim_xAgAA",
+        "id": "D6yiwk9AcAA",
+        "importOf": "D6NmffPAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "maxDelayOverride": null,
+        "name": "Kinesis Analytics Overview",
+        "selectedEventOverlays": [],
+        "tags": null
+      }
+    },
     {
       "dashboard": {
         "chartDensity": "DEFAULT",
@@ -3104,171 +3269,6 @@
         "selectedEventOverlays": null,
         "tags": null
       }
-    },
-    {
-      "dashboard": {
-        "chartDensity": "DEFAULT",
-        "charts": [
-          {
-            "chartId": "D6yio4fAcAE",
-            "column": 0,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "D6yiu-5AgAA",
-            "column": 8,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "D6yinj5AcAA",
-            "column": 4,
-            "height": 1,
-            "row": 0,
-            "width": 4
-          },
-          {
-            "chartId": "D6yiqbAAcAA",
-            "column": 6,
-            "height": 1,
-            "row": 1,
-            "width": 3
-          },
-          {
-            "chartId": "D6yintrAYAA",
-            "column": 0,
-            "height": 1,
-            "row": 1,
-            "width": 3
-          },
-          {
-            "chartId": "D7BSJLGAYAA",
-            "column": 3,
-            "height": 1,
-            "row": 1,
-            "width": 3
-          },
-          {
-            "chartId": "D7BUCz0AcAA",
-            "column": 9,
-            "height": 1,
-            "row": 1,
-            "width": 3
-          },
-          {
-            "chartId": "D6yivcyAcAA",
-            "column": 0,
-            "height": 1,
-            "row": 2,
-            "width": 6
-          },
-          {
-            "chartId": "D6yitlQAcCY",
-            "column": 6,
-            "height": 1,
-            "row": 2,
-            "width": 6
-          },
-          {
-            "chartId": "D6yit4AAYAA",
-            "column": 0,
-            "height": 1,
-            "row": 3,
-            "width": 6
-          },
-          {
-            "chartId": "D6yipfCAgAI",
-            "column": 6,
-            "height": 1,
-            "row": 3,
-            "width": 6
-          },
-          {
-            "chartId": "D6yiwjEAgAA",
-            "column": 0,
-            "height": 1,
-            "row": 4,
-            "width": 6
-          },
-          {
-            "chartId": "D6yip6fAgAA",
-            "column": 6,
-            "height": 1,
-            "row": 4,
-            "width": 6
-          },
-          {
-            "chartId": "D6yise3AYAA",
-            "column": 0,
-            "height": 1,
-            "row": 5,
-            "width": 4
-          },
-          {
-            "chartId": "D6yioc6AYAE",
-            "column": 4,
-            "height": 1,
-            "row": 5,
-            "width": 4
-          },
-          {
-            "chartId": "D6yitE6AgAA",
-            "column": 8,
-            "height": 1,
-            "row": 5,
-            "width": 4
-          }
-        ],
-        "created": 0,
-        "creator": null,
-        "customProperties": null,
-        "description": "",
-        "discoveryOptions": null,
-        "eventOverlays": null,
-        "filters": {
-          "sources": null,
-          "time": {
-            "end": "Now",
-            "start": "-1h"
-          },
-          "variables": [
-            {
-              "alias": "AWSUniqueId",
-              "applyIfExists": false,
-              "description": "",
-              "preferredSuggestions": [],
-              "property": "AWSUniqueId",
-              "replaceOnly": false,
-              "required": false,
-              "restricted": false,
-              "value": ""
-            },
-            {
-              "alias": "Application",
-              "applyIfExists": false,
-              "description": "",
-              "preferredSuggestions": [],
-              "property": "Application",
-              "replaceOnly": false,
-              "required": false,
-              "restricted": false,
-              "value": ""
-            }
-          ]
-        },
-        "groupId": "D6yim_xAgAA",
-        "id": "D6yiwk9AcAA",
-        "importOf": "D6NmffPAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "maxDelayOverride": null,
-        "name": "Kinesis Analytics Overview",
-        "selectedEventOverlays": [],
-        "tags": null
-      }
     }
   ],
   "groupExport": {
@@ -3308,7 +3308,7 @@
       "teams": null
     }
   },
-  "hashCode": -928489715,
+  "hashCode": 684767454,
   "id": "D6yim_xAgAA",
   "modelVersion": 1,
   "packageType": "GROUP"
