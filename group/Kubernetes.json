@@ -6628,11 +6628,11 @@
           "time": null,
           "variables": [
             {
-              "alias": "host",
+              "alias": "Node",
               "applyIfExists": false,
-              "description": "K8s node",
+              "description": "K8s Node",
               "preferredSuggestions": [],
-              "property": "host",
+              "property": "kubernetes_node",
               "replaceOnly": false,
               "required": true,
               "restricted": false,
@@ -7069,7 +7069,7 @@
             {
               "alias": "Cluster",
               "applyIfExists": false,
-              "description": "k8s cluster",
+              "description": "K8s Cluster",
               "preferredSuggestions": [],
               "property": "kubernetes_cluster",
               "replaceOnly": false,
@@ -7166,15 +7166,15 @@
           "time": null,
           "variables": [
             {
-              "alias": "pod",
+              "alias": "Pod",
               "applyIfExists": false,
-              "description": "K8s pod",
+              "description": "K8s Pod",
               "preferredSuggestions": [],
               "property": "kubernetes_pod_name",
               "replaceOnly": false,
               "required": true,
               "restricted": false,
-              "value": null
+              "value": ""
             }
           ]
         },
@@ -7312,7 +7312,7 @@
       "teams": null
     }
   },
-  "hashCode": -744022879,
+  "hashCode": -872745925,
   "id": "DiVWf-iAgAA",
   "modelVersion": 1,
   "packageType": "GROUP"
