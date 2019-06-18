@@ -186,5 +186,6 @@
     } ],
     "type" : "elemental",
     "unreleased" : false
-  }
+  },
+  "packageType" : "NAVIGATOR"
 }
