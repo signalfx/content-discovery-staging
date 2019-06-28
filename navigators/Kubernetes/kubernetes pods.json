@@ -1,5 +1,5 @@
 {
-  "hashCode" : 1912684616,
+  "hashCode" : -1170035717,
   "id" : "DiVVQ6FAgAA",
   "modelVersion" : 1,
   "navigatorExport" : {
@@ -31,13 +31,13 @@
         "categoryPriority" : 30,
         "discoveryQuery" : [ "_exists_:kubernetes_pod_name" ],
         "displayName" : "Kubernetes Pods",
-        "filterProperties" : [ "host" ],
+        "filterProperties" : [ "kubernetes_node" ],
         "id" : "kubernetes pods",
         "idName" : "Pod",
         "idTemplate" : "{{kubernetes_pod_name}} ({{kubernetes_pod_uid}})",
         "listColumns" : [ {
           "aggregate" : null,
-          "displayName" : "Pod Name",
+          "displayName" : "Pod Name (pod uid)",
           "format" : "id",
           "metric" : null,
           "property" : "id",
@@ -51,10 +51,10 @@
           "sortable" : null
         }, {
           "aggregate" : null,
-          "displayName" : "Host",
+          "displayName" : "Node",
           "format" : null,
           "metric" : null,
-          "property" : "host",
+          "property" : "kubernetes_node",
           "sortable" : null
         }, {
           "aggregate" : null,
@@ -89,11 +89,11 @@
             }, {
               "not" : false,
               "property" : "_exists_",
-              "propertyValue" : "host",
+              "propertyValue" : "kubernetes_node",
               "type" : "property"
             } ],
             "resolution" : 60000,
-            "template" : "A = data('container_cpu_utilization' {{#filter}}, filter={{{filter}}}{{/filter}}, rollup='rate').sum(by=['kubernetes_pod_name', 'host', 'kubernetes_pod_name', 'kubernetes_namespace', 'kubernetes_cluster', 'kubernetes_node']).publish(label='A', enable=False)\nB = data('machine_cpu_cores', filter=filter('kubernetes_cluster', '*') and filter('host', '*')).sum(by=['kubernetes_node']).publish(label='E', enable=False)\nC = (A/B).publish(label='C')",
+            "template" : "A = data('container_cpu_utilization' {{#filter}}, filter={{{filter}}}{{/filter}}, rollup='rate').sum(by=['kubernetes_pod_name', 'kubernetes_pod_name', 'kubernetes_namespace', 'kubernetes_cluster', 'kubernetes_node']).publish(label='A', enable=False)\nB = data('machine_cpu_cores', filter=filter('kubernetes_cluster', '*') and filter('kubernetes_node', '*')).sum(by=['kubernetes_node']).publish(label='E', enable=False)\nC = (A/B).publish(label='C')",
             "varName" : "C"
           },
           "metricSelectors" : [ "container_cpu_utilization" ],
@@ -121,11 +121,11 @@
             }, {
               "not" : false,
               "property" : "_exists_",
-              "propertyValue" : "host",
+              "propertyValue" : "kubernetes_node",
               "type" : "property"
             } ],
             "resolution" : 60000,
-            "template" : "CONTAINERS_MEM = data(\"container_memory_usage_bytes\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"kubernetes_pod_name\", \"kubernetes_namespace\", \"host\"])\nNODE_TOTAL = data(\"machine_memory_bytes\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"host\"])\nUTILIZATION = (CONTAINERS_MEM / NODE_TOTAL) * 100",
+            "template" : "CONTAINERS_MEM = data(\"container_memory_usage_bytes\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"null\").sum(by=[\"kubernetes_cluster\", \"kubernetes_pod_name\", \"kubernetes_namespace\", \"kubernetes_node\"])\nNODE_TOTAL = data(\"machine_memory_bytes\", extrapolation=\"null\").sum(by=[\"kubernetes_node\"])\nUTILIZATION = (CONTAINERS_MEM / NODE_TOTAL) * 100",
             "varName" : "UTILIZATION"
           },
           "metricSelectors" : [ "container_memory_usage_bytes", "machine_memory_bytes" ],
@@ -158,7 +158,7 @@
             }, {
               "not" : false,
               "property" : "_exists_",
-              "propertyValue" : "host",
+              "propertyValue" : "kubernetes_node",
               "type" : "property"
             }, {
               "not" : false,
@@ -167,7 +167,7 @@
               "type" : "property"
             } ],
             "resolution" : 60000,
-            "template" : "DISK_CONTAINER_USED = data(\"container_fs_usage_bytes\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"host\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])",
+            "template" : "DISK_CONTAINER_USED = data(\"container_fs_usage_bytes\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"kubernetes_node\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])",
             "varName" : "DISK_CONTAINER_USED"
           },
           "metricSelectors" : [ "container_fs_usage_bytes" ],
@@ -200,7 +200,7 @@
             }, {
               "not" : false,
               "property" : "_exists_",
-              "propertyValue" : "host",
+              "propertyValue" : "kubernetes_node",
               "type" : "property"
             }, {
               "not" : false,
@@ -209,7 +209,7 @@
               "type" : "property"
             } ],
             "resolution" : 60000,
-            "template" : "NETWORK_TX = data(\"pod_network_receive_bytes_total\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"host\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])\nNETWORK_RX = data(\"pod_network_transmit_bytes_total\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"host\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])\nNETWORK_TOTAL = NETWORK_TX + NETWORK_RX",
+            "template" : "NETWORK_TX = data(\"pod_network_receive_bytes_total\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"kubernetes_node\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])\nNETWORK_RX = data(\"pod_network_transmit_bytes_total\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"kubernetes_node\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])\nNETWORK_TOTAL = NETWORK_TX + NETWORK_RX",
             "varName" : "NETWORK_TOTAL"
           },
           "metricSelectors" : [ "pod_network_receive_bytes_total", "pod_network_transmit_bytes_total" ],
@@ -248,7 +248,7 @@
             }, {
               "not" : false,
               "property" : "_exists_",
-              "propertyValue" : "host",
+              "propertyValue" : "kubernetes_node",
               "type" : "property"
             }, {
               "not" : false,
@@ -257,7 +257,7 @@
               "type" : "property"
             } ],
             "resolution" : 60000,
-            "template" : "ERR_TX = data(\"pod_network_transmit_errors_total\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"host\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])\nERR_RX = data(\"pod_network_receive_errors_total\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"host\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])\nERR_TOTAL = ERR_TX + ERR_RX",
+            "template" : "ERR_TX = data(\"pod_network_transmit_errors_total\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"kubernetes_node\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])\nERR_RX = data(\"pod_network_receive_errors_total\"{{#filter}}, filter={{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"kubernetes_cluster\", \"kubernetes_node\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])\nERR_TOTAL = ERR_TX + ERR_RX",
             "varName" : "ERR_TOTAL"
           },
           "metricSelectors" : [ "pod_network_receive_bytes_total", "pod_network_transmit_bytes_total" ],
@@ -292,7 +292,7 @@
             }, {
               "not" : false,
               "property" : "_exists_",
-              "propertyValue" : "host",
+              "propertyValue" : "kubernetes_node",
               "type" : "property"
             }, {
               "not" : false,
@@ -301,7 +301,7 @@
               "type" : "property"
             } ],
             "resolution" : 60000,
-            "template" : "CPU_UTILIZATION = data(\"container_cpu_utilization\"{{#filter}}, filter={{{filter}}}{{/filter}}, rollup=\"rate\", extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"kubernetes_cluster\", \"host\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])",
+            "template" : "CPU_UTILIZATION = data(\"container_cpu_utilization\"{{#filter}}, filter={{{filter}}}{{/filter}}, rollup=\"rate\", extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"kubernetes_cluster\", \"kubernetes_node\", \"kubernetes_pod_name\", \"kubernetes_namespace\"])",
             "varName" : "CPU_UTILIZATION"
           },
           "metricSelectors" : [ ],
@@ -336,10 +336,10 @@
           "isSummaryProperty" : true,
           "property" : "value"
         }, {
-          "displayName" : "Host",
+          "displayName" : "Node",
           "format" : null,
           "isSummaryProperty" : true,
-          "property" : "host"
+          "property" : "kubernetes_node"
         }, {
           "displayName" : "Cluster",
           "format" : null,
