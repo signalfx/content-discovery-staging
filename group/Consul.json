@@ -5,11 +5,60 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "DiVWwVKAgAA",
+        "description": "Recognize server state (leader/follower)",
+        "id": "DiVWyIjAcAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Mean node network latency",
+        "name": "Consul Server Map",
+        "options": {
+          "colorBy": "Range",
+          "colorRange": {
+            "color": "#05ce00",
+            "max": null,
+            "min": null
+          },
+          "colorScale": null,
+          "colorScale2": null,
+          "groupBy": [],
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": null,
+              "label": "A",
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null
+            }
+          ],
+          "refreshInterval": null,
+          "sortDirection": "Ascending",
+          "sortProperty": "consul_server_state",
+          "time": null,
+          "timestampHidden": false,
+          "type": "Heatmap",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.is_leader').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "A general measure of all read volume",
+        "id": "DiVWy7zAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of RPC queries",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -18,16 +67,16 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "Time (milliseconds)",
+              "label": "# rpc queries/interval",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
-              "min": null
+              "min": 0
             }
           ],
           "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
+          "defaultPlotType": "ColumnChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
@@ -37,14 +86,18 @@
             "fields": [
               {
                 "enabled": true,
-                "property": "datacenter"
-              },
-              {
-                "enabled": true,
                 "property": "consul_node"
               },
               {
                 "enabled": true,
+                "property": "datacenter"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
                 "property": "host"
               },
               {
@@ -52,19 +105,15 @@
                 "property": "sf_metric"
               },
               {
-                "enabled": true,
-                "property": "plugin"
-              },
-              {
                 "enabled": false,
                 "property": "dsname"
               },
               {
                 "enabled": false,
-                "property": "sf_originatingMetric"
+                "property": "plugin"
               },
               {
-                "enabled": true,
+                "enabled": false,
                 "property": "consul_mode"
               }
             ]
@@ -73,7 +122,7 @@
             "showDataMarkers": false
           },
           "onChartLegendOptions": {
-            "dimensionInLegend": "consul_node",
+            "dimensionInLegend": null,
             "showLegend": false
           },
           "programOptions": {
@@ -84,7 +133,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "avg latency in ms",
+              "displayName": "consul.rpc.query",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -104,7 +153,305 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.network.node.latency.avg').publish(label='A')",
+        "programText": "A = data('gauge.consul.consul.rpc.query', filter=filter('consul_mode', 'server')).sum(by=['datacenter']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Forward and Reverse DNS lookups",
+        "id": "DiVWzv9AcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Time to service DNS queries",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Time (milliseconds)",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "consul_node"
+              },
+              {
+                "enabled": true,
+                "property": "datacenter"
+              },
+              {
+                "enabled": false,
+                "property": "dsname"
+              },
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "plugin"
+              },
+              {
+                "enabled": true,
+                "property": "consul_mode"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "forward DNS lookup",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "reverse DNS lookup",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.consul.dns.domain_query*.avg', filter=filter('consul_mode', 'client')).publish(label='A')\nB = data('gauge.consul.consul.dns.ptr_query*.avg', filter=filter('consul_mode', 'client')).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D-fGLFvAcAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Request Rate",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "upstream_rq_completed - Sum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('upstream_rq_completed', filter=filter('plugin', 'consul') and filter('mesh', '*') and filter('service', '*')).sum().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWy_fAgAI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Network latency",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Time (milliseconds)",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "datacenter"
+              },
+              {
+                "enabled": true,
+                "property": "consul_node"
+              },
+              {
+                "enabled": true,
+                "property": "plugin"
+              },
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "dsname"
+              },
+              {
+                "enabled": true,
+                "property": "consul_mode"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "avg latency in ms",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "max latency in ms",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "min latency in ms",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.network.node.latency.avg', filter=filter('consul_mode', 'server')).publish(label='A')\nB = data('gauge.consul.network.node.latency.max', filter=filter('consul_mode', 'server')).publish(label='B')\nC = data('gauge.consul.network.node.latency.min', filter=filter('consul_mode', 'server')).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -214,6 +561,786 @@
         },
         "packageSpecifications": "",
         "programText": "A = data('gauge.consul.consul.leader.reconcile.avg').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Number of times the Consul server starts a leader election",
+        "id": "DiVWzapAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Raft candidate state",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "# election attempts/interval",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "consul.raft.state.candidate",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.raft.state.candidate', filter=filter('consul_mode', 'server')).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "This is a general indicator of the write load on the Consul servers.",
+        "id": "DiVWyIlAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of Raft Transactions",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "# raft transactions/interval",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "consul_node"
+              },
+              {
+                "enabled": true,
+                "property": "datacenter"
+              },
+              {
+                "enabled": false,
+                "property": "dsname"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "plugin"
+              },
+              {
+                "enabled": true,
+                "property": "consul_mode"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "no. of raft transactions",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.raft.apply', rollup='sum').sum(by=['datacenter']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWy1cAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Leadership Transitions",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "gauge.consul.raft.state.leader",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.raft.state.leader').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D-fGJivAYCo",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "5xx Request Rate",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "upstream_rq_5xx - Sum",
+              "label": "B",
+              "paletteIndex": 5,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "B = data('upstream_rq_5xx', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum().publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "service | mesh",
+        "id": "D-fGKD9AcAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Request Retries by Service",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "service"
+              },
+              {
+                "enabled": true,
+                "property": "mesh"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "retries",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "retries",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('upstream_rq_retry', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum(by=['mesh', 'service']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Number of services by health check state",
+        "id": "DiVWt2jAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Service health check results",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "datacenter"
+              },
+              {
+                "enabled": false,
+                "property": "plugin"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "consul_node"
+              },
+              {
+                "enabled": false,
+                "property": "dsname"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "consul_server"
+              },
+              {
+                "enabled": false,
+                "property": "consul_mode"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Critical",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Warning",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Passing",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "",
+          "time": null,
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.health.services.critical').sum().publish(label='A')\nB = data('gauge.consul.health.services.warning').sum().publish(label='B')\nC = data('gauge.consul.health.services.passing').sum().publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "This measures the time it takes the leader to replicate log entries to followers. This is a general indicator of the load pressure on the Consul servers, as well as the performance of the communication between the servers.",
+        "id": "DiVWyxNAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Leader Time to Append Entries",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "datacenter"
+              },
+              {
+                "enabled": false,
+                "property": "dsname"
+              },
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "consul_node"
+              },
+              {
+                "enabled": true,
+                "property": "plugin"
+              },
+              {
+                "enabled": false,
+                "property": "consul_mode"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "mean time in ms",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.raft.replication.appendEntries.rpc*.avg').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "General load pressure indicator for Consul agents",
+        "id": "DiVWznnAYKU",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of runtime GO routines",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "# GO routines",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "datacenter"
+              },
+              {
+                "enabled": true,
+                "property": "consul_node"
+              },
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": true,
+                "property": "plugin"
+              },
+              {
+                "enabled": false,
+                "property": "dsname"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "consul_mode"
+              },
+              {
+                "enabled": true,
+                "property": "test_dim"
+              },
+              {
+                "enabled": true,
+                "property": "multiple_dim"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "gauge.consul.runtime.num_goroutines*",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.runtime.num_goroutines*', filter=filter('consul_mode', 'client')).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWxyrAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Leadership Change Event",
+        "options": {
+          "eventPublishLabelOptions": [
+            {
+              "displayName": "New Plot",
+              "label": "B",
+              "paletteIndex": 5
+            }
+          ],
+          "time": null,
+          "type": "Event"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.raft.state.leader').publish(label='A')\nB = events(eventType='consul leader changed').publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -343,113 +1470,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "D-WQA--AYAA",
+        "id": "DiVWy7xAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Unhealthy Memberships",
-        "options": {
-          "colorBy": "Scale",
-          "colorScale2": [
-            {
-              "gt": 0,
-              "gte": null,
-              "lt": null,
-              "lte": null,
-              "paletteIndex": 16
-            },
-            {
-              "gt": null,
-              "gte": null,
-              "lt": null,
-              "lte": 0,
-              "paletteIndex": 20
-            }
-          ],
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "service"
-              },
-              {
-                "enabled": true,
-                "property": "mesh"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "membership_healthy - Sum by mesh,service",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "membership_total - Sum by mesh,service",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('membership_healthy', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='A', enable=False)\nB = data('membership_total', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='B', enable=False)\nC = (B-A).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Avg and max  number of backlog of serf events in queue",
-        "id": "DiVWyT5AYAM",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Number of Events in Queue",
+        "name": "Cluster Joins and Leaves",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -458,16 +1482,16 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "# events/interval",
+              "label": "",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
-              "min": null
+              "min": 0
             }
           ],
           "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
+          "colorBy": "Metric",
+          "defaultPlotType": "ColumnChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
@@ -480,8 +1504,8 @@
             "showDataMarkers": false
           },
           "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": true
           },
           "programOptions": {
             "disableSampling": false,
@@ -491,7 +1515,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "serf.queue.Event.avg",
+              "displayName": "gauge.consul.serf.member.join - Mean",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -501,7 +1525,7 @@
               "yAxis": 0
             },
             {
-              "displayName": "serf.queue.Event.max",
+              "displayName": "gauge.consul.serf.member.left - Mean",
               "label": "B",
               "paletteIndex": null,
               "plotType": null,
@@ -521,7 +1545,273 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.serf.queue.Event.avg').publish(label='A')\nB = data('gauge.consul.serf.queue.Event.max').publish(label='B')",
+        "programText": "A = data('gauge.consul.serf.member.join').mean().publish(label='A')\nB = data('gauge.consul.serf.member.left').mean().publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "service | mesh",
+        "id": "D-fGJYVAcG8",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "4xx Request Rate by Service",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "mesh"
+              },
+              {
+                "enabled": true,
+                "property": "service"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": true,
+                "property": "host"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "4xx responses",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('upstream_rq_4xx', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum(by=['mesh', 'service']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Number of Raft peers in cluster",
+        "id": "DiVWuapAcDE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Consul Peers",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "gauge.consul.peers - Sum",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": null,
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.peers').sum().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWwVKAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Mean node network latency",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Time (milliseconds)",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "datacenter"
+              },
+              {
+                "enabled": true,
+                "property": "consul_node"
+              },
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "plugin"
+              },
+              {
+                "enabled": false,
+                "property": "dsname"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "consul_mode"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "consul_node",
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "avg latency in ms",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.network.node.latency.avg').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -644,166 +1934,11 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "D-WQAxwAcAA",
+        "description": "Avg and max  number of backlog of serf events in queue",
+        "id": "DiVWyT5AYAM",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Average Response Time",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Response Time",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('upstream_rq_time', filter=filter('mesh', '*') and filter('service', '*')).mean().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of services by health check state",
-        "id": "DiVWt2jAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Service health check results",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "datacenter"
-              },
-              {
-                "enabled": false,
-                "property": "plugin"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "consul_node"
-              },
-              {
-                "enabled": false,
-                "property": "dsname"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "consul_server"
-              },
-              {
-                "enabled": false,
-                "property": "consul_mode"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Critical",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Warning",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Passing",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "",
-          "time": null,
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.health.services.critical').sum().publish(label='A')\nB = data('gauge.consul.health.services.warning').sum().publish(label='B')\nC = data('gauge.consul.health.services.passing').sum().publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "General load pressure indicator for Consul agent",
-        "id": "DiVWzcXAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Number of GO routines running",
+        "name": "Number of Events in Queue",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -812,92 +1947,7 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "# GO routines",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "runtime.num_goroutines",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.*runtime.num_goroutines', filter=filter('consul_mode', 'server')).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "service | mesh",
-        "id": "D-WQE6MAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Success Rate (non-5xx) by Service",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
+              "label": "# events/interval",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
@@ -924,38 +1974,28 @@
           },
           "programOptions": {
             "disableSampling": false,
-            "maxDelay": 0,
+            "maxDelay": null,
             "minimumResolution": 0,
             "timezone": null
           },
           "publishLabelOptions": [
             {
-              "displayName": "requests completed",
+              "displayName": "serf.queue.Event.avg",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "",
+              "valuePrefix": null,
+              "valueSuffix": null,
               "valueUnit": null,
               "yAxis": 0
             },
             {
-              "displayName": "5xx requests",
+              "displayName": "serf.queue.Event.max",
               "label": "B",
               "paletteIndex": null,
               "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "",
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "success rate",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": "",
-              "valueSuffix": "%",
+              "valuePrefix": null,
+              "valueSuffix": null,
               "valueUnit": null,
               "yAxis": 0
             }
@@ -970,57 +2010,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('upstream_rq_completed', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='A', enable=False)\nB = data('upstream_rq_5xx', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='B', enable=False)\nC = (100-(B/A*100)).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D-WQCFaAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total Clusters",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "membership_total - Sum by mesh,service - Count",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "clusters",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('membership_total', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).count().publish(label='A')",
+        "programText": "A = data('gauge.consul.serf.queue.Event.avg').publish(label='A')\nB = data('gauge.consul.serf.queue.Event.max').publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1031,194 +2021,7 @@
         "creator": null,
         "customProperties": {},
         "description": "service | mesh",
-        "id": "D-WP_nLAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "4xx Request Rate by Service",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "mesh"
-              },
-              {
-                "enabled": true,
-                "property": "service"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": true,
-                "property": "host"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "4xx responses",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "ops",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('upstream_rq_4xx', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D-WQAZAAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "4xx Request Rate",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "upstream_rq_4xx - Sum",
-              "label": "B",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "ops",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('upstream_rq_4xx', filter=filter('mesh', '*') and filter('service', '*')).sum().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWxyrAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Leadership Change Event",
-        "options": {
-          "eventPublishLabelOptions": [
-            {
-              "displayName": "New Plot",
-              "label": "B",
-              "paletteIndex": 5
-            }
-          ],
-          "time": null,
-          "type": "Event"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.raft.state.leader').publish(label='A')\nB = events(eventType='consul leader changed').publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "service | mesh",
-        "id": "D-WP9lFAgAA",
+        "id": "D-fGJYOAYEg",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "name": "Bytes Received by Service",
@@ -1325,7 +2128,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('upstream_cx_rx_bytes_total', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='A')",
+        "programText": "A = data('upstream_cx_rx_bytes_total', filter=filter('plugin', 'consul') and filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1335,11 +2138,11 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "A general measure of all read volume",
-        "id": "DiVWy7zAcAA",
+        "description": "Time since the leader was last able to contact the follower nodes when checking its leader lease",
+        "id": "DiVWyT6AgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Number of RPC queries",
+        "name": "Leader last contact with followers",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -1348,16 +2151,16 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "# rpc queries/interval",
+              "label": "Time (millilseconds)",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
-              "min": 0
+              "min": null
             }
           ],
           "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
+          "colorBy": "Metric",
+          "defaultPlotType": "LineChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
@@ -1367,18 +2170,14 @@
             "fields": [
               {
                 "enabled": true,
+                "property": "datacenter"
+              },
+              {
+                "enabled": true,
                 "property": "consul_node"
               },
               {
                 "enabled": true,
-                "property": "datacenter"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
                 "property": "host"
               },
               {
@@ -1386,12 +2185,16 @@
                 "property": "sf_metric"
               },
               {
+                "enabled": true,
+                "property": "plugin"
+              },
+              {
                 "enabled": false,
                 "property": "dsname"
               },
               {
                 "enabled": false,
-                "property": "plugin"
+                "property": "sf_originatingMetric"
               },
               {
                 "enabled": false,
@@ -1414,8 +2217,28 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "consul.rpc.query",
+              "displayName": "mean time in ms",
               "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "min time in ms",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "max time in ms",
+              "label": "D",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -1434,7 +2257,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.consul.rpc.query', filter=filter('consul_mode', 'server')).sum(by=['datacenter']).publish(label='A')",
+        "programText": "A = data('gauge.consul.raft.leader.lastContact.avg').publish(label='A')\nC = data('gauge.consul.raft.leader.lastContact.min').publish(label='C')\nD = data('gauge.consul.raft.leader.lastContact.max').publish(label='D')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1444,11 +2267,11 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Number of times the Consul server starts a leader election",
-        "id": "DiVWzapAcAA",
+        "description": "Number of serf events processed",
+        "id": "DiVWyT9AcAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Raft candidate state",
+        "name": "Serf Events",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -1457,7 +2280,7 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "# election attempts/interval",
+              "label": "# events/interval",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
@@ -1490,7 +2313,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "consul.raft.state.candidate",
+              "displayName": "gauge.consul.serf.events",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -1510,7 +2333,227 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.raft.state.candidate', filter=filter('consul_mode', 'server')).publish(label='A')",
+        "programText": "A = data('gauge.consul.serf.events').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D-fGLIvAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Success Rate (non-5xx responses)",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 95,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 20
+            },
+            {
+              "gt": 90,
+              "gte": null,
+              "lt": null,
+              "lte": 95,
+              "paletteIndex": 19
+            },
+            {
+              "gt": 85,
+              "gte": null,
+              "lt": null,
+              "lte": 90,
+              "paletteIndex": 18
+            },
+            {
+              "gt": 80,
+              "gte": null,
+              "lt": null,
+              "lte": 85,
+              "paletteIndex": 17
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 80,
+              "paletteIndex": 16
+            }
+          ],
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "total requests completed",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "5xx requests",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "success rate",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('upstream_rq_completed', filter=filter('plugin', 'consul') and filter('mesh', '*') and filter('service', '*')).sum().publish(label='A', enable=False)\nB = data('upstream_rq_5xx', filter=filter('plugin', 'consul') and filter('mesh', '*') and filter('service', '*')).sum().publish(label='B', enable=False)\nC = (100-(B/A*100)).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "service | mesh",
+        "id": "D-fGLvTAcAI",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "5xx Request Rate by Service",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "service"
+              },
+              {
+                "enabled": true,
+                "property": "mesh"
+              },
+              {
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": true,
+                "property": "traffic"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "5xx responses",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "ops",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('upstream_rq_5xx', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum(by=['mesh', 'service']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1649,396 +2692,6 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "service | mesh",
-        "id": "D-WQFpVAgAE",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "5xx Request Rate by Service",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "service"
-              },
-              {
-                "enabled": true,
-                "property": "mesh"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": true,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "host"
-              },
-              {
-                "enabled": true,
-                "property": "traffic"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "5xx responses",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "ops",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('upstream_rq_5xx', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of Raft peers in cluster",
-        "id": "DiVWuapAcDE",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total Consul Peers",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "gauge.consul.peers - Sum",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.peers').sum().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of Raft peers in cluster",
-        "id": "DiVWyxQAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total Consul Peers",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "gauge.consul.peers - Sum",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.peers', rollup='latest').sum().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D-WQE5uAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Success Rate (non-5xx responses)",
-        "options": {
-          "colorBy": "Scale",
-          "colorScale": null,
-          "colorScale2": [
-            {
-              "gt": 95,
-              "gte": null,
-              "lt": null,
-              "lte": null,
-              "paletteIndex": 20
-            },
-            {
-              "gt": 90,
-              "gte": null,
-              "lt": null,
-              "lte": 95,
-              "paletteIndex": 19
-            },
-            {
-              "gt": 85,
-              "gte": null,
-              "lt": null,
-              "lte": 90,
-              "paletteIndex": 18
-            },
-            {
-              "gt": 80,
-              "gte": null,
-              "lt": null,
-              "lte": 85,
-              "paletteIndex": 17
-            },
-            {
-              "gt": null,
-              "gte": null,
-              "lt": null,
-              "lte": 80,
-              "paletteIndex": 16
-            }
-          ],
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "total requests completed",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "5xx requests",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "success rate",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "%",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('upstream_rq_completed', filter=filter('mesh', '*') and filter('service', '*')).sum().publish(label='A', enable=False)\nB = data('upstream_rq_5xx', filter=filter('mesh', '*') and filter('service', '*')).sum().publish(label='B', enable=False)\nC = (100-(B/A*100)).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of bytes allocated by the Consul process",
-        "id": "DiVWzxKAgCw",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Allocated bytes",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "# bytes",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "allocated bytes",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.runtime.alloc_bytes*', filter=filter('consul_mode', 'client')).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
         "description": "Indicates memory pressure on a Consul agent",
         "id": "DiVWzDFAcAA",
         "lastUpdated": 0,
@@ -2164,11 +2817,96 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "D-WQDjUAgAE",
+        "description": "Number of nodes providing a given service",
+        "id": "DiVWw06AcAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Total Request Rate",
+        "name": "# Nodes by Service",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "consul_service"
+              },
+              {
+                "enabled": false,
+                "property": "dsname"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "plugin"
+              },
+              {
+                "enabled": false,
+                "property": "datacenter"
+              },
+              {
+                "enabled": false,
+                "property": "consul_server"
+              },
+              {
+                "enabled": false,
+                "property": "consul_mode"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "no. of nodes",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": null,
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.catalog.nodes_by_service').sum(by=['consul_service']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D-fGJ_sAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Average Response Time",
         "options": {
           "colorBy": "Dimension",
           "colorScale": null,
@@ -2182,13 +2920,13 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "upstream_rq_completed - Sum",
+              "displayName": "Response Time",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": "ops",
-              "valueUnit": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
               "yAxis": 0
             }
           ],
@@ -2204,7 +2942,112 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('upstream_rq_completed', filter=filter('mesh', '*') and filter('service', '*')).sum().publish(label='A')",
+        "programText": "A = data('upstream_rq_time', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).mean().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Number of nodes by health check states",
+        "id": "DiVWuz_AYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Node health check results",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "datacenter"
+              },
+              {
+                "enabled": false,
+                "property": "plugin"
+              },
+              {
+                "enabled": false,
+                "property": "consul_node"
+              },
+              {
+                "enabled": false,
+                "property": "dsname"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "consul_mode"
+              },
+              {
+                "enabled": false,
+                "property": "consul_server"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Critical",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Warning",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Passing",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "",
+          "time": null,
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.health.nodes.critical').sum().publish(label='A')\nB = data('gauge.consul.health.nodes.warning').sum().publish(label='B')\nC = data('gauge.consul.health.nodes.passing').sum().publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2215,7 +3058,7 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "D-WQAmEAYAA",
+        "id": "D-fGJ1aAgAE",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
         "name": "Unhealthy Clusters",
@@ -2289,7 +3132,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('membership_total', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).count().publish(label='A', enable=False)\nB = data('membership_healthy', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).count().publish(label='B', enable=False)\nC = (A-B).publish(label='C')",
+        "programText": "A = data('membership_total', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum(by=['mesh', 'service']).count().publish(label='A', enable=False)\nB = data('membership_healthy', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum(by=['mesh', 'service']).count().publish(label='B', enable=False)\nC = (A-B).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2299,478 +3142,15 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "service | mesh",
-        "id": "D-WP_q1AYAE",
+        "description": "Number of Raft peers in cluster",
+        "id": "DiVWyxQAcAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Response Time by Service",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Response Time",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            },
-            {
-              "displayName": "min",
-              "label": "B",
-              "paletteIndex": 14,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            },
-            {
-              "displayName": "median",
-              "label": "C",
-              "paletteIndex": 2,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            },
-            {
-              "displayName": "p90",
-              "label": "D",
-              "paletteIndex": 9,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            },
-            {
-              "displayName": "p99",
-              "label": "E",
-              "paletteIndex": 8,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('upstream_rq_time', filter=filter('mesh', '*') and filter('service', '*')).mean(by=['mesh', 'service']).publish(label='A')\nB = (A).min().publish(label='B', enable=False)\nC = (A).percentile(pct=50).publish(label='C', enable=False)\nD = (A).percentile(pct=90).publish(label='D', enable=False)\nE = (A).percentile(pct=99).publish(label='E', enable=False)",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWy7xAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Cluster Joins and Leaves",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "sf_originatingMetric",
-            "showLegend": true
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "gauge.consul.serf.member.join - Mean",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "gauge.consul.serf.member.left - Mean",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.serf.member.join').mean().publish(label='A')\nB = data('gauge.consul.serf.member.left').mean().publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "General load pressure indicator for Consul agents",
-        "id": "DiVWznnAYKU",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Number of runtime GO routines",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "# GO routines",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "datacenter"
-              },
-              {
-                "enabled": true,
-                "property": "consul_node"
-              },
-              {
-                "enabled": true,
-                "property": "host"
-              },
-              {
-                "enabled": true,
-                "property": "plugin"
-              },
-              {
-                "enabled": false,
-                "property": "dsname"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "consul_mode"
-              },
-              {
-                "enabled": true,
-                "property": "test_dim"
-              },
-              {
-                "enabled": true,
-                "property": "multiple_dim"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "gauge.consul.runtime.num_goroutines*",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.runtime.num_goroutines*', filter=filter('consul_mode', 'client')).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Time it takes to commit an entry on the leader",
-        "id": "DiVWytpAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Raft commit time",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "Time (milliseconds)",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "sf_metric",
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "mean time in ms",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "max time in ms",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "min time in ms",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.raft.commitTime.avg').publish(label='A')\nB = data('gauge.consul.raft.commitTime.max').publish(label='B')\nC = data('gauge.consul.raft.commitTime.min').publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of services registered with a given node",
-        "id": "DiVWv7ZAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "# Services by Node",
+        "name": "Total Consul Peers",
         "options": {
           "colorBy": "Dimension",
+          "colorScale": null,
           "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "datacenter"
-              },
-              {
-                "enabled": false,
-                "property": "plugin"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "consul_node"
-              },
-              {
-                "enabled": false,
-                "property": "dsname"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "consul_server"
-              },
-              {
-                "enabled": false,
-                "property": "consul_mode"
-              }
-            ]
-          },
           "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
@@ -2780,7 +3160,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "no. of services",
+              "displayName": "gauge.consul.peers - Sum",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -2791,14 +3171,15 @@
             }
           ],
           "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
           "time": null,
-          "type": "List",
+          "timestampHidden": false,
+          "type": "SingleValue",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.catalog.services_by_node').publish(label='A')",
+        "programText": "A = data('gauge.consul.peers', rollup='latest').sum().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2808,44 +3189,16 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Number of serf events processed",
-        "id": "DiVWyT9AcAA",
+        "description": "Number of services registered with Consul (Includes the Consul service)",
+        "id": "DiVWw5AAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Serf Events",
+        "name": "Total Services",
         "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "# events/interval",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
             "maxDelay": null,
@@ -2854,7 +3207,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "gauge.consul.serf.events",
+              "displayName": "total services",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -2864,17 +3217,16 @@
               "yAxis": 0
             }
           ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": null,
+          "timestampHidden": false,
+          "type": "SingleValue",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.serf.events').publish(label='A')",
+        "programText": "A = data('gauge.consul.catalog.services.total').sum().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3022,10 +3374,10 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "D-WP_rNAcAA",
+        "id": "D-fGJldAcB8",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "5xx Request Rate",
+        "name": "4xx Request Rate",
         "options": {
           "colorBy": "Dimension",
           "colorScale": null,
@@ -3039,9 +3391,9 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "upstream_rq_5xx - Sum",
+              "displayName": "upstream_rq_4xx - Sum",
               "label": "B",
-              "paletteIndex": 5,
+              "paletteIndex": 4,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": "ops",
@@ -3061,7 +3413,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "B = data('upstream_rq_5xx', filter=filter('mesh', '*') and filter('service', '*')).sum().publish(label='B')",
+        "programText": "B = data('upstream_rq_4xx', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum().publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3071,11 +3423,11 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Forward and Reverse DNS lookups",
-        "id": "DiVWzv9AcAA",
+        "description": "Number of bytes allocated by the Consul process",
+        "id": "DiVWzxKAgCw",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Time to service DNS queries",
+        "name": "Allocated bytes",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -3084,56 +3436,23 @@
             {
               "highWatermark": null,
               "highWatermarkLabel": null,
-              "label": "Time (milliseconds)",
+              "label": "# bytes",
               "lowWatermark": null,
               "lowWatermarkLabel": null,
               "max": null,
-              "min": null
+              "min": 0
             }
           ],
           "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "ColumnChart",
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
           },
           "includeZero": false,
           "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "consul_node"
-              },
-              {
-                "enabled": true,
-                "property": "datacenter"
-              },
-              {
-                "enabled": false,
-                "property": "dsname"
-              },
-              {
-                "enabled": true,
-                "property": "host"
-              },
-              {
-                "enabled": true,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "plugin"
-              },
-              {
-                "enabled": true,
-                "property": "consul_mode"
-              }
-            ]
+            "fields": null
           },
           "lineChartOptions": {
             "showDataMarkers": false
@@ -3150,18 +3469,8 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "forward DNS lookup",
+              "displayName": "allocated bytes",
               "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "reverse DNS lookup",
-              "label": "B",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -3180,7 +3489,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.consul.dns.domain_query*.avg', filter=filter('consul_mode', 'client')).publish(label='A')\nB = data('gauge.consul.consul.dns.ptr_query*.avg', filter=filter('consul_mode', 'client')).publish(label='B')",
+        "programText": "A = data('gauge.consul.runtime.alloc_bytes*', filter=filter('consul_mode', 'client')).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3190,19 +3499,31 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Number of nodes providing a given service",
-        "id": "DiVWw06AcAA",
+        "description": "Number of services registered with a given node",
+        "id": "DiVWv7ZAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "# Nodes by Service",
+        "name": "# Services by Node",
         "options": {
           "colorBy": "Dimension",
           "colorScale2": null,
           "legendOptions": {
             "fields": [
               {
+                "enabled": false,
+                "property": "datacenter"
+              },
+              {
+                "enabled": false,
+                "property": "plugin"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
                 "enabled": true,
-                "property": "consul_service"
+                "property": "consul_node"
               },
               {
                 "enabled": false,
@@ -3215,18 +3536,6 @@
               {
                 "enabled": false,
                 "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "plugin"
-              },
-              {
-                "enabled": false,
-                "property": "datacenter"
               },
               {
                 "enabled": false,
@@ -3247,7 +3556,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "no. of nodes",
+              "displayName": "no. of services",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -3265,7 +3574,103 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.catalog.nodes_by_service').sum(by=['consul_service']).publish(label='A')",
+        "programText": "A = data('gauge.consul.catalog.services_by_node').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Time it takes to commit an entry on the leader",
+        "id": "DiVWytpAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Raft commit time",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "Time (milliseconds)",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_metric",
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "mean time in ms",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "max time in ms",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "min time in ms",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.raft.commitTime.avg').publish(label='A')\nB = data('gauge.consul.raft.commitTime.max').publish(label='B')\nC = data('gauge.consul.raft.commitTime.min').publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3276,10 +3681,10 @@
         "creator": null,
         "customProperties": {},
         "description": "service | mesh",
-        "id": "D-WQA6wAgAA",
+        "id": "D-fGMwbAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Total Request Retries by Service",
+        "name": "Total Request Rate by Service",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -3323,12 +3728,28 @@
                 "property": "mesh"
               },
               {
-                "enabled": false,
+                "enabled": true,
+                "property": "AWSUniqueId"
+              },
+              {
+                "enabled": true,
+                "property": "action"
+              },
+              {
+                "enabled": true,
+                "property": "host"
+              },
+              {
+                "enabled": true,
                 "property": "sf_originatingMetric"
               },
               {
-                "enabled": false,
+                "enabled": true,
                 "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "traffic"
               }
             ]
           },
@@ -3347,12 +3768,12 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "retries",
+              "displayName": "request rate",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": "retries",
+              "valueSuffix": "ops",
               "valueUnit": null,
               "yAxis": 0
             }
@@ -3367,7 +3788,585 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('upstream_rq_retry', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='A')",
+        "programText": "A = data('upstream_rq_completed', filter=filter('plugin', 'consul') and filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "service | mesh",
+        "id": "D-fGLNvAYAQ",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Success Rate (non-5xx) by Service",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "requests completed",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "5xx requests",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": "",
+              "valueSuffix": "",
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "success rate",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": "",
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('upstream_rq_completed', filter=filter('plugin', 'consul') and filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='A', enable=False)\nB = data('upstream_rq_5xx', filter=filter('plugin', 'consul') and filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='B', enable=False)\nC = (100-(B/A*100)).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "General load pressure indicator for Consul agent",
+        "id": "DiVWzcXAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of GO routines running",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "# GO routines",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": 0
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "runtime.num_goroutines",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.*runtime.num_goroutines', filter=filter('consul_mode', 'server')).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D-fGKfxAgAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Unhealthy Memberships",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale2": [
+            {
+              "gt": 0,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 16
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 0,
+              "paletteIndex": 20
+            }
+          ],
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "service"
+              },
+              {
+                "enabled": true,
+                "property": "mesh"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "membership_healthy - Sum by mesh,service",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "membership_total - Sum by mesh,service",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('membership_healthy', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum(by=['mesh', 'service']).publish(label='A', enable=False)\nB = data('membership_total', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum(by=['mesh', 'service']).publish(label='B', enable=False)\nC = (B-A).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Number of nodes in Consul cluster",
+        "id": "DiVWxOSAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Nodes",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": null,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "total nodes",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": null,
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.catalog.nodes.total').sum().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D-fGKhdAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Clusters",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "membership_total - Sum by mesh,service - Count",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "clusters",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('membership_total', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum(by=['mesh', 'service']).count().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "service | mesh",
+        "id": "D-fGJhIAgDY",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Response Time by Service",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Response Time",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            },
+            {
+              "displayName": "min",
+              "label": "B",
+              "paletteIndex": 14,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            },
+            {
+              "displayName": "median",
+              "label": "C",
+              "paletteIndex": 2,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            },
+            {
+              "displayName": "p90",
+              "label": "D",
+              "paletteIndex": 9,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            },
+            {
+              "displayName": "p99",
+              "label": "E",
+              "paletteIndex": 8,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('upstream_rq_time', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).mean(by=['mesh', 'service']).publish(label='A')\nB = (A).min().publish(label='B', enable=False)\nC = (A).percentile(pct=50).publish(label='C', enable=False)\nD = (A).percentile(pct=90).publish(label='D', enable=False)\nE = (A).percentile(pct=99).publish(label='E', enable=False)",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "D-fGMHYAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Healthy Memberships",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "service"
+              },
+              {
+                "enabled": true,
+                "property": "mesh"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('membership_healthy', filter=filter('mesh', '*') and filter('service', '*') and filter('plugin', 'consul')).sum(by=['mesh', 'service', 'host']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3477,6 +4476,26 @@
         },
         "packageSpecifications": "",
         "programText": "A = data('gauge.consul.*runtime.alloc_bytes', filter=filter('consul_mode', 'server')).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "DiVWyOyAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Tracking leader transitions",
+        "options": {
+          "markdown": "`consul.raft.state.leader` metric  increments whenever a Consul server becomes a leader.  \nIf there are frequent leadership changes this may be an indication that the servers are overloaded and aren't meeting the soft real-time requirements for Raft, or that there are networking problems between the servers.",
+          "type": "Text"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('gauge.consul.raft.state.leader').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3608,953 +4627,6 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "DiVWy_fAgAI",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Network latency",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "Time (milliseconds)",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "datacenter"
-              },
-              {
-                "enabled": true,
-                "property": "consul_node"
-              },
-              {
-                "enabled": true,
-                "property": "plugin"
-              },
-              {
-                "enabled": true,
-                "property": "host"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "dsname"
-              },
-              {
-                "enabled": true,
-                "property": "consul_mode"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "sf_originatingMetric",
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "avg latency in ms",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "max latency in ms",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "min latency in ms",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.network.node.latency.avg', filter=filter('consul_mode', 'server')).publish(label='A')\nB = data('gauge.consul.network.node.latency.max', filter=filter('consul_mode', 'server')).publish(label='B')\nC = data('gauge.consul.network.node.latency.min', filter=filter('consul_mode', 'server')).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWy1cAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Leadership Transitions",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "gauge.consul.raft.state.leader",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.raft.state.leader').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of nodes in Consul cluster",
-        "id": "DiVWxOSAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total Nodes",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "total nodes",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.catalog.nodes.total').sum().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Time since the leader was last able to contact the follower nodes when checking its leader lease",
-        "id": "DiVWyT6AgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Leader last contact with followers",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "Time (millilseconds)",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "datacenter"
-              },
-              {
-                "enabled": true,
-                "property": "consul_node"
-              },
-              {
-                "enabled": true,
-                "property": "host"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "plugin"
-              },
-              {
-                "enabled": false,
-                "property": "dsname"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "consul_mode"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "mean time in ms",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "min time in ms",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "max time in ms",
-              "label": "D",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.raft.leader.lastContact.avg').publish(label='A')\nC = data('gauge.consul.raft.leader.lastContact.min').publish(label='C')\nD = data('gauge.consul.raft.leader.lastContact.max').publish(label='D')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Recognize server state (leader/follower)",
-        "id": "DiVWyIjAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Consul Server Map",
-        "options": {
-          "colorBy": "Range",
-          "colorRange": {
-            "color": "#05ce00",
-            "max": null,
-            "min": null
-          },
-          "colorScale": null,
-          "colorScale2": null,
-          "groupBy": [],
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": null,
-              "label": "A",
-              "valuePrefix": "",
-              "valueSuffix": "",
-              "valueUnit": null
-            }
-          ],
-          "refreshInterval": null,
-          "sortDirection": "Ascending",
-          "sortProperty": "consul_server_state",
-          "time": null,
-          "timestampHidden": false,
-          "type": "Heatmap",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.is_leader').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "service | mesh",
-        "id": "D-WQGXvAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total Request Rate by Service",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "service"
-              },
-              {
-                "enabled": true,
-                "property": "mesh"
-              },
-              {
-                "enabled": true,
-                "property": "AWSUniqueId"
-              },
-              {
-                "enabled": true,
-                "property": "action"
-              },
-              {
-                "enabled": true,
-                "property": "host"
-              },
-              {
-                "enabled": true,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "traffic"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "request rate",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "ops",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('upstream_rq_completed', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "DiVWyOyAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Tracking leader transitions",
-        "options": {
-          "markdown": "`consul.raft.state.leader` metric  increments whenever a Consul server becomes a leader.  \nIf there are frequent leadership changes this may be an indication that the servers are overloaded and aren't meeting the soft real-time requirements for Raft, or that there are networking problems between the servers.",
-          "type": "Text"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.raft.state.leader').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "This measures the time it takes the leader to replicate log entries to followers. This is a general indicator of the load pressure on the Consul servers, as well as the performance of the communication between the servers.",
-        "id": "DiVWyxNAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Leader Time to Append Entries",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": true,
-                "property": "datacenter"
-              },
-              {
-                "enabled": false,
-                "property": "dsname"
-              },
-              {
-                "enabled": true,
-                "property": "host"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "consul_node"
-              },
-              {
-                "enabled": true,
-                "property": "plugin"
-              },
-              {
-                "enabled": false,
-                "property": "consul_mode"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "sf_originatingMetric",
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "mean time in ms",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.raft.replication.appendEntries.rpc*.avg').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "This is a general indicator of the write load on the Consul servers.",
-        "id": "DiVWyIlAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Number of Raft Transactions",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "# raft transactions/interval",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": 0
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "consul_node"
-              },
-              {
-                "enabled": true,
-                "property": "datacenter"
-              },
-              {
-                "enabled": false,
-                "property": "dsname"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": true,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "plugin"
-              },
-              {
-                "enabled": true,
-                "property": "consul_mode"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "no. of raft transactions",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.raft.apply', rollup='sum').sum(by=['datacenter']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of services registered with Consul (Includes the Consul service)",
-        "id": "DiVWw5AAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total Services",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "total services",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": null,
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.catalog.services.total').sum().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Number of nodes by health check states",
-        "id": "DiVWuz_AYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Node health check results",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "datacenter"
-              },
-              {
-                "enabled": false,
-                "property": "plugin"
-              },
-              {
-                "enabled": false,
-                "property": "consul_node"
-              },
-              {
-                "enabled": false,
-                "property": "dsname"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "consul_mode"
-              },
-              {
-                "enabled": false,
-                "property": "consul_server"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": null,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Critical",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Warning",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Passing",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "",
-          "time": null,
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('gauge.consul.health.nodes.critical').sum().publish(label='A')\nB = data('gauge.consul.health.nodes.warning').sum().publish(label='B')\nC = data('gauge.consul.health.nodes.passing').sum().publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
         "id": "DiVWzGgAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
@@ -4568,82 +4640,171 @@
         "relatedDetectorIds": [],
         "tags": null
       }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "D-WQGCvAYDs",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Healthy Memberships",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "service"
-              },
-              {
-                "enabled": true,
-                "property": "mesh"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('membership_healthy', filter=filter('mesh', '*') and filter('service', '*')).sum(by=['mesh', 'service', 'host']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
     }
   ],
   "crossLinkExports": [],
   "dashboardExports": [
+    {
+      "dashboard": {
+        "chartDensity": "DEFAULT",
+        "charts": [
+          {
+            "chartId": "D-fGLFvAcAE",
+            "column": 0,
+            "height": 1,
+            "row": 0,
+            "width": 3
+          },
+          {
+            "chartId": "D-fGJ1aAgAE",
+            "column": 10,
+            "height": 1,
+            "row": 0,
+            "width": 2
+          },
+          {
+            "chartId": "D-fGKhdAYAA",
+            "column": 8,
+            "height": 1,
+            "row": 0,
+            "width": 2
+          },
+          {
+            "chartId": "D-fGMwbAYAA",
+            "column": 3,
+            "height": 1,
+            "row": 0,
+            "width": 5
+          },
+          {
+            "chartId": "D-fGJYOAYEg",
+            "column": 8,
+            "height": 1,
+            "row": 1,
+            "width": 4
+          },
+          {
+            "chartId": "D-fGLNvAYAQ",
+            "column": 3,
+            "height": 1,
+            "row": 1,
+            "width": 5
+          },
+          {
+            "chartId": "D-fGLIvAgAA",
+            "column": 0,
+            "height": 1,
+            "row": 1,
+            "width": 3
+          },
+          {
+            "chartId": "D-fGJldAcB8",
+            "column": 0,
+            "height": 1,
+            "row": 2,
+            "width": 3
+          },
+          {
+            "chartId": "D-fGKD9AcAE",
+            "column": 8,
+            "height": 1,
+            "row": 2,
+            "width": 4
+          },
+          {
+            "chartId": "D-fGJYVAcG8",
+            "column": 3,
+            "height": 1,
+            "row": 2,
+            "width": 5
+          },
+          {
+            "chartId": "D-fGLvTAcAI",
+            "column": 3,
+            "height": 1,
+            "row": 3,
+            "width": 5
+          },
+          {
+            "chartId": "D-fGMHYAgAA",
+            "column": 8,
+            "height": 1,
+            "row": 3,
+            "width": 4
+          },
+          {
+            "chartId": "D-fGJivAYCo",
+            "column": 0,
+            "height": 1,
+            "row": 3,
+            "width": 3
+          },
+          {
+            "chartId": "D-fGJ_sAYAA",
+            "column": 0,
+            "height": 1,
+            "row": 4,
+            "width": 3
+          },
+          {
+            "chartId": "D-fGKfxAgAE",
+            "column": 8,
+            "height": 1,
+            "row": 4,
+            "width": 4
+          },
+          {
+            "chartId": "D-fGJhIAgDY",
+            "column": 3,
+            "height": 1,
+            "row": 4,
+            "width": 5
+          }
+        ],
+        "created": 0,
+        "creator": null,
+        "customProperties": null,
+        "description": "",
+        "discoveryOptions": null,
+        "eventOverlays": null,
+        "filters": {
+          "sources": null,
+          "time": null,
+          "variables": [
+            {
+              "alias": "Mesh",
+              "applyIfExists": false,
+              "description": "",
+              "preferredSuggestions": [],
+              "property": "mesh",
+              "replaceOnly": false,
+              "required": false,
+              "restricted": false,
+              "value": ""
+            },
+            {
+              "alias": "Service",
+              "applyIfExists": false,
+              "description": "",
+              "preferredSuggestions": [],
+              "property": "service",
+              "replaceOnly": false,
+              "required": false,
+              "restricted": false,
+              "value": ""
+            }
+          ]
+        },
+        "groupId": "DiVWtXXAcAA",
+        "id": "D-fGInyAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "maxDelayOverride": null,
+        "name": "Consul Connect (Envoy)",
+        "selectedEventOverlays": [],
+        "tags": null
+      }
+    },
     {
       "dashboard": {
         "chartDensity": "DEFAULT",
@@ -4744,167 +4905,6 @@
         "lastUpdatedBy": null,
         "maxDelayOverride": null,
         "name": "Consul Server",
-        "selectedEventOverlays": [],
-        "tags": null
-      }
-    },
-    {
-      "dashboard": {
-        "chartDensity": "DEFAULT",
-        "charts": [
-          {
-            "chartId": "D-WQDjUAgAE",
-            "column": 0,
-            "height": 1,
-            "row": 0,
-            "width": 3
-          },
-          {
-            "chartId": "D-WQAmEAYAA",
-            "column": 10,
-            "height": 1,
-            "row": 0,
-            "width": 2
-          },
-          {
-            "chartId": "D-WQCFaAcAA",
-            "column": 8,
-            "height": 1,
-            "row": 0,
-            "width": 2
-          },
-          {
-            "chartId": "D-WQGXvAcAA",
-            "column": 3,
-            "height": 1,
-            "row": 0,
-            "width": 5
-          },
-          {
-            "chartId": "D-WP9lFAgAA",
-            "column": 8,
-            "height": 1,
-            "row": 1,
-            "width": 4
-          },
-          {
-            "chartId": "D-WQE6MAcAA",
-            "column": 3,
-            "height": 1,
-            "row": 1,
-            "width": 5
-          },
-          {
-            "chartId": "D-WQE5uAYAA",
-            "column": 0,
-            "height": 1,
-            "row": 1,
-            "width": 3
-          },
-          {
-            "chartId": "D-WQAZAAgAA",
-            "column": 0,
-            "height": 1,
-            "row": 2,
-            "width": 3
-          },
-          {
-            "chartId": "D-WQA6wAgAA",
-            "column": 8,
-            "height": 1,
-            "row": 2,
-            "width": 4
-          },
-          {
-            "chartId": "D-WP_nLAgAA",
-            "column": 3,
-            "height": 1,
-            "row": 2,
-            "width": 5
-          },
-          {
-            "chartId": "D-WQFpVAgAE",
-            "column": 3,
-            "height": 1,
-            "row": 3,
-            "width": 5
-          },
-          {
-            "chartId": "D-WQGCvAYDs",
-            "column": 8,
-            "height": 1,
-            "row": 3,
-            "width": 4
-          },
-          {
-            "chartId": "D-WP_rNAcAA",
-            "column": 0,
-            "height": 1,
-            "row": 3,
-            "width": 3
-          },
-          {
-            "chartId": "D-WQAxwAcAA",
-            "column": 0,
-            "height": 1,
-            "row": 4,
-            "width": 3
-          },
-          {
-            "chartId": "D-WQA--AYAA",
-            "column": 8,
-            "height": 1,
-            "row": 4,
-            "width": 4
-          },
-          {
-            "chartId": "D-WP_q1AYAE",
-            "column": 3,
-            "height": 1,
-            "row": 4,
-            "width": 5
-          }
-        ],
-        "created": 0,
-        "creator": null,
-        "customProperties": null,
-        "description": "",
-        "discoveryOptions": null,
-        "eventOverlays": null,
-        "filters": {
-          "sources": null,
-          "time": null,
-          "variables": [
-            {
-              "alias": "Mesh",
-              "applyIfExists": false,
-              "description": "",
-              "preferredSuggestions": [],
-              "property": "mesh",
-              "replaceOnly": false,
-              "required": false,
-              "restricted": false,
-              "value": ""
-            },
-            {
-              "alias": "Service",
-              "applyIfExists": false,
-              "description": "",
-              "preferredSuggestions": [],
-              "property": "service",
-              "replaceOnly": false,
-              "required": false,
-              "restricted": false,
-              "value": ""
-            }
-          ]
-        },
-        "groupId": "DiVWtXXAcAA",
-        "id": "D-WP8noAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "maxDelayOverride": null,
-        "name": "Consul Envoy",
         "selectedEventOverlays": [],
         "tags": null
       }
@@ -5270,7 +5270,7 @@
         "DiVWt1xAYAA",
         "DiVWxbfAcAA",
         "DiVWy_aAYAA",
-        "D-WP8noAcAA"
+        "D-fGInyAgAA"
       ],
       "description": "",
       "email": null,
@@ -5295,7 +5295,7 @@
       "teams": null
     }
   },
-  "hashCode": -546259648,
+  "hashCode": -2041939378,
   "id": "DiVWtXXAcAA",
   "modelVersion": 1,
   "packageType": "GROUP"
