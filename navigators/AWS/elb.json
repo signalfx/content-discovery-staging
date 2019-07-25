@@ -1,5 +1,5 @@
 {
-  "hashCode" : -350985742,
+  "hashCode" : 1834916821,
   "id" : "DiVVOB3AYAA",
   "modelVersion" : 1,
   "navigatorExport" : {
@@ -26,14 +26,14 @@
         "category" : "AWS",
         "categoryPriority" : 100,
         "discoveryQuery" : [ "sf_key:LoadBalancerName" ],
-        "displayName" : "ELB Load Balancers",
+        "displayName" : "Elastic Load Balancers",
         "filterProperties" : null,
         "id" : "elb",
-        "idName" : "Load Balancer | AZ ",
+        "idName" : "Load Balancer",
         "idTemplate" : "{{LoadBalancerName}} | {{AvailabilityZone}} ",
         "listColumns" : [ {
           "aggregate" : null,
-          "displayName" : "ID",
+          "displayName" : "Load Balancer | AZ",
           "format" : "id",
           "metric" : null,
           "property" : "id",
