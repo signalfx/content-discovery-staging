@@ -1,5 +1,5 @@
 {
-  "hashCode" : 101518688,
+  "hashCode" : -350985742,
   "id" : "DiVVOB3AYAA",
   "modelVersion" : 1,
   "navigatorExport" : {
@@ -29,8 +29,8 @@
         "displayName" : "ELB Load Balancers",
         "filterProperties" : null,
         "id" : "elb",
-        "idName" : "Load Balancer",
-        "idTemplate" : "{{LoadBalancerName}}",
+        "idName" : "Load Balancer | AZ ",
+        "idTemplate" : "{{LoadBalancerName}} | {{AvailabilityZone}} ",
         "listColumns" : [ {
           "aggregate" : null,
           "displayName" : "ID",
