@@ -231,7 +231,7 @@
           "valueFormat" : "AlertSeverity",
           "valueLabel" : "Most severe alert"
         } ],
-        "mtsQuery" : "sf_metric:cpu.utilization AND _exists_:host",
+        "mtsQuery" : "plugin:signalfx-metadata AND _exists_:host",
         "propertyColumns" : [ [ {
           "header" : "Memory",
           "properties" : [ "host_mem_total" ]
