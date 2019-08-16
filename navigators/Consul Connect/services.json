@@ -24,7 +24,7 @@
       "uiModel" : {
         "alertQuery" : "_exists_:mesh AND _exists_:service AND plugin:consul",
         "category" : "Consul Connect",
-        "categoryPriority" : 30,
+        "categoryPriority" : 20,
         "discoveryQuery" : [ "_exists_:mesh AND _exists_:service AND plugin:consul" ],
         "displayName" : "Services",
         "filterProperties" : [ "host" ],

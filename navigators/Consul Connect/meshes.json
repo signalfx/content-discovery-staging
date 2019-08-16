@@ -24,7 +24,7 @@
       "uiModel" : {
         "alertQuery" : "_exists_:mesh",
         "category" : "Consul Connect",
-        "categoryPriority" : 30,
+        "categoryPriority" : 10,
         "discoveryQuery" : [ "_exists_:mesh" ],
         "displayName" : "Meshes",
         "filterProperties" : [ "host" ],
