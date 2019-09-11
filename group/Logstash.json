@@ -6,96 +6,11 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "EEMKqVMAcAA",
-        "importOf": "EEKFpooAEAA",
+        "id": "EENCBOmAgAA",
+        "importOf": "EEM1VqDAAJc",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Top 5 Busiest Outputs",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "output"
-              },
-              {
-                "enabled": true,
-                "property": "pipeline"
-              },
-              {
-                "enabled": true,
-                "property": "node_name"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "node_id"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "filter"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "node.stats.pipelines.plugins.outputs.events.out - Top 5",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('node.stats.pipelines.plugins.outputs.events.out').top(count=5).publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Events will start stacking up when the value is negative",
-        "id": "EEMKvUfAgAA",
-        "importOf": "EEKFpkIAEAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Process Time - Waiting Time in Queue",
+        "name": "Waiting Time in Queue",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -152,26 +67,6 @@
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "node.stats.events.events.duration_in_millis",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Process Time - Waiting Time in Queue",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
               "valueUnit": "Millisecond",
               "yAxis": 0
             }
@@ -186,7 +81,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('node.stats.events.events.queue_push_duration_in_millis').publish(label='A', enable=False)\nB = data('node.stats.events.events.duration_in_millis').publish(label='B', enable=False)\nC = (B-A).publish(label='C')",
+        "programText": "A = data('node.stats.events.events.queue_push_duration_in_millis').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -196,94 +91,8 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "EEMKrCRAgAA",
-        "importOf": "EEKFpohAIAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Output Rate",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "node.stats.pipelines.plugins.outputs.events.out",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('node.stats.pipelines.plugins.outputs.events.out', rollup='delta').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "EEMKqTbAYAE",
+        "description": "input | pipeline | node",
+        "id": "EENCFzeAgAE",
         "importOf": "EEKHbGZAEAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
@@ -367,8 +176,576 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
+        "description": "Active plugins that configured in pipelines",
+        "id": "EENCF4rAYCk",
+        "importOf": "EEM0tLHAEN4",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of Active Plugins",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": null
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Number of Inputs",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Number of Filters",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Number of Outputs",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Number of Codecs",
+              "label": "D",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('node.stats.pipelines.plugins.inputs.events.out').count().publish(label='A')\nB = data('node.stats.pipelines.plugins.filters.events.in').count().publish(label='B')\nC = data('node.stats.pipelines.plugins.outputs.events.out').count().publish(label='C')\nD = data('node.stats.pipelines.plugins.codecs.decode.out').count().publish(label='D')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "input | pipeline | node",
+        "id": "EENCEWaAgEE",
+        "importOf": "EEKFpkHAIAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 5 Busiest Filters",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "filter"
+              },
+              {
+                "enabled": true,
+                "property": "pipeline"
+              },
+              {
+                "enabled": true,
+                "property": "node_name"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "node_id"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "node.stats.pipelines.plugins.filters.events.out - Top 5",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "B = data('node.stats.pipelines.plugins.filters.events.out').top(count=5).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
         "description": "",
-        "id": "EEMKsDsAcAA",
+        "id": "EENCB0dAgAA",
+        "importOf": "EEKFphkAAAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of Nodes",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "node.stats.pipelines.events.in - Sum by node_id - Count",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "nodes",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('node.stats.pipelines.events.in').sum(by=['node_id']).count().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Events will start stacking up when the value is negative",
+        "id": "EENCBcyAYAA",
+        "importOf": "EEKFpkIAEAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Process Time - Waiting Time in Queue",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": null,
+              "gte": 0,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 20
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": 0,
+              "lte": null,
+              "paletteIndex": 16
+            }
+          ],
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "node.stats.events.events.queue_push_duration_in_millis - Mean",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "node.stats.events.events.duration_in_millis - Mean",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Process Time - Waiting Time in Queue",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('node.stats.events.events.queue_push_duration_in_millis').mean().publish(label='A', enable=False)\nB = data('node.stats.events.events.duration_in_millis').mean().publish(label='B', enable=False)\nC = (B-A).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "input | pipeline | node",
+        "id": "EENCB7aAYAE",
+        "importOf": "EEKHapyAEAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 5 Slowest Filters",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "filter"
+              },
+              {
+                "enabled": true,
+                "property": "pipeline"
+              },
+              {
+                "enabled": true,
+                "property": "node_name"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "node_id"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "node.stats.pipelines.plugins.filters.events.duration_in_millis - Top 5",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "B = data('node.stats.pipelines.plugins.filters.events.duration_in_millis').top(count=5).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "EENCH1PAcAA",
+        "importOf": "EEM1VqDAAJY",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Process Time",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "node.stats.events.events.duration_in_millis - Mean",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('node.stats.events.events.duration_in_millis', extrapolation='zero').mean().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "input | pipeline | node",
+        "id": "EENCCwmAgAA",
+        "importOf": "EEKFpkEAAAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 5 Busiest Inputs",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "input"
+              },
+              {
+                "enabled": true,
+                "property": "pipeline"
+              },
+              {
+                "enabled": true,
+                "property": "node_name"
+              },
+              {
+                "enabled": false,
+                "property": "node_id"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "filter"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "node.stats.pipelines.plugins.inputs.events.out - Top 5",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "B = data('node.stats.pipelines.plugins.inputs.events.out').top(count=5).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "EENCF86AcKM",
+        "importOf": "EEKFpmtAAAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of Pipelines",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "node.stats.pipelines.events.in - Sum by node_id,pipeline - Count",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "pipelines",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('node.stats.pipelines.events.in').sum(by=['node_id', 'pipeline']).count().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "EENCEt9AgAA",
         "importOf": "EEKFpkWAAAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
@@ -475,51 +852,53 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "EEMKo8lAgAA",
-        "importOf": "EEKFpkEAAAA",
+        "id": "EENCCxHAYAA",
+        "importOf": "EEKFpohAIAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Top 5 Busiest Inputs",
+        "name": "Output Rate",
         "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "input"
-              },
-              {
-                "enabled": true,
-                "property": "pipeline"
-              },
-              {
-                "enabled": true,
-                "property": "node_name"
-              },
-              {
-                "enabled": false,
-                "property": "node_id"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "filter"
-              }
-            ]
+          "areaChartOptions": {
+            "showDataMarkers": false
           },
-          "maximumPrecision": null,
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
           "programOptions": {
             "disableSampling": false,
             "maxDelay": 0,
@@ -528,8 +907,8 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "node.stats.pipelines.plugins.inputs.events.out - Top 5",
-              "label": "B",
+              "displayName": "node.stats.pipelines.plugins.outputs.events.out",
+              "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
@@ -538,18 +917,17 @@
               "yAxis": 0
             }
           ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
+          "showEventLines": false,
+          "stacked": false,
           "time": {
             "range": 900000,
             "type": "relative"
           },
-          "type": "List",
+          "type": "TimeSeriesChart",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "B = data('node.stats.pipelines.plugins.inputs.events.out').top(count=5).publish(label='B')",
+        "programText": "A = data('node.stats.pipelines.plugins.outputs.events.out', rollup='delta').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -560,7 +938,58 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "EEMKvfZAYAA",
+        "id": "EENCEX2AYAA",
+        "importOf": "EEMy70xAAVY",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Waiting Time in Queue",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "node.stats.events.events.queue_push_duration_in_millis - Mean",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('node.stats.events.events.queue_push_duration_in_millis').mean().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "EENCEiWAcAA",
         "importOf": "EEKFpmsAEAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
@@ -646,7 +1075,7 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "EEMKpRzAYAA",
+        "id": "EENCFCDAYAA",
         "importOf": "EEKFpjaAEAE",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
@@ -707,7 +1136,7 @@
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": null,
+              "valueUnit": "Millisecond",
               "yAxis": 0
             }
           ],
@@ -731,63 +1160,12 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "",
-        "id": "EEMKtI1AcAA",
-        "importOf": "EEKFpkXAIAA",
+        "description": "input | pipeline | node",
+        "id": "EENCGX1AgAA",
+        "importOf": "EEKFpooAEAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Number of Plugins",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "node.plugins.total",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('node.plugins.total', rollup='average', extrapolation='last_value').publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "EEMKr_KAYAA",
-        "importOf": "EEKHapyAEAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Top 5 Slowest Filters",
+        "name": "Top 5 Busiest Outputs",
         "options": {
           "colorBy": "Dimension",
           "colorScale2": null,
@@ -795,7 +1173,7 @@
             "fields": [
               {
                 "enabled": true,
-                "property": "filter"
+                "property": "output"
               },
               {
                 "enabled": true,
@@ -820,87 +1198,10 @@
               {
                 "enabled": false,
                 "property": "sf_metric"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "node.stats.pipelines.plugins.filters.events.duration_in_millis - Top 5",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('node.stats.pipelines.plugins.filters.events.duration_in_millis').top(count=5).publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "EEMKoe2AcAA",
-        "importOf": "EEKFpkHAIAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Top 5 Busiest Filters",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
+              },
               {
-                "enabled": true,
+                "enabled": false,
                 "property": "filter"
-              },
-              {
-                "enabled": true,
-                "property": "pipeline"
-              },
-              {
-                "enabled": true,
-                "property": "node_name"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "node_id"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
               }
             ]
           },
@@ -913,7 +1214,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "node.stats.pipelines.plugins.filters.events.out - Top 5",
+              "displayName": "node.stats.pipelines.plugins.outputs.events.out - Top 5",
               "label": "B",
               "paletteIndex": null,
               "plotType": null,
@@ -934,7 +1235,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "B = data('node.stats.pipelines.plugins.filters.events.out').top(count=5).publish(label='B')",
+        "programText": "B = data('node.stats.pipelines.plugins.outputs.events.out').top(count=5).publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -945,109 +1246,7 @@
         "creator": null,
         "customProperties": {},
         "description": "",
-        "id": "EEMKp1CAgAE",
-        "importOf": "EEKFpmtAAAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Number of Pipelines",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "node.stats.pipelines.events.in - Sum by node_id,pipeline - Count",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('node.stats.pipelines.events.in').sum(by=['node_id', 'pipeline']).count().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "EEMKsSUAgAA",
-        "importOf": "EEKFphkAAAE",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Number of Nodes",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "node.stats.pipelines.events.in - Sum by node_id - Count",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('node.stats.pipelines.events.in').sum(by=['node_id']).count().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "EEMKsoBAYAA",
+        "id": "EENCFPYAcAA",
         "importOf": "EEKFpitAIAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
@@ -1135,101 +1334,122 @@
         "chartDensity": "DEFAULT",
         "charts": [
           {
-            "chartId": "EEMKsDsAcAA",
-            "column": 6,
+            "chartId": "EENCEt9AgAA",
+            "column": 8,
             "height": 1,
             "row": 0,
-            "width": 3
+            "width": 4
           },
           {
-            "chartId": "EEMKsSUAgAA",
+            "chartId": "EENCB0dAgAA",
             "column": 0,
             "height": 1,
             "row": 0,
-            "width": 3
+            "width": 4
           },
           {
-            "chartId": "EEMKp1CAgAE",
+            "chartId": "EENCF86AcKM",
+            "column": 4,
+            "height": 1,
+            "row": 0,
+            "width": 4
+          },
+          {
+            "chartId": "EENCFCDAYAA",
             "column": 3,
             "height": 1,
-            "row": 0,
-            "width": 3
+            "row": 1,
+            "width": 9
           },
           {
-            "chartId": "EEMKtI1AcAA",
-            "column": 9,
-            "height": 1,
-            "row": 0,
-            "width": 3
-          },
-          {
-            "chartId": "EEMKpRzAYAA",
+            "chartId": "EENCH1PAcAA",
             "column": 0,
             "height": 1,
             "row": 1,
-            "width": 6
+            "width": 3
           },
           {
-            "chartId": "EEMKvUfAgAA",
+            "chartId": "EENCBcyAYAA",
+            "column": 3,
+            "height": 1,
+            "row": 2,
+            "width": 3
+          },
+          {
+            "chartId": "EENCBOmAgAA",
             "column": 6,
             "height": 1,
-            "row": 1,
+            "row": 2,
             "width": 6
           },
           {
-            "chartId": "EEMKrCRAgAA",
-            "column": 8,
-            "height": 1,
-            "row": 2,
-            "width": 4
-          },
-          {
-            "chartId": "EEMKsoBAYAA",
+            "chartId": "EENCEX2AYAA",
             "column": 0,
             "height": 1,
             "row": 2,
-            "width": 4
+            "width": 3
           },
           {
-            "chartId": "EEMKvfZAYAA",
+            "chartId": "EENCEiWAcAA",
             "column": 4,
             "height": 1,
-            "row": 2,
+            "row": 3,
             "width": 4
           },
           {
-            "chartId": "EEMKqVMAcAA",
+            "chartId": "EENCCxHAYAA",
             "column": 8,
             "height": 1,
             "row": 3,
             "width": 4
           },
           {
-            "chartId": "EEMKo8lAgAA",
+            "chartId": "EENCFPYAcAA",
             "column": 0,
             "height": 1,
             "row": 3,
             "width": 4
           },
           {
-            "chartId": "EEMKoe2AcAA",
-            "column": 4,
-            "height": 1,
-            "row": 3,
-            "width": 4
-          },
-          {
-            "chartId": "EEMKr_KAYAA",
+            "chartId": "EENCEWaAgEE",
             "column": 4,
             "height": 1,
             "row": 4,
             "width": 4
           },
           {
-            "chartId": "EEMKqTbAYAE",
+            "chartId": "EENCGX1AgAA",
             "column": 8,
             "height": 1,
             "row": 4,
+            "width": 4
+          },
+          {
+            "chartId": "EENCCwmAgAA",
+            "column": 0,
+            "height": 1,
+            "row": 4,
+            "width": 4
+          },
+          {
+            "chartId": "EENCB7aAYAE",
+            "column": 4,
+            "height": 1,
+            "row": 5,
+            "width": 4
+          },
+          {
+            "chartId": "EENCFzeAgAE",
+            "column": 8,
+            "height": 1,
+            "row": 5,
+            "width": 4
+          },
+          {
+            "chartId": "EENCF4rAYCk",
+            "column": 0,
+            "height": 1,
+            "row": 5,
             "width": 4
           }
         ],
@@ -1256,8 +1476,8 @@
             }
           ]
         },
-        "groupId": "EEMKoZdAYAA",
-        "id": "EEMKx0PAcAA",
+        "groupId": "EENCBEHAcAA",
+        "id": "EENCH7FAgAA",
         "importOf": "EEKFpf7AEAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
@@ -1273,15 +1493,15 @@
       "created": 0,
       "creator": null,
       "dashboards": [
-        "EEMKx0PAcAA"
+        "EENCH7FAgAA"
       ],
       "description": "",
       "email": null,
-      "id": "EEMKoZdAYAA",
+      "id": "EENCBEHAcAA",
       "importDetails": {
-        "hashCode": 243474365,
+        "hashCode": -858665759,
         "importOf": "EEKFperAEAA",
-        "importTime": 1568213235482
+        "importTime": 1568227305732
       },
       "importOf": "EEKFperAEAA",
       "importQualifiers": [
@@ -1296,8 +1516,8 @@
       "teams": null
     }
   },
-  "hashCode": 2051860286,
-  "id": "EEMKoZdAYAA",
+  "hashCode": -1402245092,
+  "id": "EENCBEHAcAA",
   "modelVersion": 1,
   "packageType": "GROUP"
 }
