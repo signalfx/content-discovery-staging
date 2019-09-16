@@ -618,91 +618,6 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "input | pipeline | node",
-        "id": "EENCFzeAgAE",
-        "importOf": "EEKHbGZAEAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Top 5 Slowest Outputs",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "output"
-              },
-              {
-                "enabled": true,
-                "property": "pipeline"
-              },
-              {
-                "enabled": true,
-                "property": "node_name"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "node_id"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "filter"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "node.stats.pipelines.plugins.outputs.events.duration_in_millis - Top 5",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('node.stats.pipelines.plugins.outputs.events.duration_in_millis').top(count=5).publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
         "description": "",
         "id": "EENCEX2AYAA",
         "importOf": "EEMy70xAAVY",
@@ -745,6 +660,87 @@
         },
         "packageSpecifications": "",
         "programText": "A = data('node.stats.events.events.queue_push_duration_in_millis').mean().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "input | pipeline | node",
+        "id": "EENCB7aAYAE",
+        "importOf": "EEKHapyAEAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 5 Slowest Filters in the last hour",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "filter"
+              },
+              {
+                "enabled": true,
+                "property": "pipeline"
+              },
+              {
+                "enabled": true,
+                "property": "node_name"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "node_id"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "node.stats.pipelines.plugins.filters.events.duration_in_millis - Mean(1h) - Top 5",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "B = data('node.stats.pipelines.plugins.filters.events.duration_in_millis').mean(over='1h').top(count=5).publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -926,6 +922,91 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
+        "description": "input | pipeline | node",
+        "id": "EENCFzeAgAE",
+        "importOf": "EEKHbGZAEAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top 5 Slowest Outputs in the last hour",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": true,
+                "property": "output"
+              },
+              {
+                "enabled": true,
+                "property": "pipeline"
+              },
+              {
+                "enabled": true,
+                "property": "node_name"
+              },
+              {
+                "enabled": false,
+                "property": "host"
+              },
+              {
+                "enabled": false,
+                "property": "node_id"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "filter"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "node.stats.pipelines.plugins.outputs.events.duration_in_millis - Mean(1h) - Top 5",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "B = data('node.stats.pipelines.plugins.outputs.events.duration_in_millis').mean(over='1h').top(count=5).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
         "description": "",
         "id": "EENCFCDAYAA",
         "importOf": "EEKFpjaAEAE",
@@ -1088,87 +1169,6 @@
         },
         "packageSpecifications": "",
         "programText": "B = data('node.stats.pipelines.plugins.inputs.events.out').sum(over='1h').top(count=5).publish(label='B')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "input | pipeline | node",
-        "id": "EENCB7aAYAE",
-        "importOf": "EEKHapyAEAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Top 5 Slowest Filters",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "filter"
-              },
-              {
-                "enabled": true,
-                "property": "pipeline"
-              },
-              {
-                "enabled": true,
-                "property": "node_name"
-              },
-              {
-                "enabled": false,
-                "property": "host"
-              },
-              {
-                "enabled": false,
-                "property": "node_id"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "node.stats.pipelines.plugins.filters.events.duration_in_millis - Top 5",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "B = data('node.stats.pipelines.plugins.filters.events.duration_in_millis').top(count=5).publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1464,22 +1464,22 @@
           "time": null,
           "variables": [
             {
-              "alias": "node_name",
+              "alias": "Node",
               "applyIfExists": false,
               "description": "",
               "preferredSuggestions": [],
-              "property": "Node",
+              "property": "node_name",
               "replaceOnly": false,
               "required": false,
               "restricted": false,
               "value": ""
             },
             {
-              "alias": "node_id",
+              "alias": "Node ID",
               "applyIfExists": false,
               "description": "",
               "preferredSuggestions": [],
-              "property": "Node ID",
+              "property": "node_id",
               "replaceOnly": false,
               "required": false,
               "restricted": false,
@@ -1527,7 +1527,7 @@
       "teams": null
     }
   },
-  "hashCode": -230340814,
+  "hashCode": 723684842,
   "id": "EENCBEHAcAA",
   "modelVersion": 1,
   "packageType": "GROUP"
