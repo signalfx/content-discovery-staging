@@ -1,18 +1,6 @@
 {
-  "hashCode" : -1974189938,
+  "hashCode" : -1559020385,
   "id" : "DiVVQC0AgAA",
-  "importQualifiers" : [ {
-    "filters" : [ {
-      "not" : false,
-      "property" : "metric_source",
-      "values" : [ "cloudfoundry" ]
-    }, {
-      "not" : false,
-      "property" : "job",
-      "values" : [ "cloud_controller", "cloud_controller_worker" ]
-    } ],
-    "metric" : "system.healthy"
-  } ],
   "modelVersion" : 1,
   "navigatorExport" : {
     "navigator" : {
@@ -28,9 +16,9 @@
         }, {
           "not" : false,
           "property" : "job",
-          "values" : [ "cloud_controller", "cloud_controller_worker" ]
+          "values" : [ "cloud_controller", "control", "cloud_controller_worker" ]
         } ],
-        "metric" : "system.healthy"
+        "metric" : "*system.healthy"
       } ],
       "lastUpdated" : 0,
       "lastUpdatedBy" : null,
@@ -38,10 +26,10 @@
       "navigatorCategory" : "Cloud Foundry",
       "navigatorType" : "architectural",
       "uiModel" : {
-        "alertQuery" : "metric_source:cloudfoundry AND job:(cloud_controller cloud_controller_worker)",
+        "alertQuery" : "metric_source:cloudfoundry AND job:(cloud_controller OR cloud_controller_worker OR control)",
         "category" : "Cloud Foundry",
         "categoryPriority" : 20,
-        "discoveryQuery" : [ "job:(cloud_controller cloud_controller_worker)" ],
+        "discoveryQuery" : [ "job:(cloud_controller OR cloud_controller_worker OR control)" ],
         "displayName" : "Cloud Controller",
         "filterProperties" : null,
         "id" : "cf cloud controller",
@@ -75,9 +63,14 @@
             "memberSettings" : null
           },
           "job" : {
-            "filters" : [ ],
+            "filters" : [ {
+              "not" : false,
+              "property" : "metric_source",
+              "propertyValue" : "cloudfoundry",
+              "type" : "property"
+            } ],
             "resolution" : 300000,
-            "template" : "CLOUD_CONTROLLER = data(\"system.healthy\", filter=filter(\"metric_source\", \"cloudfoundry\") and filter(\"job\", \"cloud_controller\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"host\"])\nCLOUD_CONTROLLER_WORKER = data(\"system.healthy\", filter=filter(\"metric_source\", \"cloudfoundry\") and filter(\"job\", \"cloud_controller_worker\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"host\"])",
+            "template" : "CLOUD_CONTROLLER = data(\"system.healthy\", filter=filter(\"job\", \"cloud_controller\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"host\"])\nCLOUD_CONTROLLER_NEW = data(\"bosh-system-metrics-forwarder.system.healthy\", filter=filter(\"job\", \"control\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"bosh_id\", \"job\", \"deployment\"])\nCLOUD_CONTROLLER_WORKER = data(\"system.healthy\", filter=filter(\"metric_source\", \"cloudfoundry\") and filter(\"job\", \"cloud_controller_worker\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"host\"])",
             "varName" : null
           },
           "metrics" : [ {
@@ -99,6 +92,25 @@
             "valueFormat" : null,
             "valueLabel" : "System Health",
             "varName" : "CLOUD_CONTROLLER"
+          }, {
+            "coloring" : {
+              "limits" : [ {
+                "color" : "#05ce00",
+                "lowerLimit" : 1.0
+              }, {
+                "color" : "#ea1849",
+                "lowerLimit" : 0.0
+              } ],
+              "maxValue" : 1,
+              "method" : "threshold",
+              "minValue" : 0,
+              "range" : null
+            },
+            "idTemplate" : "{{bosh_id}}",
+            "name" : "Controllers",
+            "valueFormat" : null,
+            "valueLabel" : "System Health",
+            "varName" : "CLOUD_CONTROLLER_NEW"
           }, {
             "coloring" : {
               "limits" : [ {

@@ -1,18 +1,6 @@
 {
-  "hashCode" : 1998771543,
+  "hashCode" : 899696127,
   "id" : "DiVVAuiAcJE",
-  "importQualifiers" : [ {
-    "filters" : [ {
-      "not" : false,
-      "property" : "metric_source",
-      "values" : [ "cloudfoundry" ]
-    }, {
-      "not" : false,
-      "property" : "job",
-      "values" : [ "clock_global", "router", "uaa" ]
-    } ],
-    "metric" : "system.healthy"
-  } ],
   "modelVersion" : 1,
   "navigatorExport" : {
     "navigator" : {
@@ -30,7 +18,7 @@
           "property" : "job",
           "values" : [ "clock_global", "router", "uaa" ]
         } ],
-        "metric" : "system.healthy"
+        "metric" : "*system.healthy"
       } ],
       "lastUpdated" : 0,
       "lastUpdatedBy" : null,
@@ -38,7 +26,7 @@
       "navigatorCategory" : "Cloud Foundry",
       "navigatorType" : "architectural",
       "uiModel" : {
-        "alertQuery" : "metric_source:cloudfoundry AND job:(uaa clock_global router)",
+        "alertQuery" : "metric_source:cloudfoundry AND job:(uaa OR clock_global OR router)",
         "category" : "Cloud Foundry",
         "categoryPriority" : 70,
         "discoveryQuery" : [ "sf_key:job" ],
@@ -77,7 +65,7 @@
           "job" : {
             "filters" : [ ],
             "resolution" : 300000,
-            "template" : "UAA = data(\"system.healthy\", filter=filter(\"metric_source\", \"cloudfoundry\") and filter(\"job\", \"uaa\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"host\"])\nCLOCK_GLOBAL = data(\"system.healthy\", filter=filter(\"metric_source\", \"cloudfoundry\") and filter(\"job\", \"clock_global\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"host\"])\nROUTER = data(\"system.healthy\", filter=filter(\"metric_source\", \"cloudfoundry\") and filter(\"job\", \"router\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"host\"])",
+            "template" : "UAA = data(\"*system.healthy\", filter=filter(\"metric_source\", \"cloudfoundry\") and filter(\"job\", \"uaa\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2)\nCLOCK_GLOBAL = data(\"*system.healthy\", filter=filter(\"metric_source\", \"cloudfoundry\") and filter(\"job\", \"clock_global\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2)\nROUTER = data(\"system.healthy\", filter=filter(\"metric_source\", \"cloudfoundry\") and filter(\"job\", \"router\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"host\"])\nROUTER_NEW = data(\"bosh-system-metrics-forwarder.system.healthy\", filter=filter(\"metric_source\", \"cloudfoundry\") and filter(\"job\", \"router\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"bosh_id\"])",
             "varName" : null
           },
           "metrics" : [ {
@@ -137,9 +125,28 @@
             "valueFormat" : null,
             "valueLabel" : "System Health",
             "varName" : "ROUTER"
+          }, {
+            "coloring" : {
+              "limits" : [ {
+                "color" : "#05ce00",
+                "lowerLimit" : 1.0
+              }, {
+                "color" : "#ea1849",
+                "lowerLimit" : 0.0
+              } ],
+              "maxValue" : 1,
+              "method" : "threshold",
+              "minValue" : 0,
+              "range" : null
+            },
+            "idTemplate" : "{{bosh_id}}",
+            "name" : "Routers",
+            "valueFormat" : null,
+            "valueLabel" : "System Health",
+            "varName" : "ROUTER_NEW"
           } ]
         },
-        "mtsQuery" : "metric_source:cloudfoundry AND job:(uaa clock_global router)",
+        "mtsQuery" : "metric_source:cloudfoundry AND job:(uaa OR clock_global OR router)",
         "propertyColumns" : [ [ {
           "header" : "Tags",
           "properties" : [ "sf_tags" ]
