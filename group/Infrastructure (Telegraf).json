@@ -43,7 +43,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('cpu.utilization', filter=filter('plugin', 'signalfx-metadata') and filter('agent', 'telegraf')).mean(by=['host']).mean(over='1m').top(count=10).publish(label='A')",
+        "programText": "A = data('cpu.utilization', filter=filter('agent', 'telegraf')).mean(by=['host']).mean(over='1m').top(count=10).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -338,7 +338,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('memory.utilization', filter=filter('plugin', 'signalfx-metadata') and filter('agent', 'telegraf')).publish(label='A')",
+        "programText": "A = data('memory.utilization', filter=filter('agent', 'telegraf')).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -778,7 +778,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('cpu.utilization', filter=filter('plugin', 'signalfx-metadata') and filter('agent', 'telegraf')).mean(by=['host']).publish(label='A', enable=False)\nB = (A).max().publish(label='B')\nC = (A).min().publish(label='C')\nD = (A).percentile(pct=10).publish(label='D')\nE = (A).percentile(pct=50).publish(label='E')\nF = (A).percentile(pct=90).publish(label='F')",
+        "programText": "A = data('cpu.utilization', filter=filter('agent', 'telegraf')).mean(by=['host']).publish(label='A', enable=False)\nB = (A).max().publish(label='B')\nC = (A).min().publish(label='C')\nD = (A).percentile(pct=10).publish(label='D')\nE = (A).percentile(pct=50).publish(label='E')\nF = (A).percentile(pct=90).publish(label='F')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -825,7 +825,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('cpu.utilization', filter=filter('plugin', 'signalfx-metadata') and filter('agent', 'telegraf')).publish(label='A')",
+        "programText": "A = data('cpu.utilization', filter=filter('agent', 'telegraf')).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1090,7 +1090,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('disk.utilization', filter=filter('plugin', 'signalfx-metadata') and filter('agent', 'telegraf')).mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (A).publish(label='B')",
+        "programText": "A = data('disk.utilization', filter=filter('agent', 'telegraf')).mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (A).publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1290,7 +1290,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('disk.utilization', filter=filter('plugin', 'signalfx-metadata') and filter('agent', 'telegraf')).mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (100 - A).publish(label='B')",
+        "programText": "A = data('disk.utilization', filter=filter('agent', 'telegraf')).mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (100 - A).publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1702,7 +1702,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('memory.utilization', filter=filter('plugin', 'signalfx-metadata') and filter('agent', 'telegraf')).publish(label='A', enable=False)\nB = (A).min().publish(label='B')\nC = (A).percentile(pct=10).publish(label='C')\nD = (A).percentile(pct=50).publish(label='D')\nE = (A).percentile(pct=90).publish(label='E')\nF = (A).max().publish(label='F')",
+        "programText": "A = data('memory.utilization', filter=filter('agent', 'telegraf')).publish(label='A', enable=False)\nB = (A).min().publish(label='B')\nC = (A).percentile(pct=10).publish(label='C')\nD = (A).percentile(pct=50).publish(label='D')\nE = (A).percentile(pct=90).publish(label='E')\nF = (A).max().publish(label='F')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1883,7 +1883,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('cpu.utilization', filter=filter('plugin', 'signalfx-metadata') and filter('agent', 'telegraf')).publish(label='A')",
+        "programText": "A = data('cpu.utilization', filter=filter('agent', 'telegraf')).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2046,7 +2046,7 @@
         "customProperties": null,
         "description": "Dashboards about infrastructure as measured by Telegraf.",
         "discoveryOptions": {
-          "query": "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND agent:telegraf",
+          "query": "sf_metric:cpu.utilization AND agent:telegraf",
           "selectors": [
             "agent:telegraf",
             "sf_key:host"
@@ -2162,7 +2162,7 @@
         "customProperties": null,
         "description": "Host running Telegraf",
         "discoveryOptions": {
-          "query": "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND agent:telegraf",
+          "query": "sf_metric:cpu.utilization AND agent:telegraf",
           "selectors": [
             "agent:telegraf",
             "_exists_:host"

@@ -1003,7 +1003,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('disk.utilization', filter=filter('plugin', 'signalfx-metadata')).mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (100 - A).publish(label='B')",
+        "programText": "A = data('disk.utilization').mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (100 - A).publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1174,7 +1174,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('cpu.utilization', filter=filter('plugin', 'signalfx-metadata')).publish(label='A')",
+        "programText": "A = data('cpu.utilization').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1506,7 +1506,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('cpu.utilization', filter=filter('plugin', 'signalfx-metadata')).publish(label='A')",
+        "programText": "A = data('cpu.utilization').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1817,7 +1817,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('disk.utilization', filter=filter('plugin', 'signalfx-metadata')).mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (A).publish(label='B')",
+        "programText": "A = data('disk.utilization').mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (A).publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2045,7 +2045,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('cpu.utilization', filter=filter('plugin', 'signalfx-metadata')).publish(label='A')",
+        "programText": "A = data('cpu.utilization').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2188,7 +2188,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('cpu.utilization', filter=filter('plugin', 'signalfx-metadata') and (not filter('agent', '*'))).mean(by=['host']).mean(over='1m').top(count=10).publish(label='A')",
+        "programText": "A = data('cpu.utilization', filter=(not filter('agent', '*'))).mean(by=['host']).mean(over='1m').top(count=10).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2722,7 +2722,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('disk.utilization', filter=filter('plugin', 'signalfx-metadata')).mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (100 - A).publish(label='B')",
+        "programText": "A = data('disk.utilization').mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (100 - A).publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2769,7 +2769,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('memory.utilization', filter=filter('plugin', 'signalfx-metadata')).publish(label='A')",
+        "programText": "A = data('memory.utilization').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2845,7 +2845,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('cpu.utilization', filter=filter('plugin', 'signalfx-metadata')).publish(label='A')",
+        "programText": "A = data('cpu.utilization').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2971,7 +2971,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('cpu.utilization', filter=filter('plugin', 'signalfx-metadata') and (not filter('agent', '*'))).mean(by=['host']).publish(label='A', enable=False)\nB = (A).max().publish(label='B')\nC = (A).min().publish(label='C')\nD = (A).percentile(pct=10).publish(label='D')\nE = (A).percentile(pct=50).publish(label='E')\nF = (A).percentile(pct=90).publish(label='F')",
+        "programText": "A = data('cpu.utilization', filter=(not filter('agent', '*'))).mean(by=['host']).publish(label='A', enable=False)\nB = (A).max().publish(label='B')\nC = (A).min().publish(label='C')\nD = (A).percentile(pct=10).publish(label='D')\nE = (A).percentile(pct=50).publish(label='E')\nF = (A).percentile(pct=90).publish(label='F')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3029,7 +3029,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('disk.utilization', filter=filter('plugin', 'signalfx-metadata')).mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (A).publish(label='B')",
+        "programText": "A = data('disk.utilization').mean(by=['plugin_instance']).publish(label='A', enable=False)\nB = (A).publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3170,7 +3170,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('memory.utilization', filter=filter('plugin', 'signalfx-metadata')).publish(label='A')",
+        "programText": "A = data('memory.utilization').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3296,7 +3296,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('memory.utilization', filter=filter('plugin', 'signalfx-metadata') and (not filter('agent', '*'))).publish(label='A', enable=False)\nB = (A).min().publish(label='B')\nC = (A).percentile(pct=10).publish(label='C')\nD = (A).percentile(pct=50).publish(label='D')\nE = (A).percentile(pct=90).publish(label='E')\nF = (A).max().publish(label='F')",
+        "programText": "A = data('memory.utilization', filter=(not filter('agent', '*'))).publish(label='A', enable=False)\nB = (A).min().publish(label='B')\nC = (A).percentile(pct=10).publish(label='C')\nD = (A).percentile(pct=50).publish(label='D')\nE = (A).percentile(pct=90).publish(label='E')\nF = (A).max().publish(label='F')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3459,7 +3459,7 @@
         "customProperties": null,
         "description": "Windows host system information",
         "discoveryOptions": {
-          "query": "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND NOT _exists_:agent AND host_kernel_name:windows",
+          "query": "sf_metric:cpu.utilization AND NOT _exists_:agent AND host_kernel_name:windows",
           "selectors": [
             "_exists_:host"
           ]
@@ -3572,7 +3572,7 @@
         "customProperties": null,
         "description": "",
         "discoveryOptions": {
-          "query": "plugin:signalfx-metadata AND _exists_:host",
+          "query": "_exists_:host",
           "selectors": [
             "sf_key:host"
           ]
@@ -3687,7 +3687,7 @@
         "customProperties": null,
         "description": "",
         "discoveryOptions": {
-          "query": "plugin:signalfx-metadata AND sf_metric:cpu.utilization AND NOT _exists_:agent AND NOT host_kernel_name:windows",
+          "query": "sf_metric:cpu.utilization AND NOT _exists_:agent AND NOT host_kernel_name:windows",
           "selectors": [
             "_exists_:host"
           ]
@@ -3730,20 +3730,12 @@
         "DyVKoZTAgAA",
         "DyVKwOVAgAA"
       ],
-      "description": "Dashboards about infrastructure as measured by collectd and the SignalFx collectd plugin. ",
+      "description": "Dashboards about infrastructure as measured by the SignalFx Smart Agent. ",
       "email": null,
       "id": "DiVWWylAYD4",
       "importQualifiers": [
         {
-          "filters": [
-            {
-              "not": false,
-              "property": "plugin",
-              "values": [
-                "signalfx-metadata"
-              ]
-            }
-          ],
+          "filters": [],
           "metric": "cpu.utilization"
         }
       ],
