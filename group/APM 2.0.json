@@ -5,6 +5,220 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
+        "description": "99th percentile response time",
+        "id": "EO6P-FOAIAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Request Latency (p99)",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "p99 latency",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Nanosecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('spans.duration.ns.p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).max(by=['sf_environment', 'sf_service']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Most active service endpoints (1-minute requests/sec average)",
+        "id": "EO6QKyuAEAU",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top endpoints by request rate",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_environment"
+              },
+              {
+                "enabled": true,
+                "property": "sf_operation"
+              },
+              {
+                "enabled": false,
+                "property": "sf_service"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Requests/sec",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "requests/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')), rollup='rate').sum(by=['sf_environment', 'sf_service', 'sf_operation']).mean(over='1m').publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Most erroneous service endpoints (1-minute error rate average)",
+        "id": "EO6QOxtAAAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Top endpoints by error rate",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_environment"
+              },
+              {
+                "enabled": true,
+                "property": "sf_operation"
+              },
+              {
+                "enabled": false,
+                "property": "sf_service"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Successful requests",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "All requests",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Error rate",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_error', 'false')).sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A', enable=False)\nB = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='B', enable=False)\nC = (100*(B-A)/B).mean(over='1m').publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
         "description": "Requests/sec processed by each endpoint of the service",
         "id": "EO6P13kAEAA",
         "lastUpdated": 0,
@@ -81,6 +295,111 @@
         },
         "packageSpecifications": "",
         "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')), rollup='rate').sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Distribution of service response time with median (p50), 90th and 99th percentiles",
+        "id": "EO6OSB7AEAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Request Latency distribution",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Median latency",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Nanosecond",
+              "yAxis": 0
+            },
+            {
+              "displayName": "p90 latency",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Nanosecond",
+              "yAxis": 0
+            },
+            {
+              "displayName": "p99 latency",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Nanosecond",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('spans.duration.ns.median', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).max(by=['sf_environment', 'sf_service']).publish(label='A')\nB = data('spans.duration.ns.p90', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).max(by=['sf_environment', 'sf_service']).publish(label='B')\nC = data('spans.duration.ns.p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).max(by=['sf_environment', 'sf_service']).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -195,38 +514,15 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Most erroneous service endpoints (1-minute error rate average)",
-        "id": "EO6QOxtAAAA",
+        "description": "99th percentile response time",
+        "id": "EO64rWYAEAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Top endpoints by error rate",
+        "name": "Request Latency (p99)",
         "options": {
           "colorBy": "Dimension",
+          "colorScale": null,
           "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_environment"
-              },
-              {
-                "enabled": true,
-                "property": "sf_operation"
-              },
-              {
-                "enabled": false,
-                "property": "sf_service"
-              }
-            ]
-          },
           "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
@@ -236,48 +532,114 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "Successful requests",
+              "displayName": "p99 latency",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "All requests",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Error rate",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "%",
-              "valueUnit": null,
+              "valueUnit": "Nanosecond",
               "yAxis": 0
             }
           ],
           "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
           "time": {
             "range": 900000,
             "type": "relative"
           },
-          "type": "List",
+          "timestampHidden": false,
+          "type": "SingleValue",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_error', 'false')).sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A', enable=False)\nB = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='B', enable=False)\nC = (100*(B-A)/B).mean(over='1m').publish(label='C')",
+        "programText": "A = data('spans.duration.ns.p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_operation', '*')).max(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Requests/sec processed by the endpoint",
+        "id": "EO645_0AEAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Request rate",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Requests/sec",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "requests/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_operation', '*'), rollup='rate').sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -392,105 +754,6 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Error rate on requests made to the service",
-        "id": "EO6O6d9AEAE",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Error rate",
-        "options": {
-          "colorBy": "Scale",
-          "colorScale": null,
-          "colorScale2": [
-            {
-              "gt": 5,
-              "gte": null,
-              "lt": null,
-              "lte": null,
-              "paletteIndex": 16
-            },
-            {
-              "gt": 1,
-              "gte": null,
-              "lt": null,
-              "lte": 5,
-              "paletteIndex": 17
-            },
-            {
-              "gt": 0,
-              "gte": null,
-              "lt": null,
-              "lte": 1,
-              "paletteIndex": 18
-            },
-            {
-              "gt": null,
-              "gte": null,
-              "lt": null,
-              "lte": 0,
-              "paletteIndex": 20
-            }
-          ],
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Successful requests",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "All requests",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Error rate",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "%",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_error', 'false')).sum(by=['sf_environment', 'sf_service']).publish(label='A', enable=False)\nB = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).sum(by=['sf_environment', 'sf_service']).publish(label='B', enable=False)\nC = (100*(B-A)/B).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
         "description": "99th percentile response time by endpoint of the service",
         "id": "EO6R-tZAAAA",
         "lastUpdated": 0,
@@ -567,246 +830,6 @@
         },
         "packageSpecifications": "",
         "programText": "C = data('spans.duration.ns.p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).max(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Requests/sec processed by the endpoint",
-        "id": "EO645_0AEAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Request rate",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Requests/sec",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "requests/s",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_operation', '*'), rollup='rate').sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "99th percentile response time",
-        "id": "EO6P-FOAIAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Request Latency (p99)",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "p99 latency",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Nanosecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('spans.duration.ns.p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).max(by=['sf_environment', 'sf_service']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Distribution of service response time with median (p50), 90th and 99th percentiles",
-        "id": "EO6OSB7AEAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Request Latency distribution",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Median latency",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Nanosecond",
-              "yAxis": 0
-            },
-            {
-              "displayName": "p90 latency",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Nanosecond",
-              "yAxis": 0
-            },
-            {
-              "displayName": "p99 latency",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Nanosecond",
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('spans.duration.ns.median', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).max(by=['sf_environment', 'sf_service']).publish(label='A')\nB = data('spans.duration.ns.p90', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).max(by=['sf_environment', 'sf_service']).publish(label='B')\nC = data('spans.duration.ns.p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).max(by=['sf_environment', 'sf_service']).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1000,6 +1023,260 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
+        "description": "Error rate on requests made to endpoints of the service",
+        "id": "EO6R_QNAIAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Error rate by endpoint",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "%",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Successful requests",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "All requests",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Error rate",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_error', 'false')).sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A', enable=False)\nB = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='B', enable=False)\nC = (100*(B-A)/B).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Requests/sec processed by the endpoint",
+        "id": "EO61Y7aAAAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Request rate",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Requests/sec",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "requests/s",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_operation', '*'), rollup='rate').sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Error rate on requests made to the service",
+        "id": "EO6O6d9AEAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Error rate",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 5,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 16
+            },
+            {
+              "gt": 1,
+              "gte": null,
+              "lt": null,
+              "lte": 5,
+              "paletteIndex": 17
+            },
+            {
+              "gt": 0,
+              "gte": null,
+              "lt": null,
+              "lte": 1,
+              "paletteIndex": 18
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 0,
+              "paletteIndex": 20
+            }
+          ],
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Successful requests",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "All requests",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            },
+            {
+              "displayName": "Error rate",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_error', 'false')).sum(by=['sf_environment', 'sf_service']).publish(label='A', enable=False)\nB = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).sum(by=['sf_environment', 'sf_service']).publish(label='B', enable=False)\nC = (100*(B-A)/B).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
         "description": "Requests/sec processed by the service",
         "id": "EO1jhKHAIAA",
         "lastUpdated": 0,
@@ -1146,283 +1423,6 @@
         },
         "packageSpecifications": "",
         "programText": "A = data('spans.duration.ns.median', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_operation', '*')).max(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A')\nB = data('spans.duration.ns.p90', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_operation', '*')).max(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='B')\nC = data('spans.duration.ns.p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_operation', '*')).max(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Error rate on requests made to endpoints of the service",
-        "id": "EO6R_QNAIAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Error rate by endpoint",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "%",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": null,
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Successful requests",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "All requests",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            },
-            {
-              "displayName": "Error rate",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "%",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": true,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_error', 'false')).sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A', enable=False)\nB = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*'))).sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='B', enable=False)\nC = (100*(B-A)/B).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "99th percentile response time",
-        "id": "EO64rWYAEAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Request Latency (p99)",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "p99 latency",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Nanosecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('spans.duration.ns.p99', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_operation', '*')).max(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Requests/sec processed by the endpoint",
-        "id": "EO61Y7aAAAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Request rate",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Requests/sec",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "requests/s",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')) and filter('sf_operation', '*'), rollup='rate').sum(by=['sf_environment', 'sf_service', 'sf_operation']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Most active service endpoints (1-minute requests/sec average)",
-        "id": "EO6QKyuAEAU",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Top endpoints by request rate",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_environment"
-              },
-              {
-                "enabled": true,
-                "property": "sf_operation"
-              },
-              {
-                "enabled": false,
-                "property": "sf_service"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Requests/sec",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "requests/s",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('spans.count', filter=filter('sf_environment', '*') and filter('sf_service', '*') and filter('sf_kind', 'SERVER') and (not filter('sf_dimensionalized', '*')) and (not filter('sf_serviceMesh', '*')), rollup='rate').sum(by=['sf_environment', 'sf_service', 'sf_operation']).mean(over='1m').publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1721,13 +1721,25 @@
       "description": "µAPM 2.0 Service and Endpoint SLI dashboards",
       "email": null,
       "id": "EOgOVQdAIDM",
+      "importQualifiers": [
+        {
+          "filters": [
+            {
+              "not": false,
+              "property": "sf_environment",
+              "values": []
+            }
+          ],
+          "metric": "spans.count"
+        }
+      ],
       "lastUpdated": 0,
       "lastUpdatedBy": null,
       "name": "µAPM 2.0",
       "teams": null
     }
   },
-  "hashCode": 437085096,
+  "hashCode": -334171975,
   "id": "EOgOVQdAIDM",
   "modelVersion": 1,
   "packageType": "GROUP"
