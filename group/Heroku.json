@@ -5,16 +5,53 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Amount of time in milliseconds spent establishing a connection to the backend web process. Applicable only to web Dynos",
-        "id": "EP9Op0DAgAA",
+        "description": "Mean total memory represents the portion of memory which users can optimize and is shown as the sum of rss and swap averaged across all Dynos in the app",
+        "id": "EP9OrlBAcAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Average connect time in milliseconds across all web Dynos",
+        "name": "Total Memory used % by Process Type of Dynos",
         "options": {
-          "colorBy": "Metric",
+          "colorBy": "Scale",
+          "colorRange": null,
           "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 3,
+          "colorScale2": [
+            {
+              "gt": 80,
+              "gte": null,
+              "lt": null,
+              "lte": null,
+              "paletteIndex": 16
+            },
+            {
+              "gt": 60,
+              "gte": null,
+              "lt": null,
+              "lte": 80,
+              "paletteIndex": 17
+            },
+            {
+              "gt": 40,
+              "gte": null,
+              "lt": null,
+              "lte": 60,
+              "paletteIndex": 18
+            },
+            {
+              "gt": 20,
+              "gte": null,
+              "lt": null,
+              "lte": 40,
+              "paletteIndex": 19
+            },
+            {
+              "gt": null,
+              "gte": null,
+              "lt": null,
+              "lte": 20,
+              "paletteIndex": 20
+            }
+          ],
+          "groupBy": [],
           "programOptions": {
             "disableSampling": false,
             "maxDelay": 0,
@@ -23,29 +60,40 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "average 1m load average for process type",
+              "displayName": "heroku.memory_quota - Sum by app_name,process_type",
               "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
+              "valueUnit": "Byte"
+            },
+            {
+              "displayName": "heroku.memory_total - Sum by app_name,process_type",
+              "label": "B",
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte"
+            },
+            {
+              "displayName": "B/A * 100",
+              "label": "C",
+              "valuePrefix": "",
+              "valueSuffix": "%",
+              "valueUnit": null
             }
           ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
+          "refreshInterval": null,
+          "sortDirection": "Ascending",
+          "sortProperty": "value",
           "time": {
             "range": 900000,
             "type": "relative"
           },
           "timestampHidden": false,
-          "type": "SingleValue",
+          "type": "Heatmap",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('heroku.router_request_connect_time_millis', filter=filter('dyno', 'web*')).mean(by=['app_name']).publish(label='A')",
+        "programText": "A = data('heroku.memory_quota').sum(by=['app_name', 'process_type']).publish(label='A', enable=False)\nB = data('heroku.memory_total').sum(by=['app_name', 'process_type']).publish(label='B', enable=False)\nC = (B/A*100).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -153,814 +201,6 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Amount of time in milliseconds spent proxying data between the backend web process and the client. This metric is applicable only to web Dynos",
-        "id": "EP9OtSQAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Average service time in milliseconds across all web Dynos",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 3,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "average 1m load average for process type",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.router_request_service_time_millis', filter=filter('dyno', 'web*')).mean(by=['app_name']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "The maximum amount of RAM available to your selected dyno type, above which an R14 memory error would be triggered",
-        "id": "EP9Oo6vAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Memory Quota of Dyno",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 3,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "heroku.memory_quota - Sum by app_name,dyno",
-              "label": "A",
-              "paletteIndex": 1,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_quota').sum(by=['app_name', 'dyno']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "EP9OvbqAgD0",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total number of Dynos",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "heroku.memory_quota - Sum by dyno_id - Count",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_quota').sum(by=['dyno_id']).count().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Average 1m Load Average of Dyno",
-        "id": "EP9OoG5AcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Average 1m Load Average",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "app_name"
-              },
-              {
-                "enabled": true,
-                "property": "dyno"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "process_type",
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "1m load average",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.load_avg_1m').mean(by=['app_name', 'dyno']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Mean total memory represents the portion of memory which users can optimize and is shown as the sum of rss and swap averaged across all web Dynos in the app",
-        "id": "EP9OT0vAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total Memory used percent across all Web Dynos",
-        "options": {
-          "colorBy": "Scale",
-          "colorScale": null,
-          "colorScale2": [
-            {
-              "gt": 80,
-              "gte": null,
-              "lt": null,
-              "lte": 100,
-              "paletteIndex": 16
-            },
-            {
-              "gt": 60,
-              "gte": null,
-              "lt": null,
-              "lte": 80,
-              "paletteIndex": 17
-            },
-            {
-              "gt": 40,
-              "gte": null,
-              "lt": null,
-              "lte": 60,
-              "paletteIndex": 18
-            },
-            {
-              "gt": 20,
-              "gte": null,
-              "lt": null,
-              "lte": 40,
-              "paletteIndex": 19
-            },
-            {
-              "gt": null,
-              "gte": 0,
-              "lt": null,
-              "lte": 20,
-              "paletteIndex": 20
-            }
-          ],
-          "maximumPrecision": 3,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "heroku.memory_quota - Sum by app_name,process_type",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            },
-            {
-              "displayName": "heroku.memory_total - Sum by app_name,process_type",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            },
-            {
-              "displayName": "B/A * 100",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "%",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "Linear",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_quota', filter=filter('process_type', 'web')).sum(by=['app_name', 'process_type']).publish(label='A', enable=False)\nB = data('heroku.memory_total', filter=filter('process_type', 'web')).sum(by=['app_name', 'process_type']).publish(label='B', enable=False)\nC = (B/A*100).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Average 15m Load Average of Dyno",
-        "id": "EP9OpfUAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Average 15m Load Average",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "app_name"
-              },
-              {
-                "enabled": true,
-                "property": "dyno"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "process_type",
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "15m load average",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.load_avg_15m').mean(by=['app_name', 'dyno']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Show the total number of Dynos per process type",
-        "id": "EP9OTb1AgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total number of Dynos per Process type Trend",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "process_type"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "process_type",
-            "showLegend": true
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "total memory by process type",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": true,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_total', filter=filter('process_type', 'web')).count(by=['process_type']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Average amount of time in milliseconds spent proxying data between the backend web process and the client across all web Dynos",
-        "id": "EP9OUGkAcAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Average Service time of Heroku app",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 2,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "heroku.router_request_service_time_millis - Mean by app_name",
-              "label": "A",
-              "paletteIndex": 7,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Millisecond",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "Sparkline",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.router_request_service_time_millis').mean(by=['app_name']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of log drain requests processed per second",
-        "id": "EP9OlypAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Number of Log Drain Requests per Second",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 2,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "sfx_heroku.total_drain_requests - Sum by source",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('sfx_heroku.total_drain_requests').sum(by=['source']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Cache memory of Dyno",
-        "id": "EP9OpluAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Dyno Cache Memory",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "Cache Memory used by Dyno",
-              "label": "A",
-              "paletteIndex": 2,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_cache').sum(by=['app_name', 'dyno']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of distinct process types across all Dynos",
-        "id": "EP9OuYaAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Number of Process Types",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "total memory by process type",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "process type(s)",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_total').sum(by=['process_type']).count().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Total number of bytes transferred from the backend web process to the client",
-        "id": "EP9OUSYAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total bytes handled by Web Dynos",
-        "options": {
-          "colorBy": "Metric",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": 2,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "heroku.router_response_bytes - Sum by app_name",
-              "label": "A",
-              "paletteIndex": 7,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.router_response_bytes').sum(by=['app_name']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
         "description": "An overview number of metrics collected by SignalFx Heroku Collector by metric type",
         "id": "EP9OlzkAgAE",
         "lastUpdated": 0,
@@ -1029,103 +269,109 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Mean total memory represents the portion of memory which users can optimize and is shown as the sum of rss and swap",
-        "id": "EP9OoVsAYAA",
+        "description": "Sudden high variations on this number can indicate short duration spikes in swap usage. The other memory related metrics are point in time snapshots and can miss short spikes",
+        "id": "EP9OpjoAcAE",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Total Memory used percent",
+        "name": "Pages Read from Disk vs Pages Written to Disk per min",
         "options": {
-          "colorBy": "Scale",
-          "colorScale": null,
-          "colorScale2": [
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
             {
-              "gt": 80,
-              "gte": null,
-              "lt": null,
-              "lte": 100,
-              "paletteIndex": 16
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
             },
             {
-              "gt": 60,
-              "gte": null,
-              "lt": null,
-              "lte": 80,
-              "paletteIndex": 17
-            },
-            {
-              "gt": 40,
-              "gte": null,
-              "lt": null,
-              "lte": 60,
-              "paletteIndex": 18
-            },
-            {
-              "gt": 20,
-              "gte": null,
-              "lt": null,
-              "lte": 40,
-              "paletteIndex": 19
-            },
-            {
-              "gt": null,
-              "gte": 0,
-              "lt": null,
-              "lte": 20,
-              "paletteIndex": 20
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
             }
           ],
-          "maximumPrecision": 3,
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "app_name"
+              },
+              {
+                "enabled": true,
+                "property": "dyno"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": null,
+            "showLegend": false
+          },
           "programOptions": {
             "disableSampling": false,
             "maxDelay": 0,
-            "minimumResolution": 0,
+            "minimumResolution": null,
             "timezone": null
           },
           "publishLabelOptions": [
             {
-              "displayName": "heroku.memory_quota - Sum by app_name,dyno",
+              "displayName": "Pages Read from Disk",
               "label": "A",
-              "paletteIndex": null,
+              "paletteIndex": 2,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            },
-            {
-              "displayName": "heroku.memory_total - Sum by app_name,dyno",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            },
-            {
-              "displayName": "B/A*100",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "%",
+              "valueSuffix": " pages",
               "valueUnit": null,
               "yAxis": 0
+            },
+            {
+              "displayName": "Pages Written to Disk",
+              "label": "B",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": " pages",
+              "valueUnit": null,
+              "yAxis": 1
             }
           ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "Radial",
-          "showSparkLine": false,
+          "showEventLines": false,
+          "stacked": false,
           "time": {
             "range": 900000,
             "type": "relative"
           },
-          "timestampHidden": false,
-          "type": "SingleValue",
+          "type": "TimeSeriesChart",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_quota').sum(by=['app_name', 'dyno']).publish(label='A', enable=False)\nB = data('heroku.memory_total').sum(by=['app_name', 'dyno']).publish(label='B', enable=False)\nC = (B/A*100).publish(label='C')",
+        "programText": "A = data('heroku.memory_pgpgin').sum(by=['app_name', 'dyno']).rateofchange().scale(60).publish(label='A')\nB = data('heroku.memory_pgpgout').sum(by=['app_name', 'dyno']).rateofchange().scale(60).publish(label='B')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1135,11 +381,11 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Average 15m Load Average across Dynos of a Process Type",
-        "id": "EP9Op31AcAE",
+        "description": "Total number of log drain requests processed per second",
+        "id": "EP9Ok9pAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Average 15m Load Average per Process Type",
+        "name": "Log Drain Requests per Second Trend",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -1173,13 +419,26 @@
           },
           "includeZero": false,
           "legendOptions": {
-            "fields": null
+            "fields": [
+              {
+                "enabled": true,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "source"
+              }
+            ]
           },
           "lineChartOptions": {
             "showDataMarkers": false
           },
           "onChartLegendOptions": {
-            "dimensionInLegend": "process_type",
+            "dimensionInLegend": "source",
             "showLegend": true
           },
           "programOptions": {
@@ -1190,7 +449,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "average 15m load average for process type",
+              "displayName": "log drain requests",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -1210,107 +469,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('heroku.load_avg_15m').mean(by=['app_name', 'process_type']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Mean total memory represents the portion of memory which users can optimize and is shown as the sum of rss and swap averaged across all Dynos in the app",
-        "id": "EP9OqDjAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total Memory used % by Process Type of Dynos",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "process_type"
-              },
-              {
-                "enabled": false,
-                "property": "app_name"
-              },
-              {
-                "enabled": false,
-                "property": "dyno"
-              },
-              {
-                "enabled": false,
-                "property": "source"
-              },
-              {
-                "enabled": false,
-                "property": "dyno_id"
-              }
-            ]
-          },
-          "maximumPrecision": 3,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "heroku.memory_quota - Sum by app_name,process_type",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            },
-            {
-              "displayName": "heroku.memory_total - Sum by app_name,process_type",
-              "label": "B",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            },
-            {
-              "displayName": "B/A * 100",
-              "label": "C",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": "%",
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": 60000,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_quota').sum(by=['app_name', 'process_type']).publish(label='A', enable=False)\nB = data('heroku.memory_total').sum(by=['app_name', 'process_type']).publish(label='B', enable=False)\nC = (B/A * 100).publish(label='C')",
+        "programText": "A = data('sfx_heroku.total_drain_requests').sum(by=['source']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1422,11 +581,61 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "RSS memory and Swap memory used are shown separately",
-        "id": "EP9OpCIAcAA",
+        "description": "The maximum amount of RAM available to your selected dyno type, above which an R14 memory error would be triggered",
+        "id": "EP9Oo6vAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Total Memory Used",
+        "name": "Memory Quota of Dyno",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "heroku.memory_quota - Sum by app_name,dyno",
+              "label": "A",
+              "paletteIndex": 1,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.memory_quota').sum(by=['app_name', 'dyno']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Average 5m Load Average of Dyno",
+        "id": "EP9OpP9AYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Average 5m Load Average",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -1453,7 +662,7 @@
           ],
           "axisPrecision": null,
           "colorBy": "Metric",
-          "defaultPlotType": "AreaChart",
+          "defaultPlotType": "LineChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
@@ -1471,15 +680,11 @@
               },
               {
                 "enabled": false,
-                "property": "dyno_id"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
+                "property": "sf_originatingMetric"
               },
               {
                 "enabled": false,
-                "property": "sf_originatingMetric"
+                "property": "sf_metric"
               }
             ]
           },
@@ -1487,8 +692,8 @@
             "showDataMarkers": false
           },
           "onChartLegendOptions": {
-            "dimensionInLegend": "sf_originatingMetric",
-            "showLegend": true
+            "dimensionInLegend": "process_type",
+            "showLegend": false
           },
           "programOptions": {
             "disableSampling": false,
@@ -1498,28 +703,18 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "RSS Memory used by Dyno",
+              "displayName": "5m load average",
               "label": "A",
-              "paletteIndex": 4,
+              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": "Byte",
-              "yAxis": 0
-            },
-            {
-              "displayName": "Swap Memory used by Dyno",
-              "label": "B",
-              "paletteIndex": 13,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte",
+              "valueUnit": null,
               "yAxis": 0
             }
           ],
           "showEventLines": false,
-          "stacked": true,
+          "stacked": false,
           "time": {
             "range": 900000,
             "type": "relative"
@@ -1528,7 +723,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_rss').sum(by=['app_name', 'dyno']).publish(label='A')\nB = data('heroku.memory_swap').sum(by=['app_name', 'dyno']).publish(label='B')",
+        "programText": "A = data('heroku.load_avg_5m').mean(by=['app_name', 'dyno']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1538,11 +733,111 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Total number of bytes transferred from the backend web process to the client by HTTP return status",
-        "id": "EP9OTcSAcAA",
+        "description": "Mean total memory represents the portion of memory which users can optimize and is shown as the sum of rss and swap averaged across all Dynos in the app",
+        "id": "EP9OqDjAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Total number of bytes by HTTP status",
+        "name": "Total Memory used % by Process Type of Dynos",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "process_type"
+              },
+              {
+                "enabled": false,
+                "property": "app_name"
+              },
+              {
+                "enabled": false,
+                "property": "dyno"
+              },
+              {
+                "enabled": false,
+                "property": "source"
+              },
+              {
+                "enabled": false,
+                "property": "dyno_id"
+              }
+            ]
+          },
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "heroku.memory_quota - Sum by app_name,process_type",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            },
+            {
+              "displayName": "heroku.memory_total - Sum by app_name,process_type",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            },
+            {
+              "displayName": "B/A * 100",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.memory_quota').sum(by=['app_name', 'process_type']).publish(label='A', enable=False)\nB = data('heroku.memory_total').sum(by=['app_name', 'process_type']).publish(label='B', enable=False)\nC = (B/A * 100).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Average 5m Load Average across Dynos of a Process Type",
+        "id": "EP9OvDTAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Average 5m Load Average per Process Type",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -1569,37 +864,20 @@
           ],
           "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "AreaChart",
+          "defaultPlotType": "LineChart",
           "eventPublishLabelOptions": [],
           "histogramChartOptions": {
             "colorThemeIndex": 16
           },
-          "includeZero": true,
+          "includeZero": false,
           "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "app_name"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "status"
-              }
-            ]
+            "fields": null
           },
           "lineChartOptions": {
             "showDataMarkers": false
           },
           "onChartLegendOptions": {
-            "dimensionInLegend": "status",
+            "dimensionInLegend": "process_type",
             "showLegend": true
           },
           "programOptions": {
@@ -1610,13 +888,13 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "heroku.router_response_bytes - Mean by app_name,status",
+              "displayName": "average 5m load average for process type",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
-              "valueUnit": "Byte",
+              "valueUnit": null,
               "yAxis": 0
             }
           ],
@@ -1630,7 +908,442 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('heroku.router_response_bytes').mean(by=['app_name', 'status']).publish(label='A')",
+        "programText": "A = data('heroku.load_avg_5m').mean(by=['app_name', 'process_type']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Average 1m Load Average across Dynos of a Process Type",
+        "id": "EP9OuT9AYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Average 1m Load Average per Process Type",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": null
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "process_type",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "average 1m load average for process type",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.load_avg_1m').mean(by=['app_name', 'process_type']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Average 15m Load Average of Dyno",
+        "id": "EP9OpfUAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Average 15m Load Average",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "LineChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "app_name"
+              },
+              {
+                "enabled": true,
+                "property": "dyno"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "process_type",
+            "showLegend": false
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "15m load average",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.load_avg_15m').mean(by=['app_name', 'dyno']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Cache memory of Dyno",
+        "id": "EP9OpluAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Dyno Cache Memory",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "Cache Memory used by Dyno",
+              "label": "A",
+              "paletteIndex": 2,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.memory_cache').sum(by=['app_name', 'dyno']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Show the total number of Dynos per process type",
+        "id": "EP9OTb1AgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total number of Dynos per Process type Trend",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "process_type"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "process_type",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "total memory by process type",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.memory_total', filter=filter('process_type', 'web')).count(by=['process_type']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "EP9OvbqAgD0",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total number of Dynos",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "heroku.memory_quota - Sum by dyno_id - Count",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.memory_quota').sum(by=['dyno_id']).count().publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "",
+        "id": "EP9OTc1AYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of Web Dynos",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "heroku.memory_quota - Sum by source,dyno_id - Count",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.memory_quota', filter=filter('process_type', 'web')).sum(by=['source', 'dyno_id']).count().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1758,11 +1471,11 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Average time to connection to the backend web process across all web Dynos",
-        "id": "EP9OT7TAgAA",
+        "description": "Total number of bytes transferred from the backend web process to the client",
+        "id": "EP9OUSYAYAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Average Connection time of Heroku app",
+        "name": "Total bytes handled by Web Dynos",
         "options": {
           "colorBy": "Metric",
           "colorScale": null,
@@ -1776,9 +1489,487 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "heroku.router_request_connect_time_millis - Mean by app_name",
+              "displayName": "heroku.router_response_bytes - Sum by app_name",
               "label": "A",
-              "paletteIndex": 2,
+              "paletteIndex": 7,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.router_response_bytes').sum(by=['app_name']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "An overview number of metrics collected by SignalFx Heroku Collector",
+        "id": "EP9Oki4AYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of metrics",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "source"
+              },
+              {
+                "enabled": true,
+                "property": "type"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "sfx_heroku.tracked_metrics - Sum by source",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": null,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('sfx_heroku.tracked_metrics').sum(by=['source']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Trend of number of metrics by type over the last hour",
+        "id": "EP9OltiAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of metrics 1h Trend",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "ColumnChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "source"
+              },
+              {
+                "enabled": true,
+                "property": "type"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "type",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "number of metrics",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 3600000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('sfx_heroku.tracked_metrics').sum(by=['type']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Amount of time in milliseconds spent proxying data between the backend web process and the client. This metric is applicable only to web Dynos",
+        "id": "EP9OtSQAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Average service time in milliseconds across all web Dynos",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "average 1m load average for process type",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.router_request_service_time_millis', filter=filter('dyno', 'web*')).mean(by=['app_name']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Mean total memory represents the portion of memory which users can optimize and is shown as the sum of rss and swap",
+        "id": "EP9OoVsAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Memory used percent",
+        "options": {
+          "colorBy": "Scale",
+          "colorScale": null,
+          "colorScale2": [
+            {
+              "gt": 80,
+              "gte": null,
+              "lt": null,
+              "lte": 100,
+              "paletteIndex": 16
+            },
+            {
+              "gt": 60,
+              "gte": null,
+              "lt": null,
+              "lte": 80,
+              "paletteIndex": 17
+            },
+            {
+              "gt": 40,
+              "gte": null,
+              "lt": null,
+              "lte": 60,
+              "paletteIndex": 18
+            },
+            {
+              "gt": 20,
+              "gte": null,
+              "lt": null,
+              "lte": 40,
+              "paletteIndex": 19
+            },
+            {
+              "gt": null,
+              "gte": 0,
+              "lt": null,
+              "lte": 20,
+              "paletteIndex": 20
+            }
+          ],
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "heroku.memory_quota - Sum by app_name,dyno",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            },
+            {
+              "displayName": "heroku.memory_total - Sum by app_name,dyno",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            },
+            {
+              "displayName": "B/A*100",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "Radial",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.memory_quota').sum(by=['app_name', 'dyno']).publish(label='A', enable=False)\nB = data('heroku.memory_total').sum(by=['app_name', 'dyno']).publish(label='B', enable=False)\nC = (B/A*100).publish(label='C')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Total number of bytes transferred from the backend web process to the client by HTTP return status",
+        "id": "EP9OTcSAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total number of bytes by HTTP status",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Dimension",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": true,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "app_name"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": true,
+                "property": "status"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "status",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "heroku.router_response_bytes - Mean by app_name,status",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.router_response_bytes').mean(by=['app_name', 'status']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Average amount of time in milliseconds spent proxying data between the backend web process and the client across all web Dynos",
+        "id": "EP9OUGkAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Average Service time of Heroku app",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 2,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "heroku.router_request_service_time_millis - Mean by app_name",
+              "label": "A",
+              "paletteIndex": 7,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
@@ -1798,7 +1989,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('heroku.router_request_connect_time_millis').mean(by=['app_name']).publish(label='A')",
+        "programText": "A = data('heroku.router_request_service_time_millis').mean(by=['app_name']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -1808,11 +1999,61 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Total number of log drain requests processed per second",
-        "id": "EP9Ok9pAgAA",
+        "description": "Amount of time in milliseconds spent establishing a connection to the backend web process. Applicable only to web Dynos",
+        "id": "EP9Op0DAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Log Drain Requests per Second Trend",
+        "name": "Average connect time in milliseconds across all web Dynos",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 3,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "average 1m load average for process type",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.router_request_connect_time_millis', filter=filter('dyno', 'web*')).mean(by=['app_name']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Average 15m Load Average across Dynos of a Process Type",
+        "id": "EP9Op31AcAE",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Average 15m Load Average per Process Type",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -1846,26 +2087,13 @@
           },
           "includeZero": false,
           "legendOptions": {
-            "fields": [
-              {
-                "enabled": true,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": true,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "source"
-              }
-            ]
+            "fields": null
           },
           "lineChartOptions": {
             "showDataMarkers": false
           },
           "onChartLegendOptions": {
-            "dimensionInLegend": "source",
+            "dimensionInLegend": "process_type",
             "showLegend": true
           },
           "programOptions": {
@@ -1876,7 +2104,7 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "log drain requests",
+              "displayName": "average 15m load average for process type",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
@@ -1896,7 +2124,87 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('sfx_heroku.total_drain_requests').sum(by=['source']).publish(label='A')",
+        "programText": "A = data('heroku.load_avg_15m').mean(by=['app_name', 'process_type']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Mean total memory represents the portion of memory which users can optimize and is shown as the sum of rss and swap",
+        "id": "EP9OtNgAgAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Memory Usage by Dyno",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale2": null,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "process_type"
+              },
+              {
+                "enabled": false,
+                "property": "app_name"
+              },
+              {
+                "enabled": true,
+                "property": "dyno"
+              },
+              {
+                "enabled": false,
+                "property": "source"
+              },
+              {
+                "enabled": false,
+                "property": "dyno_id"
+              }
+            ]
+          },
+          "maximumPrecision": null,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "heroku.memory_total - Sum by dyno,app_name",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "Sparkline",
+          "sortBy": "-value",
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "List",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.memory_total').sum(by=['dyno', 'app_name']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2008,226 +2316,6 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "An overview number of metrics collected by SignalFx Heroku Collector",
-        "id": "EP9Oki4AYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Number of metrics",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "source"
-              },
-              {
-                "enabled": true,
-                "property": "type"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "sfx_heroku.tracked_metrics - Sum by source",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "List",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('sfx_heroku.tracked_metrics').sum(by=['source']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "",
-        "id": "EP9OTc1AYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Number of Web Dynos",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale": null,
-          "colorScale2": null,
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "heroku.memory_quota - Sum by source,dyno_id - Count",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "refreshInterval": null,
-          "secondaryVisualization": "None",
-          "showSparkLine": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "SingleValue",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_quota', filter=filter('process_type', 'web')).sum(by=['source', 'dyno_id']).count().publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Average 5m Load Average of Dyno",
-        "id": "EP9OpP9AYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Average 5m Load Average",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Metric",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "app_name"
-              },
-              {
-                "enabled": true,
-                "property": "dyno"
-              },
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "process_type",
-            "showLegend": false
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "5m load average",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.load_avg_5m').mean(by=['app_name', 'dyno']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
         "description": "Show the total number of Dynos per process type",
         "id": "EP9OuuEAcQ0",
         "lastUpdated": 0,
@@ -2292,21 +2380,236 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Mean total memory represents the portion of memory which users can optimize and is shown as the sum of rss and swap averaged across all Dynos in the app",
-        "id": "EP9OrlBAcAA",
+        "description": "Average time to connection to the backend web process across all web Dynos",
+        "id": "EP9OT7TAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Total Memory used % by Process Type of Dynos",
+        "name": "Average Connection time of Heroku app",
+        "options": {
+          "colorBy": "Metric",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 2,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "heroku.router_request_connect_time_millis - Mean by app_name",
+              "label": "A",
+              "paletteIndex": 2,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Millisecond",
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "Sparkline",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.router_request_connect_time_millis').mean(by=['app_name']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Total number of log drain requests processed per second",
+        "id": "EP9OlypAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Number of Log Drain Requests per Second",
+        "options": {
+          "colorBy": "Dimension",
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": 2,
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "sfx_heroku.total_drain_requests - Sum by source",
+              "label": "A",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": null,
+              "yAxis": 0
+            }
+          ],
+          "refreshInterval": 60000,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "timestampHidden": false,
+          "type": "SingleValue",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('sfx_heroku.total_drain_requests').sum(by=['source']).publish(label='A')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "RSS memory and Swap memory used are shown separately",
+        "id": "EP9OpCIAcAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Memory Used",
+        "options": {
+          "areaChartOptions": {
+            "showDataMarkers": false
+          },
+          "axes": [
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            },
+            {
+              "highWatermark": null,
+              "highWatermarkLabel": null,
+              "label": "",
+              "lowWatermark": null,
+              "lowWatermarkLabel": null,
+              "max": null,
+              "min": null
+            }
+          ],
+          "axisPrecision": null,
+          "colorBy": "Metric",
+          "defaultPlotType": "AreaChart",
+          "eventPublishLabelOptions": [],
+          "histogramChartOptions": {
+            "colorThemeIndex": 16
+          },
+          "includeZero": false,
+          "legendOptions": {
+            "fields": [
+              {
+                "enabled": false,
+                "property": "app_name"
+              },
+              {
+                "enabled": true,
+                "property": "dyno"
+              },
+              {
+                "enabled": false,
+                "property": "dyno_id"
+              },
+              {
+                "enabled": true,
+                "property": "sf_metric"
+              },
+              {
+                "enabled": false,
+                "property": "sf_originatingMetric"
+              }
+            ]
+          },
+          "lineChartOptions": {
+            "showDataMarkers": false
+          },
+          "onChartLegendOptions": {
+            "dimensionInLegend": "sf_originatingMetric",
+            "showLegend": true
+          },
+          "programOptions": {
+            "disableSampling": false,
+            "maxDelay": 0,
+            "minimumResolution": 0,
+            "timezone": null
+          },
+          "publishLabelOptions": [
+            {
+              "displayName": "RSS Memory used by Dyno",
+              "label": "A",
+              "paletteIndex": 4,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            },
+            {
+              "displayName": "Swap Memory used by Dyno",
+              "label": "B",
+              "paletteIndex": 13,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            }
+          ],
+          "showEventLines": false,
+          "stacked": true,
+          "time": {
+            "range": 900000,
+            "type": "relative"
+          },
+          "type": "TimeSeriesChart",
+          "unitPrefix": "Metric"
+        },
+        "packageSpecifications": "",
+        "programText": "A = data('heroku.memory_rss').sum(by=['app_name', 'dyno']).publish(label='A')\nB = data('heroku.memory_swap').sum(by=['app_name', 'dyno']).publish(label='B')",
+        "relatedDetectorIds": [],
+        "tags": null
+      }
+    },
+    {
+      "chart": {
+        "created": 0,
+        "creator": null,
+        "customProperties": {},
+        "description": "Mean total memory represents the portion of memory which users can optimize and is shown as the sum of rss and swap averaged across all web Dynos in the app",
+        "id": "EP9OT0vAYAA",
+        "lastUpdated": 0,
+        "lastUpdatedBy": null,
+        "name": "Total Memory used percent across all Web Dynos",
         "options": {
           "colorBy": "Scale",
-          "colorRange": null,
           "colorScale": null,
           "colorScale2": [
             {
               "gt": 80,
               "gte": null,
               "lt": null,
-              "lte": null,
+              "lte": 100,
               "paletteIndex": 16
             },
             {
@@ -2332,13 +2635,13 @@
             },
             {
               "gt": null,
-              "gte": null,
+              "gte": 0,
               "lt": null,
               "lte": 20,
               "paletteIndex": 20
             }
           ],
-          "groupBy": [],
+          "maximumPrecision": 3,
           "programOptions": {
             "disableSampling": false,
             "maxDelay": 0,
@@ -2349,118 +2652,47 @@
             {
               "displayName": "heroku.memory_quota - Sum by app_name,process_type",
               "label": "A",
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte"
-            },
-            {
-              "displayName": "heroku.memory_total - Sum by app_name,process_type",
-              "label": "B",
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": "Byte"
-            },
-            {
-              "displayName": "B/A * 100",
-              "label": "C",
-              "valuePrefix": "",
-              "valueSuffix": "%",
-              "valueUnit": null
-            }
-          ],
-          "refreshInterval": null,
-          "sortDirection": "Ascending",
-          "sortProperty": "value",
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "timestampHidden": false,
-          "type": "Heatmap",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_quota').sum(by=['app_name', 'process_type']).publish(label='A', enable=False)\nB = data('heroku.memory_total').sum(by=['app_name', 'process_type']).publish(label='B', enable=False)\nC = (B/A*100).publish(label='C')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Mean total memory represents the portion of memory which users can optimize and is shown as the sum of rss and swap",
-        "id": "EP9OtNgAgAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Total Memory Usage by Dyno",
-        "options": {
-          "colorBy": "Dimension",
-          "colorScale2": null,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": false,
-                "property": "process_type"
-              },
-              {
-                "enabled": false,
-                "property": "app_name"
-              },
-              {
-                "enabled": true,
-                "property": "dyno"
-              },
-              {
-                "enabled": false,
-                "property": "source"
-              },
-              {
-                "enabled": false,
-                "property": "dyno_id"
-              }
-            ]
-          },
-          "maximumPrecision": null,
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "heroku.memory_total - Sum by dyno,app_name",
-              "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
               "valueSuffix": null,
               "valueUnit": "Byte",
               "yAxis": 0
+            },
+            {
+              "displayName": "heroku.memory_total - Sum by app_name,process_type",
+              "label": "B",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": null,
+              "valueUnit": "Byte",
+              "yAxis": 0
+            },
+            {
+              "displayName": "B/A * 100",
+              "label": "C",
+              "paletteIndex": null,
+              "plotType": null,
+              "valuePrefix": null,
+              "valueSuffix": "%",
+              "valueUnit": null,
+              "yAxis": 0
             }
           ],
           "refreshInterval": 60000,
-          "secondaryVisualization": "Sparkline",
-          "sortBy": "-value",
+          "secondaryVisualization": "Linear",
+          "showSparkLine": false,
           "time": {
             "range": 900000,
             "type": "relative"
           },
-          "type": "List",
+          "timestampHidden": false,
+          "type": "SingleValue",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_total').sum(by=['dyno', 'app_name']).publish(label='A')",
+        "programText": "A = data('heroku.memory_quota', filter=filter('process_type', 'web')).sum(by=['app_name', 'process_type']).publish(label='A', enable=False)\nB = data('heroku.memory_total', filter=filter('process_type', 'web')).sum(by=['app_name', 'process_type']).publish(label='B', enable=False)\nC = (B/A*100).publish(label='C')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2470,181 +2702,11 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Average 1m Load Average across Dynos of a Process Type",
-        "id": "EP9OuT9AYAA",
+        "description": "Average 1m Load Average of Dyno",
+        "id": "EP9OoG5AcAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Average 1m Load Average per Process Type",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "process_type",
-            "showLegend": true
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "average 1m load average for process type",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.load_avg_1m').mean(by=['app_name', 'process_type']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Average 5m Load Average across Dynos of a Process Type",
-        "id": "EP9OvDTAYAA",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Average 5m Load Average per Process Type",
-        "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
-          "colorBy": "Dimension",
-          "defaultPlotType": "LineChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": false,
-          "legendOptions": {
-            "fields": null
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "process_type",
-            "showLegend": true
-          },
-          "programOptions": {
-            "disableSampling": false,
-            "maxDelay": 0,
-            "minimumResolution": 0,
-            "timezone": null
-          },
-          "publishLabelOptions": [
-            {
-              "displayName": "average 5m load average for process type",
-              "label": "A",
-              "paletteIndex": null,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": null,
-              "valueUnit": null,
-              "yAxis": 0
-            }
-          ],
-          "showEventLines": false,
-          "stacked": false,
-          "time": {
-            "range": 900000,
-            "type": "relative"
-          },
-          "type": "TimeSeriesChart",
-          "unitPrefix": "Metric"
-        },
-        "packageSpecifications": "",
-        "programText": "A = data('heroku.load_avg_5m').mean(by=['app_name', 'process_type']).publish(label='A')",
-        "relatedDetectorIds": [],
-        "tags": null
-      }
-    },
-    {
-      "chart": {
-        "created": 0,
-        "creator": null,
-        "customProperties": {},
-        "description": "Sudden high variations on this number can indicate short duration spikes in swap usage. The other memory related metrics are point in time snapshots and can miss short spikes",
-        "id": "EP9OpjoAcAE",
-        "lastUpdated": 0,
-        "lastUpdatedBy": null,
-        "name": "Pages Read from Disk vs Pages Written to Disk per min",
+        "name": "Average 1m Load Average",
         "options": {
           "areaChartOptions": {
             "showDataMarkers": false
@@ -2692,7 +2754,7 @@
                 "property": "sf_originatingMetric"
               },
               {
-                "enabled": true,
+                "enabled": false,
                 "property": "sf_metric"
               }
             ]
@@ -2701,35 +2763,25 @@
             "showDataMarkers": false
           },
           "onChartLegendOptions": {
-            "dimensionInLegend": null,
+            "dimensionInLegend": "process_type",
             "showLegend": false
           },
           "programOptions": {
             "disableSampling": false,
             "maxDelay": 0,
-            "minimumResolution": null,
+            "minimumResolution": 0,
             "timezone": null
           },
           "publishLabelOptions": [
             {
-              "displayName": "Pages Read from Disk",
+              "displayName": "1m load average",
               "label": "A",
-              "paletteIndex": 2,
+              "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": " pages",
+              "valueSuffix": null,
               "valueUnit": null,
               "yAxis": 0
-            },
-            {
-              "displayName": "Pages Written to Disk",
-              "label": "B",
-              "paletteIndex": 4,
-              "plotType": null,
-              "valuePrefix": null,
-              "valueSuffix": " pages",
-              "valueUnit": null,
-              "yAxis": 1
             }
           ],
           "showEventLines": false,
@@ -2742,7 +2794,7 @@
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('heroku.memory_pgpgin').sum(by=['app_name', 'dyno']).rateofchange().scale(60).publish(label='A')\nB = data('heroku.memory_pgpgout').sum(by=['app_name', 'dyno']).rateofchange().scale(60).publish(label='B')",
+        "programText": "A = data('heroku.load_avg_1m').mean(by=['app_name', 'dyno']).publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -2752,70 +2804,16 @@
         "created": 0,
         "creator": null,
         "customProperties": {},
-        "description": "Trend of number of metrics by type over the last hour",
-        "id": "EP9OltiAcAA",
+        "description": "Total number of distinct process types across all Dynos",
+        "id": "EP9OuYaAgAA",
         "lastUpdated": 0,
         "lastUpdatedBy": null,
-        "name": "Number of metrics 1h Trend",
+        "name": "Number of Process Types",
         "options": {
-          "areaChartOptions": {
-            "showDataMarkers": false
-          },
-          "axes": [
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            },
-            {
-              "highWatermark": null,
-              "highWatermarkLabel": null,
-              "label": "",
-              "lowWatermark": null,
-              "lowWatermarkLabel": null,
-              "max": null,
-              "min": null
-            }
-          ],
-          "axisPrecision": null,
           "colorBy": "Dimension",
-          "defaultPlotType": "ColumnChart",
-          "eventPublishLabelOptions": [],
-          "histogramChartOptions": {
-            "colorThemeIndex": 16
-          },
-          "includeZero": true,
-          "legendOptions": {
-            "fields": [
-              {
-                "enabled": false,
-                "property": "sf_originatingMetric"
-              },
-              {
-                "enabled": false,
-                "property": "sf_metric"
-              },
-              {
-                "enabled": true,
-                "property": "source"
-              },
-              {
-                "enabled": true,
-                "property": "type"
-              }
-            ]
-          },
-          "lineChartOptions": {
-            "showDataMarkers": false
-          },
-          "onChartLegendOptions": {
-            "dimensionInLegend": "type",
-            "showLegend": true
-          },
+          "colorScale": null,
+          "colorScale2": null,
+          "maximumPrecision": null,
           "programOptions": {
             "disableSampling": false,
             "maxDelay": 0,
@@ -2824,27 +2822,29 @@
           },
           "publishLabelOptions": [
             {
-              "displayName": "number of metrics",
+              "displayName": "total memory by process type",
               "label": "A",
               "paletteIndex": null,
               "plotType": null,
               "valuePrefix": null,
-              "valueSuffix": null,
+              "valueSuffix": "process type(s)",
               "valueUnit": null,
               "yAxis": 0
             }
           ],
-          "showEventLines": false,
-          "stacked": true,
+          "refreshInterval": null,
+          "secondaryVisualization": "None",
+          "showSparkLine": false,
           "time": {
-            "range": 3600000,
+            "range": 900000,
             "type": "relative"
           },
-          "type": "TimeSeriesChart",
+          "timestampHidden": false,
+          "type": "SingleValue",
           "unitPrefix": "Metric"
         },
         "packageSpecifications": "",
-        "programText": "A = data('sfx_heroku.tracked_metrics').sum(by=['type']).publish(label='A')",
+        "programText": "A = data('heroku.memory_total').sum(by=['process_type']).count().publish(label='A')",
         "relatedDetectorIds": [],
         "tags": null
       }
@@ -3282,8 +3282,8 @@
       "creator": null,
       "dashboards": [
         "EP9OTayAYAA",
-        "EP9On_IAgAA",
         "EP9OpymAYAE",
+        "EP9On_IAgAA",
         "EP9OkYnAcAA"
       ],
       "description": "",
@@ -3301,7 +3301,7 @@
       "teams": null
     }
   },
-  "hashCode": -1599747779,
+  "hashCode": 392731523,
   "id": "EP9OEUaAgAA",
   "modelVersion": 1,
   "packageType": "GROUP"
