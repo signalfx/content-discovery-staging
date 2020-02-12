@@ -104,7 +104,7 @@
           "job" : {
             "filters" : [ ],
             "resolution" : 300000,
-            "template" : "READ_THROTTLED_EVENTS = data(\"ReadThrottleEvents\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"TableName\", \"AWSUniqueId\"]).scale(60)",
+            "template" : "READ_THROTTLED_EVENTS = data(\"ReadThrottleEvents\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, rate=\"rollup\", extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"TableName\", \"AWSUniqueId\"]).scale(60)",
             "varName" : "READ_THROTTLED_EVENTS"
           },
           "metricSelectors" : [ "ReadThrottleEvents" ],
@@ -126,7 +126,7 @@
           "job" : {
             "filters" : [ ],
             "resolution" : 300000,
-            "template" : "WRITE_THROTTLED_EVENTS = data(\"WriteThrottleEvents\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"TableName\", \"AWSUniqueId\"]).scale(60)",
+            "template" : "WRITE_THROTTLED_EVENTS = data(\"WriteThrottleEvents\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, rate=\"rollup\", extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"TableName\", \"AWSUniqueId\"]).scale(60)",
             "varName" : "WRITE_THROTTLED_EVENTS"
           },
           "metricSelectors" : [ "WriteThrottleEvents" ],
@@ -170,7 +170,7 @@
           "job" : {
             "filters" : [ ],
             "resolution" : 300000,
-            "template" : "CONSUMED_WRITE_CAP = data(\"ConsumedWriteCapacityUnits\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"TableName\", \"AWSUniqueId\"])\nPROVISIONED_WRITE_CAP = data(\"ProvisionedWriteCapacityUnits\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"mean\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"TableName\", \"AWSUniqueId\"])\nCONSUMED_WRITE_PERCENT = (CONSUMED_WRITE_CAP / PROVISIONED_WRITE_CAP) * 100",
+            "template" : "CONSUMED_WRITE_CAP = data(\"ConsumedWriteCapacityUnits\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, rate=\"rollup\", extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"TableName\", \"AWSUniqueId\"])\nPROVISIONED_WRITE_CAP = data(\"ProvisionedWriteCapacityUnits\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"mean\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).sum(by=[\"TableName\", \"AWSUniqueId\"])\nCONSUMED_WRITE_PERCENT = (CONSUMED_WRITE_CAP / PROVISIONED_WRITE_CAP) * 100",
             "varName" : "CONSUMED_WRITE_PERCENT"
           },
           "metricSelectors" : [ "ConsumedWriteCapacityUnits", "ProvisionedWriteCapacityUnits" ],
@@ -192,7 +192,7 @@
           "job" : {
             "filters" : [ ],
             "resolution" : 300000,
-            "template" : "FAILED_REQUESTS = data(\"ConditionalCheckFailedRequests\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"TableName\", \"AWSUniqueId\"]).scale(60)",
+            "template" : "FAILED_REQUESTS = data(\"ConditionalCheckFailedRequests\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, rate=\"rollup\", extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"TableName\", \"AWSUniqueId\"]).scale(60)",
             "varName" : "FAILED_REQUESTS"
           },
           "metricSelectors" : [ "ConditionalCheckFailedRequests" ],
@@ -236,7 +236,7 @@
           "job" : {
             "filters" : [ ],
             "resolution" : 300000,
-            "template" : "ONLINE_INDEX = data(\"OnlineIndexThrottleEvents\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"TableName\", \"AWSUniqueId\"]).scale(60)",
+            "template" : "ONLINE_INDEX = data(\"OnlineIndexThrottleEvents\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, rate=\"rollup\", extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"TableName\", \"AWSUniqueId\"]).scale(60)",
             "varName" : "ONLINE_INDEX"
           },
           "metricSelectors" : [ "OnlineIndexThrottleEvents" ],
@@ -258,7 +258,7 @@
           "job" : {
             "filters" : [ ],
             "resolution" : 300000,
-            "template" : "ONLINE_WRITE_INDEX = data(\"OnlineIndexConsumedWriteCapacity\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"TableName\", \"AWSUniqueId\"]).scale(60)",
+            "template" : "ONLINE_WRITE_INDEX = data(\"OnlineIndexConsumedWriteCapacity\", filter=filter(\"namespace\", \"AWS/DynamoDB\") and filter(\"stat\", \"sum\") and filter(\"TableName\", \"*\"){{#filter}} and {{{filter}}}{{/filter}}, rate=\"rollup\", extrapolation=\"last_value\", maxExtrapolations=2).mean(by=[\"TableName\", \"AWSUniqueId\"]).scale(60)",
             "varName" : "ONLINE_WRITE_INDEX"
           },
           "metricSelectors" : [ "OnlineIndexConsumedWriteCapacity" ],
