@@ -1,5 +1,5 @@
 {
-  "hashCode" : 2029024897,
+  "hashCode" : 142440211,
   "id" : "EBkLgufAcHU",
   "modelVersion" : 1,
   "navigatorExport" : {
@@ -115,7 +115,7 @@
             "template" : "A = data('upstream_rq_completed'{{#filter}}, filter={{{filter}}}{{/filter}}, rollup='rate').sum(by=['mesh', 'service']).publish(label='A', enable=False)\nB = data('upstream_rq_5xx', rollup='rate', extrapolation='zero').sum(by=['mesh']).publish(label='B', enable=False)\nC = (100-(B/A*100)).publish(label='C')",
             "varName" : "C"
           },
-          "metricSelectors" : [ "container_fs_usage_bytes" ],
+          "metricSelectors" : [ "upstream_rq_completed", "upstream_rq_5xx" ],
           "type" : "metric",
           "valueFormat" : "Percentage",
           "valueLabel" : "Success Rate",
@@ -152,7 +152,7 @@
             "template" : "A = data('upstream_rq_time'{{#filter}}, filter={{{filter}}}{{/filter}}).mean(by=['mesh', 'service']).publish(label='A')",
             "varName" : "A"
           },
-          "metricSelectors" : [ "container_fs_usage_bytes" ],
+          "metricSelectors" : [ "upstream_rq_time" ],
           "type" : "metric",
           "valueFormat" : null,
           "valueLabel" : "Response Time",
